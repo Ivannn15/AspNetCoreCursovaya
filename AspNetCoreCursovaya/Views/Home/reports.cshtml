@@ -1,0 +1,528 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <partial name="header" />
+
+    <main>
+        <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="index.html">Главная</a> > Отчеты</p>
+        <div class="list_reports">
+            <div class="report">
+                <h4>Отчёт за предыдущий месяц</h4>
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+            </div>
+
+            <div class="report">
+                <h4>Отчёты за предыдущие полгода</h4>
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+            </div>
+
+            <div class="report">
+                <h4>Отчёты за предыдущий год</h4>
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+
+                <div class="text_from_report">
+
+                    <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="23" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_131_1496" transform="matrix(0.03125 0 0 0.0326087 0 -0.0217391)" />
+                            </pattern>
+                            <image id="image0_131_1496" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                    <a href="">Отчёт о пожертвованиях за февраль 2023</a>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="24" height="24" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_149_2685" transform="scale(0.015625)" />
+                            </pattern>
+                            <image id="image0_149_2685" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                        </defs>
+                    </svg>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <partial name="footer" />
+
+</body>
+</html>
