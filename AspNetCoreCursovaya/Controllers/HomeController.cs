@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,6 +60,11 @@ namespace AspNetCoreCursovaya.Controllers
         }
 
         public IActionResult writeUs()
+        {
+            return View();
+        }
+
+        public IActionResult calendar_events()
         {
             return View();
         }

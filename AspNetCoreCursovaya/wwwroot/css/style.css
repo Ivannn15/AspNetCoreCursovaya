@@ -9,8 +9,8 @@ html, body {
     justify-content: center;
     align-items: center;
 }
-  
-  .block {
+
+.block {
     text-align: center;
     font-size: 35px;
     color: white;
@@ -21,7 +21,7 @@ html, body {
     height: 200px;
     margin: 15px;
     background-color: #522473;
-  }
+}
 
 .list_items {
     width: 60%;
@@ -30,15 +30,15 @@ html, body {
     color: white;
 }
 
-.contact_info{
+.contact_info {
     padding-top: 5%;
     width: 50%;
 }
 
-.contact_info p {
-    font-size: 17px;
-    color: white;
-}
+    .contact_info p {
+        font-size: 17px;
+        color: white;
+    }
 
 /*************************** 
 **************************** 
@@ -46,23 +46,23 @@ news ****************
 **************************** 
 ***************************/
 
-.list_news{
+.list_news {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.news_card{
+.news_card {
     margin-top: 3%;
     width: 65%;
     border: 4px solid #4BBFAA; /* Параметры границы */
     padding: 10px; /* Поля вокруг текста */
 }
 
-.news_card h4{
-    color: #522473;
-}
+    .news_card h4 {
+        color: #522473;
+    }
 
 
 
@@ -81,26 +81,26 @@ ourActivities ****************
     align-items: center;
 }
 
-.list_card1 .card{
-    margin: 2%;
-    margin-bottom: 5%;
-    border: 3px solid #4BBFAA;
-}
+    .list_card1 .card {
+        margin: 2%;
+        margin-bottom: 5%;
+        border: 3px solid #4BBFAA;
+    }
 
-.list_card1 .card img{
-    padding: 10%;
-    padding-bottom: 0%;
-    padding-top: 5%;
-    height: 200px;
-    border-radius: 15%;
-}
+        .list_card1 .card img {
+            padding: 10%;
+            padding-bottom: 0%;
+            padding-top: 5%;
+            height: 200px;
+            border-radius: 15%;
+        }
 
-.card p{
+.card p {
     padding: 7%;
     padding-top: 0%;
 }
 
-.card h4{
+.card h4 {
     margin-left: 10%;
     color: #522473;
 }
@@ -119,31 +119,31 @@ Partners ****************
     align-items: center;
 }
 
-.list_cardFromPartners .card{
-    margin: 12%;
-    margin-top: 0%;
-    margin-bottom: 5%;
-    border: 3px solid #4BBFAA;
-}
+    .list_cardFromPartners .card {
+        margin: 12%;
+        margin-top: 0%;
+        margin-bottom: 5%;
+        border: 3px solid #4BBFAA;
+    }
 
-.list_cardFromPartners .card img {
-    padding: 5%;
-    padding-bottom: 0%;
-    height: 150px;
-    width: 280px;
-    border-radius: none;
-}
+        .list_cardFromPartners .card img {
+            padding: 5%;
+            padding-bottom: 0%;
+            height: 150px;
+            width: 280px;
+            border-radius: none;
+        }
 
-.list_cardFromPartners .card h5 {
-    color: #522473;
-    padding: 5%;
-    padding-top: 2%;
-    padding-bottom: 0%;
-}
+        .list_cardFromPartners .card h5 {
+            color: #522473;
+            padding: 5%;
+            padding-top: 2%;
+            padding-bottom: 0%;
+        }
 
-.list_cardFromPartners .card p {
-    padding: 0%;
-}
+        .list_cardFromPartners .card p {
+            padding: 0%;
+        }
 
 /*************************** 
 **************************** 
@@ -161,15 +161,15 @@ reports ****************
     margin-bottom: 5%;
 }
 
-.report a {
-    color: black;
-    font-size: 20px;
-}
+    .report a {
+        color: black;
+        font-size: 20px;
+    }
 
-.report h4 {
-    color: #522473;
-    font-size: 20px;
-}
+    .report h4 {
+        color: #522473;
+        font-size: 20px;
+    }
 
 /*************************** 
 **************************** 
@@ -177,7 +177,7 @@ abousUs ****************
 **************************** 
 ***************************/
 
-.director_word img{
+.director_word img {
     height: 450px;
 }
 
@@ -186,13 +186,13 @@ abousUs ****************
     margin-top: 3%;
 }
 
-.container_from_aboutUs p{
-    font-size: 18px;
-}
+    .container_from_aboutUs p {
+        font-size: 18px;
+    }
 
-.container_from_aboutUs h4{
-    color: #522473;
-}
+    .container_from_aboutUs h4 {
+        color: #522473;
+    }
 
 /*************************** 
 **************************** 
@@ -200,23 +200,133 @@ writeUs ****************
 **************************** 
 ***************************/
 
-.writeUs_container{
+.writeUs_container {
     margin-top: 5% !important;
     display: flex;
     justify-content: center;
 }
 
-.writeUs_container form{
-    width: 600px;
+    .writeUs_container form {
+        width: 600px;
+    }
+
+        .writeUs_container form .input_string {
+            border-color: #522473;
+        }
+
+    .writeUs_container button {
+        margin-left: 50%;
+        background-color: #4BBFAA;
+        border: 0px;
+        font-size: 15px;
+    }
+
+/*************************** 
+**************************** 
+writeUs ****************
+**************************** 
+***************************/
+
+.container_left_FromPnews {
+    margin-left: 10%;
 }
 
-.writeUs_container form .input_string{
-    border-color: #522473;
+.image_from_Pnews img {
+    height: 300px;
 }
 
-.writeUs_container button{
-    margin-left: 50%; 
-    background-color: #4BBFAA; 
-    border: 0px; 
-    font-size: 15px;
+.icon_from_Pnews {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
+
+.container_right_FromPnews .card {
+    margin: 12%;
+    margin-top: 0%;
+    margin-bottom: 5%;
+    border: 3px solid #4BBFAA;
+}
+
+.container_from_Pnews h4 {
+    color: #522473;
+}
+
+@media only screen and (max-width: 750px) {
+    .container_from_Pnews {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container_right_FromPnews {
+        margin-top: 10%;
+    }
+}
+
+/*************************** 
+**************************** 
+adminIndex ****************
+**************************** 
+***************************/
+
+.wrapper_f_adminInd {
+    margin-top: 4%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+    .wrapper_f_adminInd .block {
+        text-align: center;
+        font-size: 30px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 150px;
+        margin: 15px;
+        background-color: #522473;
+    }
+
+/*************************** 
+**************************** 
+calendar_event ****************
+**************************** 
+***************************/
+
+.day_of_week {
+    background-color: #4BBFAA;
+    width: 12.9%;
+    text-align: center;
+    height: 40px;
+    color: #522473;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 1%;
+}
+
+.days {
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.day {
+    justify-content: center;
+    align-items: center;
+    width: calc(20% - 10px);
+    width: 13%;
+    margin-bottom: 20px;
+}
+
+    .day hr {
+        border: solid 5px;
+    }
+
+    .day .hr_bottom {
+        border: solid 2px;
+    }
