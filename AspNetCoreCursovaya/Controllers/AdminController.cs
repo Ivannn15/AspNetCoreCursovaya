@@ -1,27 +1,55 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AspNetCoreCursovaya.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using AspNetCoreCursovaya.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace AspNetCoreCursovaya.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: AdminController
-        public ActionResult Index()
+
+
+        public IActionResult admin_index()
         {
             return View();
         }
 
-        // GET: AdminController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult addAdvertisementPage()
         {
             return View();
         }
 
-        // GET: AdminController/Create
-        public ActionResult Create()
+        public IActionResult addDocumentPage()
         {
             return View();
         }
+
+        public IActionResult addNewsPage()
+        {
+            return View();
+        }
+
+        public IActionResult addReportPage()
+        {
+            return View();
+        }
+        
 
         // POST: AdminController/Create
         [HttpPost]
