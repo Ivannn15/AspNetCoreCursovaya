@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace AspNetCoreCursovaya
 {
@@ -35,26 +36,15 @@ namespace AspNetCoreCursovaya
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
              .AddCookie(options =>
              {
+                 options.Cookie.Name = "YourCookieName";
+                 options.Cookie.HttpOnly = true;
+                 options.Cookie.SameSite = SameSiteMode.Strict;
+                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                  options.LoginPath = "/home/Index";
+                 options.LogoutPath = "/home/Index";
                  options.AccessDeniedPath = "/home/Index";
                  options.ExpireTimeSpan = TimeSpan.FromDays(30);
              });
-
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //.AddJwtBearer(options =>
-            //{
-            //    options.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuer = true,
-            //        ValidateAudience = true,
-            //        ValidateLifetime = true,
-            //        ValidateIssuerSigningKey = true,
-
-            //        ValidIssuer = Configuration["Jwt:Issuer"],
-            //        ValidAudience = Configuration["Jwt:Audience"],
-            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-            //    };
-            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,7 +78,7 @@ namespace AspNetCoreCursovaya
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=home}/{action=Index}/{id?}");
             });
         }
     }

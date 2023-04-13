@@ -1,30 +1,17 @@
 ﻿using AspNetCoreCursovaya.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using AspNetCoreCursovaya.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Hosting;
 using System;
-using Microsoft.Extensions.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using System.IO;
 
 namespace AspNetCoreCursovaya.Controllers
 {
     public class AdminController : Controller
     {
 
-
+        [Authorize]
         public IActionResult admin_index()
         {
             return View();
@@ -35,15 +22,52 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
-        public IActionResult addDocumentPage()
+        public IActionResult addEventPage()
         {
             return View();
         }
 
+        public IActionResult addDocumentPage()
+        {
+            return View();
+        }
+        /// <summary>
+        /// /////////////
+        /// </summary>
+        /// <returns></returns>
+
+        [HttpGet]
         public IActionResult addNewsPage()
         {
             return View();
         }
+
+        public listNews list_News = new listNews();
+        
+
+        [HttpPost]
+        public IActionResult addNewsPage([FromForm] news news)
+        {
+            news tempNews = news;
+
+            ///// Подключить Entity Framework, доделать бд и создать модели
+
+
+            //tempNews = Path.Combine(_environment.WebRootPath, "images", model.imagelink.FileName);
+            //using (var stream = new FileStream(filePath, FileMode.Create))
+            //{
+            //    model.imagelink.CopyTo(stream);
+            //}
+
+            list_News.newsList.Add(tempNews);
+
+            return RedirectToAction("news", "home", news);
+        }
+
+        /// <summary>
+        /// ///////////////////////
+        /// </summary>
+        /// <returns></returns>
 
         public IActionResult addReportPage()
         {

@@ -109,7 +109,13 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("admin_index", "admin");
         }
 
-
+        [HttpGet("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            // код для удаления токена доступа из базы данных или очистки сессии пользователя
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "home");
+        }
 
         //[AllowAnonymous]
         //[HttpGet("login/{username}/{password}")]

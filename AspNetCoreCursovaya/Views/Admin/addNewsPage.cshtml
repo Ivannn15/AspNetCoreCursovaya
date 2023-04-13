@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model AspNetCoreCursovaya.Models.news
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,17 +17,18 @@
     <main>
         <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Главная</a> > <a style="color: black; text-decoration: none;" href="news.html">Новости</a> > Добавить новость</p>
         <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
-            <form action="">
+            <form action="addNewsPage" method="post">
                 <div class="mb-3">
-                    <input style="border: 2px solid #522473;" type="email" placeholder="Заголовок новости" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input style="border: 2px solid #522473;" asp-for="zagolovok" name="zagolovok" type="text" placeholder="Заголовок новости" class="form-control rounded-2 input_string w-100" id="zagolovok">
                 </div>
 
                 <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
-                    <textarea class="form-control rounded-2 input_string w-100" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px; border: 2px solid #522473; height: 300px;"></textarea>
+                    <textarea class="form-control rounded-2 input_string w-100" asp-for="textNews" name="textNews" placeholder="Leave a comment here" id="textNews" style="height: 100px; border: 2px solid #522473; height: 300px;"></textarea>
                     <label for="floatingTextarea2">Текст новости</label>
                 </div>
+                <input type="file" asp-for="imagelink" id="imagelink" name="imagelink" class="form-control" />
                 <a style="color: black;" href="">Прикрепить фотографии</a>
-                <button type="submit" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Опубликовать новость</button>
+                <a asp-action="addNewsPage"><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Опубликовать новость</button></a>
                 <br><br><br>
             </form>
         </div>
