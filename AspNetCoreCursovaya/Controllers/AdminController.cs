@@ -42,27 +42,25 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
-        public listNews list_News = new listNews();
         
 
-        [HttpPost]
-        public IActionResult addNewsPage([FromForm] news news)
-        {
-            news tempNews = news;
+        //[HttpPost]
+        //public IActionResult addNewsPage([FromForm] news news)
+        //{
 
-            ///// Подключить Entity Framework, доделать бд и создать модели
+        //    ///// Подключить Entity Framework, доделать бд и создать модели
 
 
-            //tempNews = Path.Combine(_environment.WebRootPath, "images", model.imagelink.FileName);
-            //using (var stream = new FileStream(filePath, FileMode.Create))
-            //{
-            //    model.imagelink.CopyTo(stream);
-            //}
+        //    //tempNews = Path.Combine(_environment.WebRootPath, "images", model.imagelink.FileName);
+        //    //using (var stream = new FileStream(filePath, FileMode.Create))
+        //    //{
+        //    //    model.imagelink.CopyTo(stream);
+        //    //}
 
-            list_News.newsList.Add(tempNews);
+        //    list_News.newsList.Add(tempNews);
 
-            return RedirectToAction("news", "home", news);
-        }
+        //    return RedirectToAction("news", "home", news);
+        //}
 
         /// <summary>
         /// ///////////////////////

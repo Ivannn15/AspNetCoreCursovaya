@@ -87,27 +87,27 @@ namespace AspNetCoreCursovaya.Controllers
         }
 
 
-        [HttpGet("login/{username}/{password}")]
-        public async Task<IActionResult> AddNewUserAsync(string username, string password)
-        {
-            Admin admin = new Admin();
+        //[HttpGet("login/{username}/{password}")]
+        //public async Task<IActionResult> AddNewUserAsync(string username, string password)
+        //{
+        //    Admin admin = new Admin();
 
             
-            if (username != "jone" && password != "123")
-            {
-                ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
-            }
+        //    if (username != "jone" && password != "123")
+        //    {
+        //        ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
+        //    }
             
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, admin.name),
-            };
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+        //    var claims = new List<Claim>
+        //    {
+        //        new Claim(ClaimTypes.NameIdentifier, admin.name),
+        //    };
+        //    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //    var principal = new ClaimsPrincipal(identity);
+        //    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-            return RedirectToAction("admin_index", "admin");
-        }
+        //    return RedirectToAction("admin_index", "admin");
+        //}
 
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()

@@ -1,19 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using AspNetCoreCursovaya.Models;
 
 namespace AspNetCoreCursovaya
 {
@@ -45,6 +39,12 @@ namespace AspNetCoreCursovaya
                  options.AccessDeniedPath = "/home/Index";
                  options.ExpireTimeSpan = TimeSpan.FromDays(30);
              });
+
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
+
+            services.AddDbContext<cursovayadbContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), serverVersion));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

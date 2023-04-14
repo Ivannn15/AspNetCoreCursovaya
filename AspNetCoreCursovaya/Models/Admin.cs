@@ -1,9 +1,15 @@
-﻿namespace AspNetCoreCursovaya.Models
+﻿using System;
+using System.Collections.Generic;
+
+#nullable disable
+
+namespace AspNetCoreCursovaya.Models
 {
-    public class Admin
+    public partial class Admin
     {
-        public string name = "jone";
-        public string password = "123";
-        
+        public int IdAdmin { get; set; }
+        public string Username { get; set; }
+        public string HashPassword { get; set; }
+        public string Salt { get; set; }
     }
 }
