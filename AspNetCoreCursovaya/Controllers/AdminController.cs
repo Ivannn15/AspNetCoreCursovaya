@@ -5,11 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace AspNetCoreCursovaya.Controllers
 {
     public class AdminController : Controller
     {
+
+        cursovayadbContext cursovayadbContext = new cursovayadbContext();
 
         [Authorize]
         public IActionResult admin_index()
@@ -42,6 +45,36 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult addNews(News news, IFormFile photoInNews)
+        {
+            if (photoInNews != null && photoInNews.Length > 0)
+            {
+                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
+                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInNews.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    photoInNews.CopyTo(stream);
+                }
+            }
+
+            int MaxIdFnews = cursovayadbContext.News.Max(p => p.IdNews);
+            news.IdNews = MaxIdFnews + 1;
+            news.DatePublication = DateTime.Now;
+
+            PhotoInNews NewPhoto = new PhotoInNews();
+            int MaxIdFphotoList = cursovayadbContext.PhotoInNews.Max(p => p.IdPhoto);
+            NewPhoto.IdPhoto = MaxIdFphotoList + 1;
+            NewPhoto.Link = photoInNews.FileName;
+            NewPhoto.IdNewsNavigation = news;
+            NewPhoto.IdNews = news.IdNews;
+
+            cursovayadbContext.PhotoInNews.Add(NewPhoto);
+            cursovayadbContext.News.Add(news);
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("news", "home");
+        }
         
 
         //[HttpPost]

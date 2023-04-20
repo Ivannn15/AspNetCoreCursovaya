@@ -19,6 +19,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Collections.Generic;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using AspNetCoreCursovaya.helpingClasses;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AspNetCoreCursovaya.Controllers
 {
@@ -33,7 +37,7 @@ namespace AspNetCoreCursovaya.Controllers
             _config = config;
         }
 
-        
+        cursovayadbContext cursovayadb = new cursovayadbContext();
 
         public IActionResult Index()
         {
@@ -50,9 +54,19 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
-        public IActionResult news()
+
+        public async Task<IActionResult> news(int? page)
         {
-            return View();
+            //cursovayadb.News.Add
+
+            //var newsItems = cursovayadb.News.Include(p => p.PhotoInNews).ToList(); /////////// // // last variant
+
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            var newsItems = await PaginatedList<News>.CreateAsync(cursovayadb.News.Include(p => p.PhotoInNews).AsNoTracking(), pageNumber, pageSize);
+
+
+            return View(newsItems);
         }
 
         public IActionResult ourActivities()
@@ -75,6 +89,13 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
+        public IActionResult pageNews(int id)
+        {
+            //var tempNews = cursovayadb.News.Include(p => p.PhotoInNews).SingleOrDefault(p => p.IdNews == id); // разобраться почему контроллер вызывается 2 раза
+            var temp = cursovayadb.PhotoInNews.Include(p => p.IdNewsNavigation).SingleOrDefault(p => p.IdNews == id);
+            return View(temp);
+        }
+
         [Authorize]
         public IActionResult writeUs()
         {
@@ -87,27 +108,37 @@ namespace AspNetCoreCursovaya.Controllers
         }
 
 
-        //[HttpGet("login/{username}/{password}")]
-        //public async Task<IActionResult> AddNewUserAsync(string username, string password)
-        //{
-        //    Admin admin = new Admin();
 
-            
-        //    if (username != "jone" && password != "123")
-        //    {
-        //        ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
-        //    }
-            
-        //    var claims = new List<Claim>
-        //    {
-        //        new Claim(ClaimTypes.NameIdentifier, admin.name),
-        //    };
-        //    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        //    var principal = new ClaimsPrincipal(identity);
-        //    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+        [HttpGet("login/{username}/{password}")]
+        public async Task<IActionResult> AddNewUserAsync(string username, string password)
+        {
+            Admin admin = new Admin();
 
-        //    return RedirectToAction("admin_index", "admin");
-        //}
+
+            //if (username != "jone" && password != "123")
+            //{
+            //    ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
+            //}
+
+            var temp_user = cursovayadb.Admins.SingleOrDefault(p => p.Username == username && p.HashPassword == password);
+
+            if (temp_user == null)
+            {
+                ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
+                return View("index");
+            }
+
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, username),
+            };
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            return RedirectToAction("admin_index", "admin");
+        }
 
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()

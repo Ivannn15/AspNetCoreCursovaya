@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using AspNetCoreCursovaya.helpingClasses;
+@model PaginatedList<News>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,93 +17,62 @@
     <partial name="header" />
 
     <main>
+
         <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="@Url.Action("index")">Главная</a> > Новости</p>
-        <div class="list_news">
-            <div style="display: flex;" class="d-flex flex-column flex-md-row news_card rounded-4">
-                <div style="margin-top: 1%; margin-left: 2%;" class="news_card_text">
-                    <h4>
-                        Смешно, но солнце дней все меньше
-                    </h4>
-                    <p style="font-size: 20px; padding-top: 2%;">
-                        Но высокотехнологичная концепция <br>
-                        общественного уклада является качественно <br>
-                        новой ступенью экономической <br>
-                        целесообразности принимаемых решений...
-                    </p>
-                    <p style="color: #522473; font-size: 23px; font-weight: lighter;">24 февраля 2023</p>
-                </div>
+        @foreach (var New in Model)
+        {
+            <div class="list_news">
+                <div style="display: flex;" class="d-flex flex-column flex-md-row news_card rounded-4">
+                    <div style="margin-top: 1%; margin-left: 2%;" class="news_card_text">
+                        <a style="text-decoration: none; color: #522473; font-size: 35px; font-weight: 700" name="id" href="@Url.Action("pageNews", new { id = New.IdNews })">
+                           @New.TitleNews;
+                        </a>
+                        <h4>
+                            
+                        </h4>
+                        <p style="font-size: 20px; padding-top: 2%;">
+                            @New.TextNews;
+                        </p>
+                        <p style="color: #522473; font-size: 23px; font-weight: lighter;">@New.DatePublication;</p>
+                    </div>
 
-                <img class="order-md-1" style="height: 200px; margin-top: 2%; margin-left: 7%;" src="/image/newsCardImage1.jpg" alt="">
+                    <img class="order-md-1" style="height: 200px; margin-top: 2%; margin-left: 7%;" src="/image/@New.PhotoInNews.FirstOrDefault().Link.ToString()" alt="">
+                </div>
             </div>
+        }
 
-            <div style="display: flex;" class="d-flex flex-column flex-md-row news_card rounded-4">
-                <div style="margin-top: 1%; margin-left: 2%;" class="news_card_text">
-                    <h4>
-                        Смешно, но солнце дней все меньше
-                    </h4>
-                    <p style="font-size: 20px; padding-top: 2%;">
-                        Но высокотехнологичная концепция <br>
-                        общественного уклада является качественно <br>
-                        новой ступенью экономической <br>
-                        целесообразности принимаемых решений...
-                    </p>
-                    <p style="color: #522473; font-size: 23px; font-weight: lighter;">24 февраля 2023</p>
-                </div>
-
-                <img class="order-md-1" style="height: 200px; margin-top: 2%; margin-left: 7%;" src="/image/newsCardImage2.jpg" alt="">
-            </div>
-
-            <div style="display: flex;" class="d-flex flex-column flex-md-row news_card rounded-4">
-                <div style="margin-top: 1%; margin-left: 2%;" class="news_card_text">
-                    <h4>
-                        Смешно, но солнце дней все меньше
-                    </h4>
-                    <p style="font-size: 20px; padding-top: 2%;">
-                        Но высокотехнологичная концепция <br>
-                        общественного уклада является качественно <br>
-                        новой ступенью экономической <br>
-                        целесообразности принимаемых решений...
-                    </p>
-                    <p style="color: #522473; font-size: 23px; font-weight: lighter;">24 февраля 2023</p>
-                </div>
-
-                <img class="order-md-1" style="height: 200px; margin-top: 2%; margin-left: 7%;" src="/image/newsCardImage3.jpg" alt="">
-            </div>
-            <div style="display: flex;" class="d-flex flex-column flex-md-row news_card rounded-4">
-                <div style="margin-top: 1%; margin-left: 2%;" class="news_card_text">
-                    <h4>
-                        Смешно, но солнце дней все меньше
-                    </h4>
-                    <p style="font-size: 20px; padding-top: 2%;">
-                        Но высокотехнологичная концепция <br>
-                        общественного уклада является качественно <br>
-                        новой ступенью экономической <br>
-                        целесообразности принимаемых решений...
-                    </p>
-                    <p style="color: #522473; font-size: 23px; font-weight: lighter;">24 февраля 2023</p>
-                </div>
-
-                <img class="order-md-1" style="height: 200px; margin-top: 2%; margin-left: 7%;" src="/image/newsCardImage4.jpg" alt="">
-            </div>
-
-            <div style="display: flex;" class="d-flex flex-column flex-md-row news_card rounded-4">
-                <div style="margin-top: 1%; margin-left: 2%;" class="news_card_text">
-                    <h4>
-                        Смешно, но солнце дней все меньше
-                    </h4>
-                    <p style="font-size: 20px; padding-top: 2%;">
-                        Но высокотехнологичная концепция <br>
-                        общественного уклада является качественно <br>
-                        новой ступенью экономической <br>
-                        целесообразности принимаемых решений...
-                    </p>
-                    <p style="color: #522473; font-size: 23px; font-weight: lighter;">24 февраля 2023</p>
-                </div>
-
-                <img class="order-md-1" style="height: 200px; margin-top: 2%; margin-left: 7%;" src="/image/newsCardImage5.jpg" alt="">
+        <div class="container d-flex justify-content-center" style="margin-top: 5%">
+            <div class="pagination">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        @if (Model.HasPreviousPage)
+                        {
+                            <li class="page-item">
+                                <a style="color:white ;background: #522473;" class="page-link" href="@Url.Action("news", new { page = Model.PageIndex - 1 })">Previous</a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            if (i == Model.PageIndex)
+                            {
+                                <li class="page-item active"><a style="background-color: #522473; color: white" class="page-link" href="#">@i</a></li>
+                            }
+                            else
+                            {
+                                <li class="page-item"><a style="color: #522473" class="page-link" href="@Url.Action("news", new { page = i })">@i</a></li>
+                            }
+                        }
+                        @if (Model.HasNextPage)
+                        {
+                            <li class="page-item">
+                                <a style="color:white ;background: #522473;" class="page-link" href="@Url.Action("news", new { page = Model.PageIndex + 1 })">Next</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
             </div>
         </div>
-        <p style="font-size: 20px; color: #522473; margin-top: 5%;" align="center">1 2 3 4...</p>
+        
     </main>
 
     <partial name="footer" />

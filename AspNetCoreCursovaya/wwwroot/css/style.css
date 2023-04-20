@@ -60,9 +60,15 @@ news ****************
     padding: 10px; /* Поля вокруг текста */
 }
 
-    .news_card h4 {
-        color: #522473;
-    }
+.news_card_text a {
+    text-decoration: none;
+    color: #522473;
+    font-size: 35px;
+}
+
+.bg-custom {
+    background-color: #522473;
+}
 
 
 
