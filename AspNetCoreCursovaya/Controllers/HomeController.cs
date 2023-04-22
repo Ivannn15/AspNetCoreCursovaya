@@ -89,11 +89,43 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
-        public IActionResult pageNews(int id)
+        public async Task<IActionResult> pageNews(int id, int? numberOfPage)
         {
             //var tempNews = cursovayadb.News.Include(p => p.PhotoInNews).SingleOrDefault(p => p.IdNews == id); // разобраться почему контроллер вызывается 2 раза
             var temp = cursovayadb.PhotoInNews.Include(p => p.IdNewsNavigation).SingleOrDefault(p => p.IdNews == id);
-            return View(temp);
+            
+            int pageSize = 4;
+
+            ViewBag.Id = id;
+
+            int pageNumber = (numberOfPage ?? 1);
+            var newsItems = await PaginatedList<News>.CreateAsync(cursovayadb.News.Include(p => p.PhotoInNews).Include(p => p.Comments).AsNoTracking(), pageNumber, pageSize);
+            return View(newsItems);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> addComment(string commentatorName, string commentatorText, int newsId, int pageIndex)
+        {
+            
+            int MaxId = cursovayadb.Comments.Max(p => p.Idcomments) + 1;
+            var News = cursovayadb.News.SingleOrDefault(p => p.IdNews == newsId);
+
+            Comment NewComment = new Comment
+            {
+                Idcomments = MaxId,
+                TextComment = commentatorText,
+                NameCommentator = commentatorName,
+                DatePublication = DateTime.Now,
+                IdNewsNavigation = News,
+                IdNews = newsId,
+            };
+
+            
+
+            cursovayadb.Comments.Add(NewComment);
+            cursovayadb.SaveChanges();
+
+            return RedirectToAction("pageNews", new { id = newsId, numberOfPage = pageIndex });;
         }
 
         [Authorize]

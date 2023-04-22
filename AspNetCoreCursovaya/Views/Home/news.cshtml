@@ -24,7 +24,7 @@
             <div class="list_news">
                 <div style="display: flex;" class="d-flex flex-column flex-md-row news_card rounded-4">
                     <div style="margin-top: 1%; margin-left: 2%;" class="news_card_text">
-                        <a style="text-decoration: none; color: #522473; font-size: 35px; font-weight: 700" name="id" href="@Url.Action("pageNews", new { id = New.IdNews })">
+                        <a style="text-decoration: none; color: #522473; font-size: 35px; font-weight: 700" name="id" href="@Url.Action("pageNews", new { id = New.IdNews, numberOfPage = Model.PageIndex })">
                            @New.TitleNews;
                         </a>
                         <h4>

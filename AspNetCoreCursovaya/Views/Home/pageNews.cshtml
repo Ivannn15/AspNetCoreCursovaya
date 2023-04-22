@@ -1,4 +1,5 @@
-﻿@model AspNetCoreCursovaya.Models.PhotoInNews
+﻿@using AspNetCoreCursovaya.helpingClasses;
+@model PaginatedList<News>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,13 +21,13 @@
         <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Новости</a> > Смешно, но солнечных дней все меньше</p>
         <div class="container_from_Pnews" style="display: flex; justify-content: space-between;">
             <div class="container_left_FromPnews">
-                <h3 style="color: #522473; margin-top: 3%;"><b>@Model.IdNewsNavigation.TitleNews</b></h3>
+                <h3 style="color: #522473; margin-top: 3%;"><b>@Model.SingleOrDefault(p => p.IdNews == ViewBag.Id).TitleNews</b></h3>
                 <p style="font-size: 20px; margin-top: 5%;">
-                    @Model.IdNewsNavigation.TextNews
+                    @Model.SingleOrDefault(p => p.IdNews == ViewBag.Id).TextNews
                 </p>
 
                 <div class="image_from_Pnews" style="margin-top: 10%;">
-                    <img src="/image/@Model.Link.ToString()" alt="">
+                    <img src="/image/@Model.SingleOrDefault(p => p.IdNews == ViewBag.Id).PhotoInNews.SingleOrDefault(p => p.IdNews == ViewBag.Id).Link.ToString()" alt="">
                 </div>
 
                 <div class="icon_from_Pnews" style="margin-top: 15%;">
@@ -52,87 +53,53 @@
                 </div>
 
                 <div style="width: 100%;" class="input_from_Pnews">
-                    <form action="">
+                    <form asp-action="addComment">
                         <div class="mb-3">
-                            <input style="border: 2px solid #522473;" type="email" placeholder="Имя" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input style="border: 2px solid #522473;" name="commentatorName" type="text" placeholder="Имя" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
 
                         <div class="form-floating" style="margin-bottom: 1%;">
-                            <textarea class="form-control rounded-2 input_string w-100" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px; border: 2px solid #522473;"></textarea>
+                            <textarea class="form-control rounded-2 input_string w-100" placeholder="Leave a comment here" name="commentatorText" id="floatingTextarea2" style="height: 100px; border: 2px solid #522473;"></textarea>
                             <label for="floatingTextarea2">Текст обращения</label>
                         </div>
-                        <button type="submit" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px;">Опубликовать комментарий</button>
+
+                        <input type="hidden" name="newsId" value="@ViewBag.Id" />
+                        <input type="hidden" name="pageIndex" value="@Model.PageIndex" />
+                        <a href="@Url.Action("addComment")"><button href="@Url.Action("addComment")" class="btn btn-secondary btn-sm w-50 rounded-3" name="commentatorText" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px;">Опубликовать комментарий</button></a>
                     </form>
                 </div>
+
+                @*href="@Url.Action("addComment", new { newsId = ViewBag.Id })"*@
 
                 <div class="comments_from_Pnews" style="margin-top: 15%;">
                     <h4 style="font-size: 30px;"><b>Комментарии:</b></h4>
 
-                    <div class="comment" style="margin-top: 5%;">
-                        <div class="nameDate_from_comment" style="display: flex;">
-                            <p><b>Марина Петровна</b></p>
-                            <p style="margin-left: 3%;">24.02.2023 14:55</p>
-                            <svg style="margin-left: 1%;" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <rect width="21" height="20" fill="url(#pattern0)" />
-                                <defs>
-                                    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                        <use xlink:href="#image0_149_2677" transform="matrix(0.015625 0 0 0.0164063 0 -0.025)" />
-                                    </pattern>
-                                    <image id="image0_149_2677" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
-                                </defs>
-                            </svg>
-                        </div>
+                    @{
+                        var List_coments = Model.SingleOrDefault(p => p.IdNews == ViewBag.Id).Comments.ToList();
 
-                        <p>
-                            Банальные, но неопровержимые выводы, а также некоторые особенности <br>
-                            внутренней политики неоднозначны и будут функционально разнесены на <br>
-                            независимые элементы.
-                        </p>
-                    </div>
+                        foreach (var com in List_coments.AsEnumerable().Reverse())
+                        {
+                            <div class="comment" style="margin-top: 5%;">
+                                <div class="nameDate_from_comment" style="display: flex;">
+                                    <p><b>@com.NameCommentator</b></p>
+                                    <p style="margin-left: 3%;">@com.DatePublication</p>
+                                    <svg style="margin-left: 1%;" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <rect width="21" height="20" fill="url(#pattern0)" />
+                                        <defs>
+                                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                                <use xlink:href="#image0_149_2677" transform="matrix(0.015625 0 0 0.0164063 0 -0.025)" />
+                                            </pattern>
+                                            <image id="image0_149_2677" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
+                                        </defs>
+                                    </svg>
+                                </div>
 
-                    <div class="comment" style="margin-top: 3%;">
-                        <div class="nameDate_from_comment" style="display: flex;">
-                            <p><b>Марина Петровна</b></p>
-                            <p style="margin-left: 3%;">24.02.2023 14:55</p>
-                            <svg style="margin-left: 1%;" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <rect width="21" height="20" fill="url(#pattern0)" />
-                                <defs>
-                                    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                        <use xlink:href="#image0_149_2677" transform="matrix(0.015625 0 0 0.0164063 0 -0.025)" />
-                                    </pattern>
-                                    <image id="image0_149_2677" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
-                                </defs>
-                            </svg>
-                        </div>
-
-                        <p>
-                            Банальные, но неопровержимые выводы, а также некоторые особенности <br>
-                            внутренней политики неоднозначны и будут функционально разнесены на <br>
-                            независимые элементы.
-                        </p>
-                    </div>
-
-                    <div class="comment" style="margin-top: 3%;">
-                        <div class="nameDate_from_comment" style="display: flex;">
-                            <p><b>Марина Петровна</b></p>
-                            <p style="margin-left: 3%;">24.02.2023 14:55</p>
-                            <svg style="margin-left: 1%;" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <rect width="21" height="20" fill="url(#pattern0)" />
-                                <defs>
-                                    <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                        <use xlink:href="#image0_149_2677" transform="matrix(0.015625 0 0 0.0164063 0 -0.025)" />
-                                    </pattern>
-                                    <image id="image0_149_2677" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAYAAAD6+a2dAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAw8DGBRC0RlhAAAEFklEQVR42u2cb0hkVRTAz52xLFZnZw11Sd22nTGhxYhdwSUqWPwTJrWr07QLRbkrWdSs6by1iChoWRDWnQUdN/y37bAUyEoWK2TJSvQllEpWFmQVDU37oiyaYwaO792+OF8cxnp633vXOef39b1373nn/ebOOfOGC0AQBF6Y1QHopWIht+l8ank57NHO8rb2dvY6K4SRrCzLAmKwDK1zc5qXR+BWTc23p6cWAy/091udp/+LzeoA9MLe4U18ra3N8gcfhYMDfNnZtofYU3Cnvd3qcPSy6wSIJtzqMGK4AX/CfE6O1WHoZfcJQAglyeoARNPbOzkZCDDDapvKSrdbUTi3+j5FQSsAcnR/UqSrwrGzwy5E9wogXRWOnR12Ifq/AmStwrGzzS6EagDkCO8CjK7CsSO6C6EVADnCV4BE65MTHVoBkKNfgI2+0+rAiU28AVmQMTur9zLdAkR/cCARJGHjwfMMfkJ7rqZG7+XCq/X/qgGoS9gas/NHNQBySADkkADIkV6A6NvHilXXfeWrublKjztDSZ6dPdnt2qf8UFaWaOOZjfQCxLx93OHbL9nHMxvpBYj79nG7/8GTfTyTkV8AwlBIAOSQAMghAZBDAiCHBEAOCYAcEgA5JABySADkkADIIQGQQwIghwRADgmAHBIAOSQAckgA5JAAyCEBkEMCIIcEQA4JgBwSADkkAHJIAOSQAMiRX4B4W9Fsc08c6cczGekFiNmTaId74sg+ntmI3yPogusf5aXlZbjD8uGJ1NTNx9f99uftfQ7HrWfHv7g0EQ5bnQBZ8L5y6PEPP9i7V9Vs9nV1aSnmhKf5XZgIh3s/nXo40OdwiJpX+ArAC1kmPBJ/6Ut6O3JGGy4uFj3vbkdbts9EurfIi8Zq4e+ZGdHzCheAhfiP/MjAQLzjvJP9oiU3Nnq9T96s/zktTfT8u41oHvh9/hZbbWyMdx4/CvNsKX5et4t4ATgs8KauLliFWnhNVWOOX2afs0/y8lRtzWc7PjpacdLt8td7vWVud8u578QtbbISvU9Paa7Nf8DjUX9fG7S9PDQEj8EgvJmbG3PBRh6TbkAR77p2TXQ8hu3XVzHubvEvBoPsI2hhF30+o+ZJdPh5/i482tz8zTNT/oBSVyd6fMO6gKSPH9yf6lQUfgauQ/ngoKFZSkRGucKbbt9Ov+78MnyvocGoaexGDTw2ttDz02eqmh/ZX1Ya6u7m6ep7a+B0wgJkwrGCAngAhuGuTfo21DRe5Ffg1/V1fgJcUBAMpv/lDK2Eqqo6On8b6eiMRIya1vQtWz2nXd/X5xw+zK+yV21F1dUQhFPwR0kJ9HAfhA4ehDzmgeaUFLPjMo1x/jW8v7ICXtYKVdPT0eIu+h3f0zNZGzgyNmZ1mARBYOBfXVHn8HoR2RgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMTVUMDM6MjQ6MjArMDA6MDDFJSlGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTE1VDAzOjI0OjIwKzAwOjAwtHiR+gAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0xNVQwMzoyNDoyMCswMDowMONtsCUAAAAASUVORK5CYII=" />
-                                </defs>
-                            </svg>
-                        </div>
-
-                        <p>
-                            Банальные, но неопровержимые выводы, а также некоторые особенности <br>
-                            внутренней политики неоднозначны и будут функционально разнесены на <br>
-                            независимые элементы.
-                        </p>
-                    </div>
+                                <p>
+                                    @com.TextComment
+                                </p>
+                            </div>
+                        }
+                    }
 
                     <a style="color: #4BBFAA; text-decoration: none;" href="">Показать больше комментариев...</a>
                 </div>
@@ -141,24 +108,19 @@
             </div>
 
             <div class="container_right_FromPnews" style="margin-right: 7%;">
-                <div class="card rounded-4" style="width: 18rem;">
-                    <img style="padding: 10%; padding-bottom: 0%; height: 200px;" src="image/newsCardImage1.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h4 class="card-text">Смешно, но солнечных дней всё меньше</h4>
+                @foreach (var New in Model)
+                {
+                    if (New.IdNews == ViewBag.Id)
+                    {
+                        continue;
+                    }
+                    <div class="card rounded-4" style="width: 18rem;">
+                        <img style="padding: 10%; padding-bottom: 0%; height: 200px;" src="/image/@New.PhotoInNews.FirstOrDefault().Link.ToString()" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <a style="text-decoration:none" href="@Url.Action("pageNews", new { id = New.IdNews, numberOfPage = Model.PageIndex })"><h4 class="card-text">@New.TitleNews</h4></a>
+                        </div>
                     </div>
-                </div>
-                <div class="card rounded-4" style="width: 18rem;">
-                    <img style="padding: 10%; padding-bottom: 0%; height: 200px;" src="image/newsCardImage3.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h4 class="card-text">Смешно, но солнечных дней всё меньше</h4>
-                    </div>
-                </div>
-                <div class="card rounded-4" style="width: 18rem;">
-                    <img style="padding: 10%; padding-bottom: 0%; height: 200px;" src="image/newsCardImage4.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h4 class="card-text">Смешно, но солнечных дней всё меньше</h4>
-                    </div>
-                </div>
+                }
             </div>
 
         </div>
