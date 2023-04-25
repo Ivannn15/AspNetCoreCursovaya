@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model AspNetCoreCursovaya.Models.Event
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -48,16 +50,22 @@
 
             <div class="days">
                 @{
+
+                   
                     int year = DateTime.Now.Year;
                     int month = DateTime.Now.Month;
                     DateTime firstDayOfMonth = new DateTime(year, month, 1);
                     int daysInMonth = DateTime.DaysInMonth(year, month);
                     int dayOfWeek = (int)firstDayOfMonth.DayOfWeek; // получаем порядковый номер дня недели для первого дня месяца
-                    int ordinalNumber = (dayOfWeek == 0) ? 7 : dayOfWeek; 
+                    int ordinalNumber = (dayOfWeek == 0) ? 7 : dayOfWeek;
+
+                    //int date = Model.DateStart.Value.Day;
+
+                    /////////// 25.04 Добавить вывод эвентов в представление календарь ивентов, разобраться с сопоставлением дат текущего месяца и даты проведения эвента
 
                     for (int i = 1; i <= 35; i++)
                     {
-                            if (i >= ordinalNumber && i <= daysInMonth)
+                            if (i >= ordinalNumber && Model.DateStart.Value.Day <= daysInMonth)
                             {
                                 <div class="day">
                                     <hr>

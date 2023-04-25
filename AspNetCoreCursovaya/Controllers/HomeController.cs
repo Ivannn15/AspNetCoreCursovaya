@@ -51,7 +51,8 @@ namespace AspNetCoreCursovaya.Controllers
 
         public IActionResult advertisement()
         {
-            return View();
+            var adverts = cursovayadb.Posters;
+            return View(adverts);
         }
 
 
@@ -138,6 +139,8 @@ namespace AspNetCoreCursovaya.Controllers
         {
             return View();
         }
+
+        /////////// 25.04 Добавить вывод эвентов в представление календарь ивентов, разобраться с сопоставлением дат текущего месяца и даты проведения эвента
 
 
 

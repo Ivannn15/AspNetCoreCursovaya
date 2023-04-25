@@ -30,6 +30,57 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
+        
+
+        [HttpPost]
+        public IActionResult addAdvertisement(Poster poster, string category)
+        {
+            int MaxIdAdvert = cursovayadbContext.Posters.Max(p => p.IdPoster);
+            int? MaxIdCategoryPoster = cursovayadbContext.CategoryInPosters.Max(p => p.idCategoryInPoster);
+
+            poster.DatePublication = poster.DateStart;
+            poster.IdPoster = MaxIdAdvert + 1;
+
+            CategoryInPoster newCategoryInPoster = new CategoryInPoster();
+
+            newCategoryInPoster.idCategoryInPoster = MaxIdCategoryPoster + 1;
+            newCategoryInPoster.IdCategory = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category).IdCategories;
+            newCategoryInPoster.IdPoster = poster.IdPoster;
+
+            newCategoryInPoster.IdCategoryNavigation = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category);
+            newCategoryInPoster.IdPosterNavigation = poster;
+
+            cursovayadbContext.CategoryInPosters.Add(newCategoryInPoster);
+            cursovayadbContext.Posters.Add(poster);
+
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("advertisement", "home");
+        }
+
+        public IActionResult addEvent(Event @event, string category)
+        {
+            int MaxIdEvent = cursovayadbContext.Events.Max(p => p.IdEvents);
+            int? MaxIdCategoryEvent = cursovayadbContext.CategoryInEvents.Max(p => p.id_category_event_record);
+
+            @event.IdEvents = MaxIdEvent + 1;
+
+            CategoryInEvent NewCategoryInEvent = new CategoryInEvent();
+
+            NewCategoryInEvent.id_category_event_record = MaxIdCategoryEvent + 1;
+            NewCategoryInEvent.IdEventNavigation = @event;
+            NewCategoryInEvent.IdCategoryInEventsNavigation = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category);
+            NewCategoryInEvent.IdEvent = @event.IdEvents;
+            NewCategoryInEvent.IdCategoryInEvents = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category).IdCategories;
+
+            cursovayadbContext.CategoryInEvents.Add(NewCategoryInEvent);
+            cursovayadbContext.Events.Add(@event);
+
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("calendar_events", "home");
+        }
+
         public IActionResult addDocumentPage()
         {
             return View();

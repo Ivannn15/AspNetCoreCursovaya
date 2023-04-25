@@ -118,7 +118,11 @@ namespace AspNetCoreCursovaya.Models
 
             modelBuilder.Entity<CategoryInEvent>(entity =>
             {
-                entity.HasNoKey();
+
+                entity.HasKey(e => e.id_category_event_record)
+                    .HasName("PRIMARY");
+
+                //entity.HasNoKey();
 
                 entity.ToTable("category_in_events");
 
@@ -170,7 +174,10 @@ namespace AspNetCoreCursovaya.Models
 
             modelBuilder.Entity<CategoryInPoster>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.idCategoryInPoster)
+                   .HasName("PRIMARY");
+
+                //entity.HasNoKey();
 
                 entity.ToTable("category_in_posters");
 

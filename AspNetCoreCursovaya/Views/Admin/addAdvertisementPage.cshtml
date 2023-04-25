@@ -16,36 +16,37 @@
     <main>
         <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="@Url.Action("index")">Главная</a> > <a style="color: black; text-decoration: none;" href="@Url.Action("news")">Объявления</a> > Добавить объявление</p>
         <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
-            <form action="">
+            <form action="addAdvertisement" method="post">
                 <div class="mb-3">
-                    <input style="border: 2px solid #522473;" type="email" placeholder="Заголовок объявления" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input style="border: 2px solid #522473;" type="text" placeholder="Заголовок объявления" name="TitlePoster" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
 
                 <p>Дата (с какого по какое число будет показываться объявление)</p>
 
                 <div class="date_f_input" style="display: flex;">
                     <div class="mb-3" style="display: flex;">
-                        <input style="border: 2px solid #522473; margin: 0px;" type="text" class="form-control rounded-2 input_string w-50" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <p style="margin-left: 21%;"><b>-</b></p>
+                        <input style="border: 2px solid #522473; margin: 0px;" type="date" name="DateStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
 
-                    <div class="mb-3">
-                        <input style="border: 2px solid #522473;" type="text" class="form-control rounded-2 input_string w-50" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <p style="margin-left: 5%;"><b>—</b></p>
+
+                    <div class="mb-3" style="margin-left:5%">
+                        <input style="border: 2px solid #522473;" type="date" name="DateEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                 </div>
 
-                <select style="margin-top: 2%; border: 2px solid #522473;" class="form-select" aria-label="Default select example">
+                <select style="margin-top: 2%; border: 2px solid #522473;" class="form-select" name="category" aria-label="Default select example">
                     <option selected>Категория объявлений</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="Поиск добровольцев">Поиск добровольцев</option>
+                    <option value="Информирование волонтеров">Информирование волонтеров</option>
+                    <option value="Информирование населения">Информирование населения</option>
                 </select>
 
                 <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
-                    <textarea class="form-control rounded-2 input_string w-100" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 170px; border: 2px solid #522473;"></textarea>
+                    <textarea class="form-control rounded-2 input_string w-100" placeholder="Leave a comment here" name="TextPoster" id="floatingTextarea2" style="height: 170px; border: 2px solid #522473;"></textarea>
                     <label for="floatingTextarea2">Текст объявления</label>
                 </div>
-                <button type="submit" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px;">Опубликовать объявление</button>
+                <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px;">Опубликовать объявление</button></a>
                 <br><br><br>
             </form>
         </div>
