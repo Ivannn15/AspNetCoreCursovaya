@@ -137,7 +137,7 @@ namespace AspNetCoreCursovaya.Controllers
 
         public IActionResult calendar_events()
         {
-            return View();
+            return View(cursovayadb.Events);
         }
 
         /////////// 25.04 Добавить вывод эвентов в представление календарь ивентов, разобраться с сопоставлением дат текущего месяца и даты проведения эвента

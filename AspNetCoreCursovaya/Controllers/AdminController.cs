@@ -78,7 +78,7 @@ namespace AspNetCoreCursovaya.Controllers
 
             cursovayadbContext.SaveChanges();
 
-            return RedirectToAction("calendar_events", "home");
+            return RedirectToAction("calendar_events", "home", cursovayadbContext.Events);
         }
 
         public IActionResult addDocumentPage()
