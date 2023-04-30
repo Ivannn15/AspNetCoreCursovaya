@@ -81,6 +81,16 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("calendar_events", "home", cursovayadbContext.Events);
         }
 
+        [HttpPost]
+        public IActionResult addReport(IFormFile file, string category)
+        {
+            //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
+
+            Console.WriteLine();
+
+            return View();
+        }
+
         public IActionResult addDocumentPage()
         {
             return View();

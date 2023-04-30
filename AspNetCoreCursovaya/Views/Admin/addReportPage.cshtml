@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model AspNetCoreCursovaya.Models.Report
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,20 +18,20 @@
     <main>
         <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Главная</a> > <a style="color: black; text-decoration: none;" href="news.html">Отчеты</a> > Добавить отчет</p>
         <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
-            <form action="">
+            <form action="addReport" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <input style="border: 2px solid #522473;" type="email" placeholder="Название отчета" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    @*<input style="border: 2px solid #522473;" type="email" placeholder="Название отчета" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">*@
                 </div>
 
-                <select style="margin-top: 2%; border: 2px solid #522473; margin-bottom: 3%;" class="form-select" aria-label="Default select example">
+                <select style="margin-top: 2%; border: 2px solid #522473; margin-bottom: 3%;" asp-route="category" name="category" class="form-select" aria-label="Default select example">
                     <option selected>Категория отчета</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="Месячный">Месячный</option>
+                    <option value="Годовой">Годовой</option>
                 </select>
 
+                <input type="file" asp-route="file" name="file" id="file" class="form-control" />
                 <a style="color: black; margin-top: 3%;" href="">Прикрепить документ</a>
-                <button type="submit" class="btn btn-secondary btn-sm w-25 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Добавить отчет</button>
+                <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-25 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Добавить отчет</button></a>
                 <br><br><br>
             </form>
         </div>
