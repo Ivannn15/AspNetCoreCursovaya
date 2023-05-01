@@ -46,7 +46,7 @@ namespace AspNetCoreCursovaya.Controllers
 
         public IActionResult aboutUs()
         {
-            return View();
+            return View(cursovayadb.CategoriesInDocuments.Include(p => p.IdDocumentNavigation));
         }
 
         public IActionResult advertisement()
@@ -55,6 +55,30 @@ namespace AspNetCoreCursovaya.Controllers
             return View(adverts);
         }
 
+        public IActionResult pageActivities2()
+        {
+            return View();
+        }
+
+        public IActionResult pageActivities3()
+        {
+            return View();
+        }
+
+        public IActionResult pageActivities4()
+        {
+            return View();
+        }
+
+        public IActionResult pageActivities5()
+        {
+            return View();
+        }
+
+        public IActionResult pageActivities6()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> news(int? page)
         {
@@ -87,7 +111,7 @@ namespace AspNetCoreCursovaya.Controllers
 
         public IActionResult reports()
         {
-            return View();
+            return View(cursovayadb.CategoryInReports.Include(p => p.IdReportNavigation).AsNoTracking());
         }
 
         public async Task<IActionResult> pageNews(int id, int? numberOfPage)
@@ -129,7 +153,6 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("pageNews", new { id = newsId, numberOfPage = pageIndex });;
         }
 
-        [Authorize]
         public IActionResult writeUs()
         {
             return View();

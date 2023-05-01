@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<AspNetCoreCursovaya.Models.CategoriesInDocument>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -108,61 +110,23 @@
             <div class="documents">
                 <h4>Документы</h4>
 
-                <div style="display: flex;">
-                    <svg width="20" height="39" viewBox="0 0 40 39" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <rect width="39.7849" height="39" fill="url(#pattern0)" />
-                        <defs>
-                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                <use xlink:href="#image0_121_1269" transform="matrix(0.03125 0 0 0.0318789 0 -0.0100629)" />
-                            </pattern>
-                            <image id="image0_121_1269" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
-                        </defs>
-                    </svg>
+                @foreach (var doc in Model)
+                {
+                    <div style="display: flex;">
+                        <svg width="20" height="39" viewBox="0 0 40 39" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <rect width="39.7849" height="39" fill="url(#pattern0)" />
+                            <defs>
+                                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_121_1269" transform="matrix(0.03125 0 0 0.0318789 0 -0.0100629)" />
+                                </pattern>
+                                <image id="image0_121_1269" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
+                            </defs>
+                        </svg>
 
-                    <a style="margin-top: 0.5%; margin-left: 0.5%; font-size: 18px; color: black;" href="">Устав</a>
-                </div>
-
-                <div style="display: flex;">
-                    <svg width="20" height="39" viewBox="0 0 40 39" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <rect width="39.7849" height="39" fill="url(#pattern0)" />
-                        <defs>
-                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                <use xlink:href="#image0_121_1269" transform="matrix(0.03125 0 0 0.0318789 0 -0.0100629)" />
-                            </pattern>
-                            <image id="image0_121_1269" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
-                        </defs>
-                    </svg>
-
-                    <a style="margin-top: 0.5%; margin-left: 0.5%; font-size: 18px; color: black;" href="">Учредительный документ 1</a>
-                </div>
-
-                <div style="display: flex;">
-                    <svg width="20" height="39" viewBox="0 0 40 39" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <rect width="39.7849" height="39" fill="url(#pattern0)" />
-                        <defs>
-                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                <use xlink:href="#image0_121_1269" transform="matrix(0.03125 0 0 0.0318789 0 -0.0100629)" />
-                            </pattern>
-                            <image id="image0_121_1269" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
-                        </defs>
-                    </svg>
-
-                    <a style="margin-top: 0.5%; margin-left: 0.5%; font-size: 18px; color: black;" href="">Учредительный документ 2</a>
-                </div>
-
-                <div style="display: flex;">
-                    <svg width="20" height="39" viewBox="0 0 40 39" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <rect width="39.7849" height="39" fill="url(#pattern0)" />
-                        <defs>
-                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                <use xlink:href="#image0_121_1269" transform="matrix(0.03125 0 0 0.0318789 0 -0.0100629)" />
-                            </pattern>
-                            <image id="image0_121_1269" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgEAYAAAAj6qa3AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAAAAAAAAPlDu38AAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQfnAwcNCgdxsS2JAAAEHElEQVRo3u2Zb0xTZxTGn0PnzEZgIYB0mqWRtksFXQzdF6fBdZjMzGBKhYQEgnRzLMZWcXQbLMrUJepiISKKyyIhC9Y5WtrVTkJgwD64kSwuM84FXFsIRjKoEieObbL1nn0ohUTSgXqvrZHn073vv3ueX/Kek/u+hP8VUZ5Fvc5SbDZTD2dyu8mE3RjCzyoVnPDBSgSplIIXMBoICLvZQdv1+q9W+JOta3t7xf5MRAMGrfKVihSzGQoKYOuxY5IZnUNcibsoGB/nBL5EwY0bxQYRGYBG2V5R3deHDDJhQqNBEmfy5sJCZ6PfXbu+pWUqPBbbsGG1qrRisLsb6biA4zqd1CDiIvakIQdfpKeHX2W3FxclZLtcUhmPqJegw09XrtBhLIY9MZHu0GqWtbfr+5Rjlu/WrJEMADvgxdGZPZ6U9Mzh38oeofFwgLWCwCXl5biKlzHS3DwNQkA3N3d2Go6rV1Scys4WHUCsSDhDz6FBEGQZvrPXJo3GaRB7qQrx8fGsEw7gYlvbg4KIeQBh2e2A3R4Mig3isQEgFYinom1oTn2JTDqSlWW4rLZZ7shk4eZg+GEZb2eHzcYXAYxptbSXqpCckcGVfBcrPZ5QsoxcNWIOAH+MtzAoCNSECwCACTqEc1Yr9jEiZOAlSJ5dz6eT5TvoZ7fDMUVrWcwDiKun9Vx68qRQIvyNb4JB+giNUMXNe6vyUVpJ3xJRE4w4n5PDWUhCXWoqAGDT7PExB6C1wyvUXmttRQeexoutrfc7v+ycNqvs7UWLbuI2EhInJ+ca/9glQbG1ACDaAURbouUAw2W1zfL1hg2AUM09M/8QYituHb/Kq/x+x/hAY21pV1fUAeSOLt+2KzctDZ3czNqODjiJ0CPdOYHQQMP0OnPepfQRS7Fc7rIOyK2nA4GoAfCkDZ6q8wQCeb8o7RX79+xBIakQr1BIBQBX2Yf9Q0Ou4gG59fSNGw+7nEhbgNmV6S+o+fTgQcmMS6QnPgkuAIh2ANGWaGUwdHq8cyeVCIeE95culSxiIz6g14aHnT/6v6+5WV8fdQAFBQp+L18uDw6wWkirq8M+MtLnktkHFAC2Arlty7ft+rWlJVSFRkejBsBuH6IjjpGRvDilzXJWr0cXjeGARiMZgBxORnV/v8c5WFRX8+DGRQMQlkvwF1kL3W7oAMDtlgwAABSKt9QTnwQXAETqoHyoUT5zD3Dr1l+Vz38m4V2gSLo3znt9zBsANmGErvv94VdhyT8dfyRu2TK1bIyCIApqJvUTTfn54Rb+kJKx1ueLOCNSh+FPZa1FbTKhmBp488PX26jpB6SiascO53Vfb01KQ8O8AUx1U+iW2GQCaBVgNj+y6/H7lQEqWJjxO97Aea8Xb/K/9El9vfNZ/7tW74kToUGzt8J/duDHTZKYOFkAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDMtMDdUMTM6MTA6MDcrMDA6MDBPp9mYAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTAzLTA3VDEzOjEwOjA3KzAwOjAwPvphJAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMy0wN1QxMzoxMDowNyswMDowMGnvQPsAAAAASUVORK5CYII=" />
-                        </defs>
-                    </svg>
-
-                    <a style="margin-top: 0.5%; margin-left: 0.5%; font-size: 18px; color: black;" href="">Политика обработки персональных данных</a>
-                </div>
+                        <a style="margin-top: 0.5%; margin-left: 0.5%; font-size: 18px; color: black;" href="">@doc.IdDocumentNavigation.Link.Substring(doc.IdDocumentNavigation.Link.LastIndexOf('\\') + 1, doc.IdDocumentNavigation.Link.LastIndexOf('.') - doc.IdDocumentNavigation.Link.LastIndexOf('\\') - 1)</a>
+                    </div>
+                }
+               
             </div>
 
             <div style="margin-top: 5%;" class="mission_section">

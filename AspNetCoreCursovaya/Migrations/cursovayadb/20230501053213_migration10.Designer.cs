@@ -3,14 +3,16 @@ using System;
 using AspNetCoreCursovaya.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreCursovaya.Migrations.cursovayadb
 {
     [DbContext(typeof(cursovayadbContext))]
-    partial class cursovayadbContextModelSnapshot : ModelSnapshot
+    [Migration("20230501053213_migration10")]
+    partial class migration10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,10 +53,6 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
 
             modelBuilder.Entity("AspNetCoreCursovaya.Models.CategoriesInDocument", b =>
                 {
-                    b.Property<int?>("IdCategoryInDocument")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
                     b.Property<int?>("IdCategory")
                         .HasColumnType("int")
                         .HasColumnName("id_category");
@@ -62,9 +60,6 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                     b.Property<int?>("IdDocument")
                         .HasColumnType("int")
                         .HasColumnName("id_document");
-
-                    b.HasKey("IdCategoryInDocument")
-                        .HasName("PRIMARY");
 
                     b.HasIndex(new[] { "IdCategory" }, "id_category_document_idx");
 

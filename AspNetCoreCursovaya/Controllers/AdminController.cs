@@ -82,13 +82,83 @@ namespace AspNetCoreCursovaya.Controllers
         }
 
         [HttpPost]
-        public IActionResult addReport(IFormFile file, string category)
+        public IActionResult addReport(IFormFile file, string category) // добавление нового отчета
         {
+            string link = null; // ссылка на файл
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
+            if (file != null && file.Length > 0)
+            {
+                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
+                    "\\AspNetCoreCursovaya\\wwwroot\\files\\", file.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
 
-            Console.WriteLine();
+                link = filePath;
+            }
 
-            return View();
+            int MaxIdReport = cursovayadbContext.Reports.Max(p => p.IdReport) + 1;
+            int MaxIdCategory = cursovayadbContext.CategoryInReports.Max(p => p.idCategoryInReport) + 1;
+
+            Report newReport = new Report(); // создание новых объектов и заполнение их полей для добавления в бд
+            newReport.IdReport = MaxIdReport;
+            newReport.DatePublication = DateTime.Now;
+            newReport.Link = link;
+
+            CategoryInReport categoryInReport = new CategoryInReport();
+            categoryInReport.idCategoryInReport = MaxIdCategory;
+            categoryInReport.IdCategory = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category).IdCategories;
+            categoryInReport.IdReport = newReport.IdReport;
+            categoryInReport.IdCategoryNavigation = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category);
+            categoryInReport.IdReportNavigation = newReport;
+
+            cursovayadbContext.CategoryInReports.Add(categoryInReport); // добавление объектов в бд
+            cursovayadbContext.Reports.Add(newReport);
+
+            cursovayadbContext.SaveChanges();
+
+
+            return RedirectToAction("reports", "home");
+        }
+        
+        public IActionResult addDocument(IFormFile file, string category)
+        {
+            string link = null; // ссылка на файл
+            //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
+            if (file != null && file.Length > 0)
+            {
+                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
+                    "\\AspNetCoreCursovaya\\wwwroot\\documents\\", file.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+
+                link = filePath;
+            }
+
+            int MaxIdDocument = cursovayadbContext.Documents.Max(p => p.IdDocuments) + 1;
+            int MaxIdCategory = cursovayadbContext.CategoriesInDocuments.Max(p => p.IdCategoryInDocument).GetValueOrDefault() + 1;
+
+            Document newDocument = new Document();
+            newDocument.IdDocuments = MaxIdDocument;
+            newDocument.DatePublication = DateTime.Now;
+            newDocument.Link = link;
+
+            CategoriesInDocument categoriesInDocument = new CategoriesInDocument();
+            categoriesInDocument.IdCategoryInDocument = MaxIdCategory;
+            categoriesInDocument.IdCategoryNavigation = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category);
+            categoriesInDocument.IdDocumentNavigation = newDocument;
+            categoriesInDocument.IdCategory = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category).IdCategories;
+            categoriesInDocument.IdDocument = newDocument.IdDocuments;
+
+            cursovayadbContext.Documents.Add(newDocument);
+            cursovayadbContext.CategoriesInDocuments.Add(categoriesInDocument);
+
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("aboutUs", "home");
         }
 
         public IActionResult addDocumentPage()

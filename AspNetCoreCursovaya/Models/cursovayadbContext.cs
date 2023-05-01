@@ -76,7 +76,9 @@ namespace AspNetCoreCursovaya.Models
 
             modelBuilder.Entity<CategoriesInDocument>(entity =>
             {
-                entity.HasNoKey();
+
+                entity.HasKey(e => e.IdCategoryInDocument)
+                    .HasName("PRIMARY");
 
                 entity.ToTable("categories_in_documents");
 
@@ -202,7 +204,8 @@ namespace AspNetCoreCursovaya.Models
 
             modelBuilder.Entity<CategoryInReport>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.idCategoryInReport)
+                    .HasName("PRIMARY");
 
                 entity.ToTable("category_in_reports");
 
