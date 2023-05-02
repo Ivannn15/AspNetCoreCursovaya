@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
@@ -174,6 +175,44 @@ namespace AspNetCoreCursovaya.Controllers
         public IActionResult addNewsPage()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult changeNewsPage(int newsId)
+        {
+            var changedNews = cursovayadbContext.News.Include(p => p.PhotoInNews).SingleOrDefault(p => p.IdNews == newsId);
+
+            return View("addNewsPage", changedNews);
+        }
+
+        [HttpPost]
+        public IActionResult changeNewsPage(News changedNews, IFormFile photoInNews, int newsId) //................. 02.05. добавил возможность изменения новостей, сделать это для всех сущностей
+        {
+            if (photoInNews != null && photoInNews.Length > 0)
+            {
+                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
+                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInNews.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    photoInNews.CopyTo(stream);
+                }
+
+                cursovayadbContext.PhotoInNews.Single(p => p.IdNews == newsId && p.IdNewsNavigation.TitleNews == changedNews.TitleNews).Link = photoInNews.FileName;
+            }
+
+            var tempNews = cursovayadbContext.News.SingleOrDefault(p => p.IdNews == newsId);
+
+            if (tempNews.TitleNews != changedNews.TitleNews | tempNews.TextNews != changedNews.TextNews)
+            {
+                cursovayadbContext.News.SingleOrDefault(p => p.IdNews == newsId).TitleNews = changedNews.TitleNews;
+                cursovayadbContext.News.SingleOrDefault(p => p.IdNews == newsId).TextNews = changedNews.TextNews;
+            }
+
+            cursovayadbContext.SaveChanges();
+
+            ////////////////////////////////////////////////////////////////////////////////// oewjq;eklfj;kdlsajfkldjlkfajs;dlkjflksadjflkjdsa;jfkklj
+
+            return RedirectToAction("news", "home");
         }
 
         [HttpPost]

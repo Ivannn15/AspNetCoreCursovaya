@@ -15,23 +15,53 @@
     <partial name="header" />
 
     <main>
-        <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Главная</a> > <a style="color: black; text-decoration: none;" href="news.html">Новости</a> > Добавить новость</p>
-        <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
-            <form asp-action="addNews" asp-controller="admin" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <input style="border: 2px solid #522473;" asp-for="TitleNews" name="TitleNews" type="text" placeholder="Заголовок новости" class="form-control rounded-2 input_string w-100" id="zagolovok">
-                </div>
 
-                <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
-                    <textarea class="form-control rounded-2 input_string w-100" asp-for="TextNews" name="TextNews" placeholder="Leave a comment here" id="TextNews" style="height: 100px; border: 2px solid #522473; height: 300px;"></textarea>
-                    <label for="floatingTextarea2">Текст новости</label>
-                </div>
-                <input type="file" asp-route="photoInNews" name="photoInNews" id="photoInNews" class="form-control" />
-                <a style="color: black;" href="">Прикрепить фотографии</a>
-                <a ><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Опубликовать новость</button></a>
-                <br><br><br>
-            </form>
-        </div>
+        @if (ViewContext.RouteData.Values["action"].ToString() == "changeNewsPage")
+        {
+            <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Главная</a> > <a style="color: black; text-decoration: none;" href="news.html">Новости</a> > Добавить новость</p>
+            <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
+                <form asp-action="changeNewsPage" asp-controller="admin" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                                <input style="border: 2px solid #522473;" value="@Model.TitleNews" asp-for="TitleNews" name="TitleNews" type="text" placeholder="Заголовок новости" class="form-control rounded-2 input_string w-100" id="zagolovok">
+                    </div>
+
+                    <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
+                        <textarea class="form-control rounded-2 input_string w-100" value="@Model.TextNews" asp-for="TextNews" name="TextNews" placeholder="Leave a comment here" id="TextNews" style="height: 100px; border: 2px solid #522473; height: 300px;"></textarea>
+                        <label for="floatingTextarea2">Текст новости</label>
+                    </div>
+                    <input type="file" asp-route="photoInNews" name="photoInNews" id="photoInNews" class="form-control" />
+                    <a style="color: black;" href="">Прикрепить фотографии</a>
+                    <p>Файл: @Model.PhotoInNews.FirstOrDefault().Link</p>
+                    <a ><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Опубликовать новость</button></a>
+                    <br><br><br>
+
+                    <input type="hidden" name="newsId" value="@Model.IdNews">
+                    
+                </form>
+            </div>
+        }
+        else
+        {
+            <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Главная</a> > <a style="color: black; text-decoration: none;" href="news.html">Новости</a> > Добавить новость</p>
+            <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
+                <form asp-action="addNews" asp-controller="admin" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <input style="border: 2px solid #522473;" asp-for="TitleNews" name="TitleNews" type="text" placeholder="Заголовок новости" class="form-control rounded-2 input_string w-100" id="zagolovok">
+                    </div>
+
+                    <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
+                        <textarea class="form-control rounded-2 input_string w-100" asp-for="TextNews" name="TextNews" placeholder="Leave a comment here" id="TextNews" style="height: 100px; border: 2px solid #522473; height: 300px;"></textarea>
+                        <label for="floatingTextarea2">Текст новости</label>
+                    </div>
+                    <input type="file" asp-route="photoInNews" name="photoInNews" id="photoInNews" class="form-control" />
+                    <a style="color: black;" href="">Прикрепить фотографии</a>
+                    <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Опубликовать новость</button></a>
+                    <br><br><br>
+                </form>
+            </div>
+        }
+
+        
     </main>
 
     <partial name="footer" />
