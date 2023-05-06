@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 
 namespace AspNetCoreCursovaya.Controllers
 {
@@ -31,13 +32,32 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
-        
+        [HttpPost]
+        IActionResult delleteReport(int idReport)
+        {
+            cursovayadbContext.Reports.Remove(cursovayadbContext.Reports.SingleOrDefault(p => p.IdReport == idReport));
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("reports", "home");     ///..................................... 06.05 доделать удаление отчетов, добавить ко всем сущностям имеющим категорию в базе данных тригер на удаление записи в связующей таблице
+        }
+
 
         [HttpPost]
         public IActionResult addAdvertisement(Poster poster, string category)
         {
-            int MaxIdAdvert = cursovayadbContext.Posters.Max(p => p.IdPoster);
-            int? MaxIdCategoryPoster = cursovayadbContext.CategoryInPosters.Max(p => p.idCategoryInPoster);
+            int MaxIdAdvert;
+            int? MaxIdCategoryPoster;
+
+            if (cursovayadbContext.Posters.Count() == 0)
+            {
+                MaxIdAdvert = 1;
+                MaxIdCategoryPoster = 1;
+            }
+            else
+            {
+                MaxIdAdvert = cursovayadbContext.Posters.Max(p => p.IdPoster);
+                MaxIdCategoryPoster = cursovayadbContext.CategoryInPosters.Max(p => p.idCategoryInPoster);
+            }
 
             poster.DatePublication = poster.DateStart;
             poster.IdPoster = MaxIdAdvert + 1;
@@ -61,8 +81,21 @@ namespace AspNetCoreCursovaya.Controllers
 
         public IActionResult addEvent(Event @event, string category)
         {
-            int MaxIdEvent = cursovayadbContext.Events.Max(p => p.IdEvents);
-            int? MaxIdCategoryEvent = cursovayadbContext.CategoryInEvents.Max(p => p.id_category_event_record);
+            int MaxIdEvent;
+            int? MaxIdCategoryEvent;
+
+            if (cursovayadbContext.Events.Count() == 0)
+            {
+                MaxIdEvent = 1;
+                MaxIdCategoryEvent = 1;
+            }
+            else
+            {
+                MaxIdEvent = cursovayadbContext.Events.Max(p => p.IdEvents);
+                MaxIdCategoryEvent = cursovayadbContext.CategoryInEvents.Max(p => p.id_category_event_record);
+            }
+
+           
 
             @event.IdEvents = MaxIdEvent + 1;
 
@@ -85,6 +118,20 @@ namespace AspNetCoreCursovaya.Controllers
         [HttpPost]
         public IActionResult addReport(IFormFile file, string category) // добавление нового отчета
         {
+            int MaxIdReport;
+            int MaxIdCategory;
+
+            if (cursovayadbContext.Reports.Count() == 0)
+            {
+                MaxIdReport = 1;
+                MaxIdCategory = 1;
+            }
+            else
+            {
+                MaxIdReport = cursovayadbContext.Reports.Max(p => p.IdReport) + 1;
+                MaxIdCategory = cursovayadbContext.CategoryInReports.Max(p => p.idCategoryInReport) + 1;
+            }
+
             string link = null; // ссылка на файл
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
             if (file != null && file.Length > 0)
@@ -99,8 +146,7 @@ namespace AspNetCoreCursovaya.Controllers
                 link = filePath;
             }
 
-            int MaxIdReport = cursovayadbContext.Reports.Max(p => p.IdReport) + 1;
-            int MaxIdCategory = cursovayadbContext.CategoryInReports.Max(p => p.idCategoryInReport) + 1;
+            
 
             Report newReport = new Report(); // создание новых объектов и заполнение их полей для добавления в бд
             newReport.IdReport = MaxIdReport;
@@ -122,9 +168,23 @@ namespace AspNetCoreCursovaya.Controllers
 
             return RedirectToAction("reports", "home");
         }
-        
+
         public IActionResult addDocument(IFormFile file, string category)
         {
+            int MaxIdDocument;
+            int MaxIdCategory;
+
+            if (cursovayadbContext.Documents.Count() == 0)
+            {
+                MaxIdDocument = 1;
+                MaxIdCategory = 1;
+            }
+            else
+            {
+                MaxIdDocument = cursovayadbContext.Documents.Max(p => p.IdDocuments) + 1;
+                MaxIdCategory = cursovayadbContext.CategoriesInDocuments.Max(p => p.IdCategoryInDocument).GetValueOrDefault() + 1;
+            }
+
             string link = null; // ссылка на файл
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
             if (file != null && file.Length > 0)
@@ -139,8 +199,7 @@ namespace AspNetCoreCursovaya.Controllers
                 link = filePath;
             }
 
-            int MaxIdDocument = cursovayadbContext.Documents.Max(p => p.IdDocuments) + 1;
-            int MaxIdCategory = cursovayadbContext.CategoriesInDocuments.Max(p => p.IdCategoryInDocument).GetValueOrDefault() + 1;
+            
 
             Document newDocument = new Document();
             newDocument.IdDocuments = MaxIdDocument;
@@ -185,6 +244,14 @@ namespace AspNetCoreCursovaya.Controllers
             return View("addNewsPage", changedNews);
         }
 
+        [HttpGet]
+        public IActionResult changeAdvertisement(int adsId)
+        {
+            var changedAds = cursovayadbContext.CategoryInPosters.Include(p => p.IdPosterNavigation).Include(p => p.IdCategoryNavigation).SingleOrDefault(p => p.IdPoster == adsId);
+
+            return View("addAdvertisementPage", changedAds);
+        }
+
         [HttpPost]
         public IActionResult changeNewsPage(News changedNews, IFormFile photoInNews, int newsId) //................. 02.05. добавил возможность изменения новостей, сделать это для всех сущностей
         {
@@ -216,8 +283,50 @@ namespace AspNetCoreCursovaya.Controllers
         }
 
         [HttpPost]
+        public IActionResult changeAdvertisement(string title, string text, DateTime dateStart, DateTime dateEnd, string category, int adsCategoryId)
+        {
+            var tempAds = cursovayadbContext.CategoryInPosters.Include(p => p.IdPosterNavigation).Include(p => p.IdCategoryNavigation).SingleOrDefault(p => p.idCategoryInPoster == adsCategoryId);
+
+            //if (categoryInPoster.IdCategoryNavigation.TitleCategory != tempAds.IdCategoryNavigation.TitleCategory)
+            //{
+            //    cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.IdPoster == adsId).IdCategory = categoryInPoster.IdCategory;
+            //    cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.IdPoster == adsId).IdCategoryNavigation = cursovayadbContext.Categories.SingleOrDefault();
+            //}
+
+            if (category != "Категория объявлений" && category != tempAds.IdCategoryNavigation.TitleCategory)
+            {
+                cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.idCategoryInPoster == adsCategoryId).IdCategory = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category).IdCategories;
+                cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.idCategoryInPoster == adsCategoryId).IdCategoryNavigation = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category);
+            }
+
+            if (title != tempAds.IdPosterNavigation.TitlePoster | text != tempAds.IdPosterNavigation.TextPoster | dateStart != tempAds.IdPosterNavigation.DateStart | dateEnd != tempAds.IdPosterNavigation.DateEnd)
+            {
+                cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.idCategoryInPoster == adsCategoryId).IdPosterNavigation.TitlePoster = title;
+                cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.idCategoryInPoster == adsCategoryId).IdPosterNavigation.TextPoster = text;
+                cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.idCategoryInPoster == adsCategoryId).IdPosterNavigation.DateStart = dateStart;
+                cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.idCategoryInPoster == adsCategoryId).IdPosterNavigation.DatePublication = dateStart; /////................................................................... Тут мы меняем дату публикации для изменения даты на форме
+                cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.idCategoryInPoster == adsCategoryId).IdPosterNavigation.DateEnd = dateEnd;
+            }
+
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("advertisement", "home");
+        }
+
+        [HttpPost]
         public IActionResult addNews(News news, IFormFile photoInNews)
         {
+            int MaxIdFnews;
+
+            if (cursovayadbContext.News.Count() == 0)
+            {
+                MaxIdFnews = 1;
+            }
+            else
+            {
+                MaxIdFnews = cursovayadbContext.News.Max(p => p.IdNews);
+            }
+
             if (photoInNews != null && photoInNews.Length > 0)
             {
                 var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
@@ -228,7 +337,6 @@ namespace AspNetCoreCursovaya.Controllers
                 }
             }
 
-            int MaxIdFnews = cursovayadbContext.News.Max(p => p.IdNews);
             news.IdNews = MaxIdFnews + 1;
             news.DatePublication = DateTime.Now;
 
