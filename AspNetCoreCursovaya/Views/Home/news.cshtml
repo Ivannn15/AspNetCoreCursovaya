@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="image/LOGO.png">
+    <title>Новости</title>
 </head>
 <body>
 
@@ -25,18 +28,18 @@
                 <div style="display: flex;" class="d-flex flex-column flex-md-row news_card rounded-4">
                     <div style="margin-top: 1%; margin-left: 2%;" class="news_card_text">
                         <a style="text-decoration: none; color: #522473; font-size: 35px; font-weight: 700" name="id" href="@Url.Action("pageNews", new { id = New.IdNews, numberOfPage = Model.PageIndex })">
-                           @New.TitleNews;
+                           @New.TitleNews
                         </a>
                         <h4>
                             
                         </h4>
                         <p style="font-size: 20px; padding-top: 2%;">
-                            @New.TextNews;
+                            @New.TextNews
                         </p>
-                        <p style="color: #522473; font-size: 23px; font-weight: lighter;">@New.DatePublication;</p>
+                        <p style="color: #522473; font-size: 23px; font-weight: lighter;">@New.DatePublication.ToShortDateString()</p>
                     </div>
 
-                    <img class="order-md-1" style="height: 200px; margin-top: 2%; margin-left: 7%;" src="/image/@New.PhotoInNews.FirstOrDefault().Link.ToString()" alt="">
+                    <img class="order-md-1" style="height: 200px; width:250px; margin-top: 2%; margin-left: 7%;" src="/image/@New.PhotoInNews.FirstOrDefault().Link.ToString()" alt="">
                 </div>
             </div>
         }
@@ -48,7 +51,7 @@
                         @if (Model.HasPreviousPage)
                         {
                             <li class="page-item">
-                                <a style="color:white ;background: #522473;" class="page-link" href="@Url.Action("news", new { page = Model.PageIndex - 1 })">Previous</a>
+                                <a style="color:white ;background: #522473;" class="page-link" href="@Url.Action("news", new { page = Model.PageIndex - 1 })">Назад</a>
                             </li>
                         }
                         @for (int i = 1; i <= Model.TotalPages; i++)
@@ -65,7 +68,7 @@
                         @if (Model.HasNextPage)
                         {
                             <li class="page-item">
-                                <a style="color:white ;background: #522473;" class="page-link" href="@Url.Action("news", new { page = Model.PageIndex + 1 })">Next</a>
+                                <a style="color:white ;background: #522473;" class="page-link" href="@Url.Action("news", new { page = Model.PageIndex + 1 })">Вперед</a>
                             </li>
                         }
                     </ul>

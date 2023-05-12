@@ -2,12 +2,37 @@ html, body {
     height: 100%;
 }
 
+footer {
+    display: flex;
+    background-color: #522473;
+    margin-top: 5%;
+    height: 350px;
+}
+
+.nav {
+    justify-content: center;
+    font-size: 20px;
+    margin-right: 9%;
+}
+
+    .nav img {
+        width: 240px;
+        margin-top: 6%;
+    }
+
+.nav-item {
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
 .wrapper {
     margin-top: 4%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    max-inline-size: 1140px;
+    margin-inline: auto;
 }
 
 .block {
@@ -21,17 +46,25 @@ html, body {
     height: 200px;
     margin: 15px;
     background-color: #522473;
+    text-decoration: none;
 }
+
+
 
 .list_items {
     width: 60%;
     padding-left: 10%;
-    padding-top: 5%;
+    padding-top: 2%;
     color: white;
 }
 
+    .list_items a {
+        color: white;
+        text-decoration: none;
+    }
+
 .contact_info {
-    padding-top: 5%;
+    padding-top: 2%;
     width: 50%;
 }
 
@@ -40,11 +73,59 @@ html, body {
         color: white;
     }
 
+    .contact_info h4 {
+        padding-left: 25%;
+        margin-bottom: 2%;
+        color: white;
+    }
+
+    .contact_info img {
+        width: 42px;
+        height: 36px;
+        padding-right: 1%;
+    }
+
+.location, .numbers, .email {
+    display: flex;
+}
+
+    .numbers img {
+        margin-top: 2%;
+    }
+
+.logos img {
+    margin-right: 2%;
+}
+
+.logos {
+    margin-top: 2%;
+}
+
+    .logos button {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-size: 20px;
+        line-height: 23px;
+        text-align: center;
+        margin-left: 20%;
+        background-color: #4BBFAA;
+        border-radius: 10px;
+    }
 /*************************** 
 **************************** 
-news ****************
+news and advertisement *****
 **************************** 
 ***************************/
+main p {
+    margin-top: 1%;
+    margin-left: 7%;
+}
+
+main a {
+    color: black;
+    text-decoration: none;
+}
+
 
 .list_news {
     display: flex;
@@ -53,25 +134,64 @@ news ****************
     align-items: center;
 }
 
+    .list_news d-flex {
+        display: flex;
+    }
+
 .news_card {
-    margin-top: 3%;
+    margin-top: 2%;
     width: 65%;
     border: 4px solid #4BBFAA; /* Параметры границы */
     padding: 10px; /* Поля вокруг текста */
 }
 
-.news_card_text a {
-    text-decoration: none;
+    .news_card h3 {
+        color: #522473;
+    }
+
+.news_card_text {
+    margin-top: 1%;
+    margin-left: 2%;
+    width: 100%;
+}
+
+    .news_card_text p {
+        font-size: 25px;
+        padding-top: 2%;
+        margin-left: 0%;
+    }
+
+.news_card_date {
     color: #522473;
-    font-size: 35px;
+    font-weight: lighter;
 }
 
-.bg-custom {
-    background-color: #522473;
+.list_news img {
+    height: 300px;
+    margin: auto;
 }
 
+.page_number {
+    font-size: 20px;
+    color: #522473;
+    margin-top: 5%;
+    text-align: center;
+}
 
+.news_card_text img {
+    width: 42px;
+    height: 36px;
+    margin-left: 2%;
+}
 
+.news_card_date img {
+    display: flex;
+    float: right;
+    width: 42px;
+    height: 36px;
+    margin-left: 60%;
+    margin-right: 2%;
+}
 /*************************** 
 **************************** 
 ourActivities ****************
@@ -79,7 +199,6 @@ ourActivities ****************
 ***************************/
 
 .list_card1 {
-    margin: 0%;
     margin-top: 1%;
     display: flex;
     flex-wrap: wrap;
@@ -88,27 +207,41 @@ ourActivities ****************
 }
 
     .list_card1 .card {
+        width: 28rem;
+        height: 34rem;
         margin: 2%;
-        margin-bottom: 5%;
-        border: 3px solid #4BBFAA;
+        border: 4px solid #4BBFAA;
     }
 
         .list_card1 .card img {
             padding: 10%;
             padding-bottom: 0%;
             padding-top: 5%;
-            height: 200px;
+            height: 280px;
             border-radius: 15%;
         }
 
-.card p {
-    padding: 7%;
-    padding-top: 0%;
+        .list_card1 .card h4 {
+            text-align: center;
+            margin-top: 7%
+        }
+
+
+.center-text p {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    color: #522473;
+    font-size: 25px;
+    margin-right: 6%;
 }
 
 .card h4 {
-    margin-left: 10%;
     color: #522473;
+}
+
+.card-text {
+    font-size: 20px;
 }
 
 /*************************** 
@@ -118,7 +251,6 @@ Partners ****************
 ***************************/
 
 .list_cardFromPartners {
-    margin-top: 1%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -126,18 +258,17 @@ Partners ****************
 }
 
     .list_cardFromPartners .card {
-        margin: 12%;
-        margin-top: 0%;
-        margin-bottom: 5%;
         border: 3px solid #4BBFAA;
+        width: 40rem;
+        height: 28rem;
+        margin: 2%;
+        margin-bottom: 3%;
     }
 
         .list_cardFromPartners .card img {
-            padding: 5%;
-            padding-bottom: 0%;
-            height: 150px;
-            width: 280px;
-            border-radius: none;
+            height: 220px;
+            width: 400px;
+            margin: auto;
         }
 
         .list_cardFromPartners .card h5 {
@@ -145,11 +276,16 @@ Partners ****************
             padding: 5%;
             padding-top: 2%;
             padding-bottom: 0%;
+            text-align: center;
         }
 
         .list_cardFromPartners .card p {
             padding: 0%;
         }
+
+.mujiki {
+    font-size: 20px;
+}
 
 /*************************** 
 **************************** 
@@ -158,30 +294,49 @@ reports ****************
 ***************************/
 
 .list_reports {
-    margin: 10%;
-    margin-top: 5%;
+    margin-top: 3%;
     margin-left: 15%;
 }
 
-.report {
-    margin-bottom: 5%;
+.report a {
+    color: black;
+    font-size: 25px;
+    text-decoration:underline;
 }
 
-    .report a {
-        color: black;
-        font-size: 20px;
-    }
+.report img{
+    height:24px
+}
 
-    .report h4 {
-        color: #522473;
-        font-size: 20px;
-    }
+.report h4 {
+    margin-top: 3%;
+    color: #522473;
+    font-size: 25px;
+}
 
 /*************************** 
 **************************** 
 abousUs ****************
 **************************** 
 ***************************/
+.director_FIO {
+    display: flex
+}
+
+    .director_FIO p {
+        margin-top: 2%;
+    }
+
+.first_words h4 {
+    margin-left: 7%;
+}
+
+.first_words a {
+    color: #522473;
+    margin-left: 7%;
+    font-size: 20px;
+}
+
 
 .director_word img {
     height: 450px;
@@ -192,14 +347,52 @@ abousUs ****************
     margin-top: 3%;
 }
 
-    .container_from_aboutUs p {
-        font-size: 18px;
+    .container_from_aboutUs p, li {
+        font-size: 20px;
     }
 
     .container_from_aboutUs h4 {
+        font-size: 25px;
         color: #522473;
     }
 
+.illusion_section h4 {
+    margin-top: 2%;
+    margin-left: 7%;
+}
+
+.mission_section h4 {
+    margin-top: 2%;
+    margin-left: 7%;
+}
+
+.history_organization h4 {
+    margin-top: 2%;
+    margin-left: 7%;
+}
+
+.documents {
+    margin-top: 2%;
+    margin-left: 7%;
+}
+
+
+.document {
+    display: flex;
+}
+
+    .document img {
+        width: 34px;
+        height: 26px;
+        padding-right: 1%;
+        margin-top: 1%;
+    }
+
+    .document a {
+        margin-top: 1%;
+        font-size: 20px;
+        color: black;
+    }
 /*************************** 
 **************************** 
 writeUs ****************
@@ -207,7 +400,7 @@ writeUs ****************
 ***************************/
 
 .writeUs_container {
-    margin-top: 5% !important;
+    margin-top: 3% !important;
     display: flex;
     justify-content: center;
 }
@@ -234,17 +427,80 @@ writeUs ****************
 ***************************/
 
 .container_left_FromPnews {
-    margin-left: 10%;
+    margin-left: 11.5%;
 }
 
 .image_from_Pnews img {
     height: 300px;
 }
 
+.comments_from_Pnews {
+    margin-top: 15%;
+}
+
 .icon_from_Pnews {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-top: 15%;
+}
+
+    .icon_from_Pnews img {
+        width: 48px;
+        height: 48px;
+        padding-right: 1%;
+        margin-bottom: 80%;
+    }
+
+.container_from_Pnews {
+    display: flex;
+    justify-content: space-between;
+    width: 90%
+}
+
+.container_left_FromPnews h3 {
+    color: #522473;
+    font-size: 30px;
+    margin-top: 2%;
+    margin-left: 1%;
+}
+
+.nameDate_from_comment {
+    display: flex;
+}
+
+    .nameDate_from_comment img {
+        width: 30px;
+        height: 28px;
+        padding-right: 1%;
+        margin-top: 110%;
+        margin-left: 50%;
+    }
+
+
+.container_left_FromPnews p {
+    font-size: 20px;
+    margin-top: 3%;
+    margin-left: 1%;
+}
+
+.image_from_Pnews {
+    margin-top: 10%;
+    text-align: center;
+}
+
+
+.container_right_FromPnews h3 {
+    color: #522473;
+    font-size: 30px;
+    margin-top: 4%;
+    margin-bottom: 10%;
+    margin-left: 25%;
+    text-align: center;
+}
+
+.container_right_FromPnews h4 {
+    text-align: center;
 }
 
 .container_right_FromPnews .card {
@@ -252,6 +508,7 @@ writeUs ****************
     margin-top: 0%;
     margin-bottom: 5%;
     border: 3px solid #4BBFAA;
+    width: 28rem;
 }
 
 .container_from_Pnews h4 {
@@ -269,6 +526,14 @@ writeUs ****************
     }
 }
 
+.container_right_FromPnews img {
+    padding: 5%;
+    padding-bottom: 0%;
+    height: 260px;
+}
+
+
+
 /*************************** 
 **************************** 
 adminIndex ****************
@@ -281,29 +546,82 @@ adminIndex ****************
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    max-inline-size: 1000px;
+    margin-inline: auto;
 }
 
     .wrapper_f_adminInd .block {
         text-align: center;
-        font-size: 30px;
-        color: white;
+        font-size: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 200px;
-        height: 150px;
+        width: 250px;
+        height: 200px;
         margin: 15px;
         background-color: #522473;
     }
 
-/*************************** 
-**************************** 
+.block a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.input_f_addNews {
+    width: 40%;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+
+.date_f_input {
+    display: flex;
+}
+
+.hours_f_input {
+    display: flex;
+}
+
+.mb-4 {
+    display: flex;
+    margin-top: 15%;
+    padding-bottom: 2%;
+}
+
+.mb-3 {
+    display: flex;
+    padding-bottom: 2%;
+}
+
+.Calendar_view {
+    width: 70%;
+}
+
+    .Calendar_view h3 {
+        color: #522473;
+        margin-left: 12%;
+        margin-top: 3%;
+        font-size: 30px;
+    }
+
+    .Calendar_view p {
+        margin-left: 12%;
+        font-size: 20px;
+    }
+
+#more, #more2, #more3, #more4 {
+    display: none;
+}
+
+
+/***************************
+****************************
 calendar_event ****************
-**************************** 
+****************************
 ***************************/
 
 .day_of_week {
-    background-color: #4BBFAA;
+    background-color: #9DE1D9;
     width: 12.9%;
     text-align: center;
     height: 40px;
@@ -311,11 +629,17 @@ calendar_event ****************
     text-align: center;
     line-height: 40px;
     margin-left: 1%;
+    font-size: 20px;
 }
 
+    .day_of_week p {
+        margin-right: 15px;
+        font-weight: 600;
+    }
+
 .days {
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 34px;
+    margin-right: 34px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -324,15 +648,46 @@ calendar_event ****************
 .day {
     justify-content: center;
     align-items: center;
-    width: calc(20% - 10px);
-    width: 13%;
+    width: 238px;
+    height: 310px;
     margin-bottom: 20px;
+    border-bottom: solid 4px;
+    border-top: solid 10px;
+    border-color: #D9D9D9;
+    margin-top: 1%;
+    width: calc(16% - 48px);
 }
 
-    .day hr {
-        border: solid 5px;
+    .day p {
+        margin-left: 0%;
+        font-weight: 600;
     }
 
-    .day .hr_bottom {
-        border: solid 2px;
+    .day h4 {
+        margin-top: 3%;
     }
+
+.btn-close:hover,
+.btn-close:focus,
+.btn-close:visited {
+    background-color: #9DE1D9;
+}
+
+.modal {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}

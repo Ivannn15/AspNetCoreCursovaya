@@ -17,7 +17,7 @@
 
     <main>
 
-        <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="@Url.Action("index")">Главная</a> > <a style="color: black; text-decoration: none;" href="@Url.Action("news")">Объявления</a> > Добавить объявление</p>
+        <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="@Url.Action("index", "home")">Главная</a> > <a style="color: black; text-decoration: none;" href="@Url.Action("advertisement", "home")">Объявления</a> > Добавить объявление</p>
         @if (ViewContext.RouteData.Values["action"].ToString() == "changeAdvertisement")
         {
             <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
@@ -26,7 +26,7 @@
                         <input style="border: 2px solid #522473;" value="@Model.IdPosterNavigation.TitlePoster" type="text" placeholder="Заголовок объявления" name="title" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
 
-                    <p>Дата (с какого по какое число будет показываться объявление)</p>
+                    <p style="margin-left:0">Дата (с какого по какое число будет показываться объявление)</p>
 
                     <div class="date_f_input" style="display: flex;">
                         <div class="mb-3" style="display: flex;">
@@ -46,7 +46,7 @@
                         <option value="Информирование волонтеров">Информирование волонтеров</option>
                         <option value="Информирование населения">Информирование населения</option>
                     </select>
-                    <p>Текущая категория - @Model.IdCategoryNavigation.TitleCategory</p>
+                    <p style="margin-left:0">Текущая категория - @Model.IdCategoryNavigation.TitleCategory</p>
 
                     <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
                         <textarea class="form-control rounded-2 input_string w-100" value="@Model.IdPosterNavigation.TextPoster" asp-for="IdPosterNavigation.TextPoster" placeholder="Leave a comment here" name="text" id="floatingTextarea2" style="height: 170px; border: 2px solid #522473;"></textarea>
@@ -63,32 +63,32 @@
             <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
                 <form action="addAdvertisement" method="post">
                     <div class="mb-3">
-                        <input style="border: 2px solid #522473;" type="text" placeholder="Заголовок объявления" name="TitlePoster" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required maxlength="100" style="border: 2px solid #522473;" type="text" placeholder="Заголовок объявления" name="TitlePoster" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
 
                     <p>Дата (с какого по какое число будет показываться объявление)</p>
 
                     <div class="date_f_input" style="display: flex;">
                         <div class="mb-3" style="display: flex;">
-                            <input style="border: 2px solid #522473; margin: 0px;" type="date" name="DateStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input required style="border: 2px solid #522473; margin: 0px;" type="date" name="DateStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
 
                         <p style="margin-left: 5%;"><b>—</b></p>
 
                         <div class="mb-3" style="margin-left:5%">
-                            <input style="border: 2px solid #522473;" type="date" name="DateEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input required style="border: 2px solid #522473;" type="date" name="DateEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                     </div>
 
-                    <select style="margin-top: 2%; border: 2px solid #522473;" class="form-select" name="category" aria-label="Default select example">
-                        <option selected>Категория объявлений</option>
+                    <select required style="margin-top: 2%; border: 2px solid #522473;" class="form-select" name="category" aria-label="Default select example">
+                        <option value="">Категория объявлений</option>
                         <option value="Поиск добровольцев">Поиск добровольцев</option>
                         <option value="Информирование волонтеров">Информирование волонтеров</option>
                         <option value="Информирование населения">Информирование населения</option>
                     </select>
 
                     <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
-                        <textarea class="form-control rounded-2 input_string w-100" placeholder="Leave a comment here" name="TextPoster" id="floatingTextarea2" style="height: 170px; border: 2px solid #522473;"></textarea>
+                        <textarea required class="form-control rounded-2 input_string w-100" placeholder="Leave a comment here" name="TextPoster" id="floatingTextarea2" style="height: 170px; border: 2px solid #522473;"></textarea>
                         <label for="floatingTextarea2">Текст объявления</label>
                     </div>
                     <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px;">Опубликовать объявление</button></a>

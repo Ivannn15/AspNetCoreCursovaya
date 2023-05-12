@@ -14,40 +14,40 @@
 
     <main>
         <div class="writeUs_container">
-            <form>
+            <form >
                 <h3 style="text-align: center; margin-bottom: 5%; color: #522473;"><b>Оставьте заявку и с вами свяжутся</b></h3>
                 <div class="mb-3">
-                    <input type="email" placeholder="Имя" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input required maxlength="50" type="text" placeholder="Имя" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <input type="email" placeholder="Фамилия" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input required maxlength="50" type="text" placeholder="Фамилия" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <input type="email" placeholder="Отчество" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input required maxlength="50" type="text" placeholder="Отчество" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Без отчества</label>
                 </div>
                 <div class="mb-3">
-                    <input type="email" placeholder="E-mail, по которому с вами можно связаться" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input required type="email" placeholder="E-mail, по которому с вами можно связаться" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <input type="text" value="+7" placeholder="+7" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input required type="tel" pattern="[0-9]{11}" placeholder="7-(...)-(...)-(..)-(..)" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                    <input type="text" placeholder="Тема обращения" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input required maxlength="100" type="text" placeholder="Тема обращения" class="form-control rounded-3 input_string" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
 
                 <div class="form-floating" style="margin-bottom: 1%;">
-                    <textarea class="form-control rounded-3 input_string" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <textarea required maxlength="2000" class="form-control rounded-3 input_string" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
                     <label for="floatingTextarea2">Текст обращения</label>
                 </div>
 
-                <a style="color: black;" href="">Прикрепить файл</a> <br>
+                <input type="file"></input>
 
                 <div class="mb-3 form-check" style="margin-top: 2%;">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input required type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Я соглашаюсь на <a style="color: #4BBFAA;" href="">обработку персональных данных</a> </label>
                 </div>
 

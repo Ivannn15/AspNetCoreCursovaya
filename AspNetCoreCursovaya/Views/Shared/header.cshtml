@@ -1,32 +1,32 @@
 ﻿@if (User.Identity.IsAuthenticated)
 {
     <header>
-        <ul style="margin-left: 5%; " class="nav nav-underline">
+        <ul class="nav nav-underline">
             <li>
-                <a href="@Url.Action("admin_index", "admin")"><img style="width: 120px; margin-top: 7%;" src="/image/logo.jpg" alt=""></a>
+                <a href="@Url.Action("admin_index", "admin")"><img style="margin-top: 10px" src="/image/logo.jpg" alt=""></a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link " aria-current="page" href="@Url.Action("admin_index", "admin")">Главная</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("news", "home")">Новости</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("advertisement", "home")">Объявления</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("ourActivities", "home")">Наша деятельность</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link " aria-current="page" href="@Url.Action("calendar_events", "home")">Календарь событий</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li  class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("aboutUs", "home")">О нас</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("partners", "home")">Партнеры</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("reports", "home")">Отчеты</a>
             </li>
         </ul>
@@ -35,32 +35,32 @@
 else
 {
     <header>
-        <ul style="margin-left: 5%; " class="nav nav-underline">
+        <ul  class="nav nav-underline">
             <li>
-                <a href="@Url.Action("index")"><img style="width: 120px; margin-top: 7%;" src="/image/logo.jpg" alt=""></a>
+                <a href="@Url.Action("index")"><img style="margin-top: 10px" src="/image/logo.jpg" alt=""></a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link " aria-current="page" href="@Url.Action("index")">Главная</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("news")">Новости</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("advertisement")">Объявления</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("ourActivities")">Наша деятельность</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link " aria-current="page" href="@Url.Action("calendar_events")">Календарь событий</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("aboutUs")">О нас</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("partners")">Партнеры</a>
             </li>
-            <li style="margin-left: 2%; margin-top: 1%;" class="nav-item">
+            <li class="nav-item">
                 <a class="text-black nav-link" href="@Url.Action("reports")">Отчеты</a>
             </li>
         </ul>

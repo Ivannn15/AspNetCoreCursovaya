@@ -23,13 +23,13 @@
                     @*<input style="border: 2px solid #522473;" type="email" placeholder="Название отчета" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">*@
                 </div>
 
-                <select style="margin-top: 2%; border: 2px solid #522473; margin-bottom: 3%;" asp-route="category" name="category" class="form-select" aria-label="Default select example">
-                    <option selected>Категория отчета</option>
+                <select required style="margin-top: 2%; border: 2px solid #522473; margin-bottom: 3%;" asp-route="category" name="category" class="form-select" aria-label="Default select example">
+                    <option value="">Категория отчета</option>
                     <option value="Месячный">Месячный</option>
                     <option value="Годовой">Годовой</option>
                 </select>
 
-                <input type="file" asp-route="file" name="file" id="file" class="form-control" />
+                <input required type="file" asp-route="file" name="file" id="file" class="form-control" />
                 <a style="color: black; margin-top: 3%;" href="">Прикрепить документ</a>
                 <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-25 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Добавить отчет</button></a>
                 <br><br><br>

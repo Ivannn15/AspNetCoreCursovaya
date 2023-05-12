@@ -23,6 +23,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using AspNetCoreCursovaya.helpingClasses;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Xml.Linq;
 
 namespace AspNetCoreCursovaya.Controllers
 {
@@ -80,6 +81,14 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult pageCalendarEvent(int idEvent)
+        {
+            var tempEvent = cursovayadb.CategoryInEvents.Include(p => p.IdEventNavigation).Include(p => p.IdCategoryInEventsNavigation).SingleOrDefault(p => p.IdEvent == idEvent); 
+
+            return View(tempEvent);
+        }
+
         public async Task<IActionResult> news(int? page)
         {
             //cursovayadb.News.Add
@@ -131,8 +140,29 @@ namespace AspNetCoreCursovaya.Controllers
         [HttpPost]
         public async Task<IActionResult> addComment(string commentatorName, string commentatorText, int newsId, int pageIndex)
         {
-            
-            int MaxId = cursovayadb.Comments.Max(p => p.Idcomments) + 1;
+            int MaxId;
+
+            if (cursovayadb.Comments.Count() == 0)
+            {
+                MaxId = 1;
+            }
+            else
+            {
+                MaxId = cursovayadb.Comments.Max(p => p.Idcomments) +1;
+            }
+
+            if (string.IsNullOrWhiteSpace(commentatorName))
+            {
+                commentatorName = "Анонимный пользователь";
+            }
+
+            if (string.IsNullOrWhiteSpace(commentatorText))
+            {
+                return RedirectToAction("pageNews", new { id = newsId, numberOfPage = pageIndex });
+            }
+
+
+
             var News = cursovayadb.News.SingleOrDefault(p => p.IdNews == newsId);
 
             Comment NewComment = new Comment
@@ -158,9 +188,16 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult calendar_events()
         {
             return View(cursovayadb.Events);
+        }
+
+        [HttpGet]
+        public IActionResult calend_events(CategoryInEvent categoryInEvent)
+        {
+            return View(categoryInEvent);
         }
 
         /////////// 25.04 Добавить вывод эвентов в представление календарь ивентов, разобраться с сопоставлением дат текущего месяца и даты проведения эвента
