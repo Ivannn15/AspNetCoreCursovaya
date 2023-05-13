@@ -201,7 +201,7 @@ namespace AspNetCoreCursovaya.Controllers
         }
 
         [HttpPost]
-        public IActionResult addReport(IFormFile file, string category) // добавление нового отчета
+        public IActionResult addReport(IFormFile file, string category, DateTime dateStart) // добавление нового отчета
         {
             if (file != null)
             {
@@ -209,7 +209,7 @@ namespace AspNetCoreCursovaya.Controllers
                 if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx")
                 {
                     ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx");
-                    return RedirectToAction("aboutUs", "home");
+                    return RedirectToAction("addReportPage", "admin");
                 }
             }
 
@@ -227,9 +227,9 @@ namespace AspNetCoreCursovaya.Controllers
                 MaxIdCategory = cursovayadbContext.CategoryInReports.Max(p => p.idCategoryInReport) + 1;
             }
 
-            string link = null; // ссылка на файл
+            string link = ""; // ссылка на файл
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
-            if (file != null && file.Length > 0)
+            if (file != null && file.FileName.Length > 0)
             {
                 var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
                     "\\AspNetCoreCursovaya\\wwwroot\\files\\", file.FileName);
@@ -245,7 +245,14 @@ namespace AspNetCoreCursovaya.Controllers
 
             Report newReport = new Report(); // создание новых объектов и заполнение их полей для добавления в бд
             newReport.IdReport = MaxIdReport;
-            newReport.DatePublication = DateTime.Now;
+            if (dateStart.Year != 1)
+            {
+                newReport.DatePublication = dateStart;
+            }
+            else
+            {
+                newReport.DatePublication = DateTime.Now;
+            }
             newReport.Link = link;
 
             CategoryInReport categoryInReport = new CategoryInReport();
@@ -272,6 +279,7 @@ namespace AspNetCoreCursovaya.Controllers
                 if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx")
                 {
                     ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx");
+                    ViewBag.Exeption = "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx";
                     return RedirectToAction("aboutUs", "home");
                 }
             }
@@ -290,9 +298,9 @@ namespace AspNetCoreCursovaya.Controllers
                 MaxIdCategory = cursovayadbContext.CategoriesInDocuments.Max(p => p.IdCategoryInDocument).GetValueOrDefault() + 1;
             }
 
-            string link = null; // ссылка на файл
+            string link = ""; // ссылка на файл
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
-            if (file != null && file.Length > 0)
+            if (file != null && file.FileName.Length > 0)
             {
                 var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
                     "\\AspNetCoreCursovaya\\wwwroot\\documents\\", file.FileName);
@@ -308,6 +316,7 @@ namespace AspNetCoreCursovaya.Controllers
 
             Document newDocument = new Document();
             newDocument.IdDocuments = MaxIdDocument;
+            
             newDocument.DatePublication = DateTime.Now;
             newDocument.Link = link;
 
@@ -457,15 +466,17 @@ namespace AspNetCoreCursovaya.Controllers
         [HttpPost]
         public IActionResult addNews(News news, IFormFile photoInNews)
         {
-            if (photoInNews != null)
-            {
-                string fileExtension = Path.GetExtension(photoInNews.FileName);
-                if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png")
-                {
-                    ModelState.AddModelError("photoInNews", "Неверный формат файла. Допустимые форматы: .jpg, .jpeg, .png");
-                    return RedirectToAction("news", "home");
-                }
-            }
+
+            
+            //if (photoInNews != null)
+            //{
+            //    string fileExtension = Path.GetExtension(photoInNews.FileName);
+            //    if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png")
+            //    {
+            //        ModelState.AddModelError("photoInNews", "Неверный формат файла. Допустимые форматы: .jpg, .jpeg, .png");
+            //        return RedirectToAction("news", "home");
+            //    }
+            //}
 
             int MaxIdFnews;
 
@@ -478,6 +489,9 @@ namespace AspNetCoreCursovaya.Controllers
                 MaxIdFnews = cursovayadbContext.News.Max(p => p.IdNews);
             }
 
+            news.IdNews = MaxIdFnews + 1;
+            news.DatePublication = DateTime.Now;
+
             if (photoInNews != null && photoInNews.Length > 0)
             {
                 var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
@@ -486,19 +500,26 @@ namespace AspNetCoreCursovaya.Controllers
                 {
                     photoInNews.CopyTo(stream);
                 }
+
+                string fileExtension = Path.GetExtension(photoInNews.FileName);
+
+                if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png")
+                {
+                    ModelState.AddModelError("photoInNews", "Неверный формат файла. Допустимые форматы: .jpg, .jpeg, .png");
+                    return RedirectToAction("news", "home");
+                }
+
+                PhotoInNews NewPhoto = new PhotoInNews();
+                int MaxIdFphotoList = cursovayadbContext.PhotoInNews.Max(p => p.IdPhoto);
+                NewPhoto.IdPhoto = MaxIdFphotoList + 1;
+                NewPhoto.Link = photoInNews.FileName;
+                NewPhoto.IdNewsNavigation = news;
+                NewPhoto.IdNews = news.IdNews;
+
+                cursovayadbContext.PhotoInNews.Add(NewPhoto);
             }
 
-            news.IdNews = MaxIdFnews + 1;
-            news.DatePublication = DateTime.Now;
-
-            PhotoInNews NewPhoto = new PhotoInNews();
-            int MaxIdFphotoList = cursovayadbContext.PhotoInNews.Max(p => p.IdPhoto);
-            NewPhoto.IdPhoto = MaxIdFphotoList + 1;
-            NewPhoto.Link = photoInNews.FileName;
-            NewPhoto.IdNewsNavigation = news;
-            NewPhoto.IdNews = news.IdNews;
-
-            cursovayadbContext.PhotoInNews.Add(NewPhoto);
+            
             cursovayadbContext.News.Add(news);
             cursovayadbContext.SaveChanges();
 

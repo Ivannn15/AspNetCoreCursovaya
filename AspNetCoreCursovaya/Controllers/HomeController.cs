@@ -24,6 +24,7 @@ using System.Linq;
 using AspNetCoreCursovaya.helpingClasses;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Xml.Linq;
+using System.Security.Cryptography;
 
 namespace AspNetCoreCursovaya.Controllers
 {
@@ -125,6 +126,7 @@ namespace AspNetCoreCursovaya.Controllers
 
         public async Task<IActionResult> pageNews(int id, int? numberOfPage)
         {
+            
             //var tempNews = cursovayadb.News.Include(p => p.PhotoInNews).SingleOrDefault(p => p.IdNews == id); // разобраться почему контроллер вызывается 2 раза
             var temp = cursovayadb.PhotoInNews.Include(p => p.IdNewsNavigation).SingleOrDefault(p => p.IdNews == id);
             
@@ -134,6 +136,7 @@ namespace AspNetCoreCursovaya.Controllers
 
             int pageNumber = (numberOfPage ?? 1);
             var newsItems = await PaginatedList<News>.CreateAsync(cursovayadb.News.Include(p => p.PhotoInNews).Include(p => p.Comments).AsNoTracking(), pageNumber, pageSize);
+            Console.WriteLine();
             return View(newsItems);
         }
 
@@ -189,10 +192,38 @@ namespace AspNetCoreCursovaya.Controllers
         }
 
         [HttpGet]
-        public IActionResult calendar_events()
+        public IActionResult calendar_events(int monthNow)
         {
-            return View(cursovayadb.Events);
+            if (monthNow == 0)
+            {
+                return View(cursovayadb.Events.Where(p => p.DateStart.Value.Month == DateTime.Now.Month).ToList());
+            }
+            else
+            {
+                var listEvent = cursovayadb.Events.Where(p => p.DateStart.Value.Month == monthNow).ToList();
+                if (listEvent.Count == 0)
+                {
+                    var lastDayOfMonth = cursovayadb.Events.Where(p => p.DateStart.Value.Month == cursovayadb.Events.Max(e => e.DateStart.Value.Month)).Max(e => e.DateStart); // поиск последнего месяца в котором были события
+                    listEvent = cursovayadb.Events.Where(p => p.DateStart.Value.Month == lastDayOfMonth.Value.Month).ToList();
+
+                    return View(listEvent);
+                }
+                return View(listEvent);
+            }
         }
+
+        //[HttpGet]
+        //public IActionResult lastMonth(int monthNow) 
+        //{
+        //    var listEvent = cursovayadb.Events.Where(p => p.DateStart.Value.Month == monthNow - 1).ToList();
+        //    return RedirectToAction("calendar_events", "home", listEvent);
+        //}
+
+        //[HttpGet]
+        //public IActionResult calendar_events(List<Event> events)
+        //{
+        //    return View(cursovayadb.Events);
+        //}
 
         [HttpGet]
         public IActionResult calend_events(CategoryInEvent categoryInEvent)
@@ -202,27 +233,35 @@ namespace AspNetCoreCursovaya.Controllers
 
         /////////// 25.04 Добавить вывод эвентов в представление календарь ивентов, разобраться с сопоставлением дат текущего месяца и даты проведения эвента
 
-
-
-        [HttpGet("login/{username}/{password}")]
-        public async Task<IActionResult> AddNewUserAsync(string username, string password)
+        [HttpGet("admin")]
+        public IActionResult authorization()
         {
+            return View(); 
+        }
+
+        public async Task<IActionResult> authorizationPost(string username, string password)
+        {
+
+            string passwrd = password;
+
+            char[] charArray = username.ToCharArray();
+            Array.Reverse(charArray);
+            string salt = new string(charArray);
+
+            var sha256 = new SHA256CryptoServiceProvider();
+            byte[] bytes = Encoding.UTF8.GetBytes(passwrd + salt);
+            byte[] hashBytes = sha256.ComputeHash(bytes);
+            string hash = Convert.ToBase64String(hashBytes);
+
             Admin admin = new Admin();
 
-
-            //if (username != "jone" && password != "123")
-            //{
-            //    ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
-            //}
-
-            var temp_user = cursovayadb.Admins.SingleOrDefault(p => p.Username == username && p.HashPassword == password);
+            var temp_user = cursovayadb.Admins.SingleOrDefault(p => p.Username == username && p.HashPassword == hash);
 
             if (temp_user == null)
             {
                 ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
                 return View("index");
             }
-
 
             var claims = new List<Claim>
             {
@@ -235,7 +274,38 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("admin_index", "admin");
         }
 
-        [HttpGet("logout")]
+        //[HttpGet("login/{username}/{password}")]
+        //public async Task<IActionResult> AddNewUserAsync(string username, string password)
+        //{
+        //    Admin admin = new Admin();
+
+
+        //    //if (username != "jone" && password != "123")
+        //    //{
+        //    //    ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
+        //    //}
+
+        //    var temp_user = cursovayadb.Admins.SingleOrDefault(p => p.Username == username && p.HashPassword == password);
+
+        //    if (temp_user == null)
+        //    {
+        //        ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
+        //        return View("index");
+        //    }
+
+
+        //    var claims = new List<Claim>
+        //    {
+        //        new Claim(ClaimTypes.NameIdentifier, username),
+        //    };
+        //    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //    var principal = new ClaimsPrincipal(identity);
+        //    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+        //    return RedirectToAction("admin_index", "admin");
+        //}
+
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             // код для удаления токена доступа из базы данных или очистки сессии пользователя

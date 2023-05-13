@@ -38,8 +38,10 @@
                         </p>
                         <p style="color: #522473; font-size: 23px; font-weight: lighter;">@New.DatePublication.ToShortDateString()</p>
                     </div>
-
-                    <img class="order-md-1" style="height: 200px; width:250px; margin-top: 2%; margin-left: 7%;" src="/image/@New.PhotoInNews.FirstOrDefault().Link.ToString()" alt="">
+                    @if (New.PhotoInNews.Count != 0)
+                    {
+                        <img class="order-md-1" style="height: 200px; width:250px; margin-top: 2%; margin-left: 7%;" src="/image/@New.PhotoInNews.FirstOrDefault().Link.ToString()" alt="">
+                    }
                 </div>
             </div>
         }
