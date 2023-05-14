@@ -25,6 +25,7 @@ using AspNetCoreCursovaya.helpingClasses;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Xml.Linq;
 using System.Security.Cryptography;
+using System.IO;
 
 namespace AspNetCoreCursovaya.Controllers
 {
@@ -49,6 +50,40 @@ namespace AspNetCoreCursovaya.Controllers
         public IActionResult aboutUs()
         {
             return View(cursovayadb.CategoriesInDocuments.Include(p => p.IdDocumentNavigation));
+        }
+
+        public IActionResult Download(string filename)
+        {
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot//documents", filename.Replace("\\", "//"));
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                stream.CopyTo(memory);
+            }
+            memory.Position = 0;
+            return File(memory, GetContentType(path), Path.GetFileName(path));
+        }
+
+        private string GetContentType(string path)
+        {
+            var types = GetMimeTypes();
+            var ext = Path.GetExtension(path).ToLowerInvariant();
+            return types[ext];
+        }
+
+        private Dictionary<string, string> GetMimeTypes()
+        {
+            return new Dictionary<string, string>
+            {
+                {".txt", "text/plain"},
+                {".pdf", "application/pdf"},
+                {".doc", "application/vnd.ms-word"},
+                {".docx", "application/vnd.ms-word"},
+                {".xls", "application/vnd.ms-excel"},
+                {".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
+            };
         }
 
         public IActionResult advertisement()

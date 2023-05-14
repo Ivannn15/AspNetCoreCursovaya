@@ -236,6 +236,10 @@ main a {
         padding-top: 2%;
         margin-left: 0%;
         margin-right: 2%;
+        -webkit-line-clamp: 4; /* Число отображаемых строк */
+        display: -webkit-box; /* Включаем флексбоксы */
+        -webkit-box-orient: vertical; /* Вертикальная ориентация */
+        overflow: hidden; /* Обрезаем всё за пределами блока */
     }
 
 .news_card_date {

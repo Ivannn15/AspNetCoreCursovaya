@@ -27,7 +27,10 @@
                 </p>
 
                 <div class="image_from_Pnews" >
-                    <img src="/image/@Model.SingleOrDefault(p => p.IdNews == ViewBag.Id).PhotoInNews.SingleOrDefault(p => p.IdNews == ViewBag.Id).Link.ToString()" alt="">
+                    @if (@Model.SingleOrDefault(p => p.IdNews == ViewBag.Id).PhotoInNews.Count != 0)
+                    {
+                        <img src="/image/@Model.SingleOrDefault(p => p.IdNews == ViewBag.Id).PhotoInNews.SingleOrDefault(p => p.IdNews == ViewBag.Id).Link.ToString()" alt="">
+                    }
                 </div>
 
                 <div class="icon_from_Pnews" >
@@ -106,7 +109,10 @@
                         continue;
                     }
                     <div class="card rounded-4" style="width: 18rem;">
-                        <img style="padding: 10%; padding-bottom: 0%; height: 200px;" src="/image/@New.PhotoInNews.FirstOrDefault().Link.ToString()" class="card-img-top" alt="...">
+                        @if (@New.PhotoInNews.FirstOrDefault() != null)
+                        {
+                            <img style="padding: 10%; padding-bottom: 0%; height: 200px;" src="/image/@New.PhotoInNews.FirstOrDefault().Link.ToString()" class="card-img-top" alt="...">
+                        }
                         <div class="card-body">
                             <a style="text-decoration:none" href="@Url.Action("pageNews", new { id = New.IdNews, numberOfPage = Model.PageIndex })"><h4 class="card-text">@New.TitleNews</h4></a>
                         </div>

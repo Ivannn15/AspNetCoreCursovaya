@@ -241,7 +241,7 @@
                 {
                     <div class="document">
                         <img src="/image/document 1.png" alt="Документ">
-                        <a href="@Url.Action("Download", "admin", new { filename = doc.IdDocumentNavigation.Link})"><u>@doc.IdDocumentNavigation.Link.Substring(doc.IdDocumentNavigation.Link.LastIndexOf('\\') + 1, doc.IdDocumentNavigation.Link.LastIndexOf('.') - doc.IdDocumentNavigation.Link.LastIndexOf('\\') - 1)</u></a>
+                        <a href="@Url.Action("Download", "home", new { filename = doc.IdDocumentNavigation.Link})"><u>@doc.IdDocumentNavigation.Link.Substring(doc.IdDocumentNavigation.Link.LastIndexOf('\\') + 1, doc.IdDocumentNavigation.Link.LastIndexOf('.') - doc.IdDocumentNavigation.Link.LastIndexOf('\\') - 1)</u></a>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <a href="@Url.Action("delleteDocument", "admin", new { idDocument = doc.IdDocument })"><img src="/image/корзина 7.png"></img></a>

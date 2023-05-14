@@ -40,7 +40,7 @@
                         {
                             <img height="23" src="/image/document 1.png"></img>
 
-                           <a  href="@Url.Action("Download", "admin", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
+                           <a  href="@Url.Action("Download", "home", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
 
                             if (User.Identity.IsAuthenticated)
                             {
@@ -70,7 +70,7 @@
                         {
                             <img height="23" src="/image/document 1.png"></img>
 
-                            <a href="@Url.Action("Download", "admin", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
+                            <a href="@Url.Action("Download", "home", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
 
                             if (User.Identity.IsAuthenticated)
                             {
@@ -99,7 +99,7 @@
                         {
                             <img height="23" src="/image/document 1.png"></img>
 
-                            <a href="@Url.Action("Download", "admin", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
+                            <a href="@Url.Action("Download", "home", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
 
                             if (User.Identity.IsAuthenticated)
                             {
