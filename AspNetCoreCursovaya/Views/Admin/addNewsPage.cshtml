@@ -32,11 +32,11 @@
                     <input type="file" asp-route="photoInNews" name="photoInNews" id="photoInNews" class="form-control" />
                     <a style="color: black;" href="">Прикрепить фотографии</a>
                     <p>Файл: @Model.PhotoInNews.FirstOrDefault().Link</p>
-                    <a ><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Опубликовать новость</button></a>
+                    <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: white; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Изменить</button></a>
                     <br><br><br>
 
                     <input type="hidden" name="newsId" value="@Model.IdNews">
-                    
+                    <br>
                 </form>
             </div>
         }
@@ -55,7 +55,7 @@
                     </div>
                     <input type="file" asp-route="photoInNews" name="photoInNews" id="photoInNews" class="form-control" />
                     <a style="color: black;" href="">Прикрепить фотографии</a>
-                    <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Опубликовать новость</button></a>
+                    <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: white; border: 0px; float: right; font-size: 15px; margin-top: 5%;margin-bottom:10%">Опубликовать новость</button></a>
                     <br><br><br>
                 </form>
             </div>

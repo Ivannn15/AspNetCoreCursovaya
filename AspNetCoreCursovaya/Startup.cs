@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreCursovaya.Models;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using AspNetCoreCursovaya.helpingClasses;
 
 namespace AspNetCoreCursovaya
 {
@@ -23,11 +26,11 @@ namespace AspNetCoreCursovaya
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(); // Добавление сервиса для обработки представлений
 
-            services.AddAuthorization();
+            services.AddAuthorization(); // Добавление сервиса для внедрения авторизации в конвейер обработки запросов
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme) // Добавление сервиса для внедрения аунтефикации в конвеер обработки запросов
              .AddCookie(options =>
              {
                  options.Cookie.Name = "YourCookieName";
@@ -38,8 +41,31 @@ namespace AspNetCoreCursovaya
                  options.LogoutPath = "/home/Index";
                  options.AccessDeniedPath = "/home/Index";
                  options.ExpireTimeSpan = TimeSpan.FromDays(30);
+                 
              });
+            ///////////
+            ///
 
+            services.AddDistributedMemoryCache(); // Добавление сервиса для хранения информации во внетренней памяти устройства КУКИ
+
+            // Добавление сервиса для обработки представлений
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(365);
+                options.Cookie.Name = "YourSessionCookieName";
+                options.Cookie.HttpOnly = true;
+                //options.Cookie.SameSite = SameSiteMode.None;
+                //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.IsEssential = true;
+            });
+
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new ErrorHandlingMiddleware());
+            });
+
+            ////////////
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 21));
 
             services.AddDbContext<cursovayadbContext>(options =>
@@ -60,6 +86,8 @@ namespace AspNetCoreCursovaya
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSession();
 
             //app.UseHttpsRedirection();
 

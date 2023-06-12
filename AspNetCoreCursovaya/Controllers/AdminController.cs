@@ -19,12 +19,14 @@ namespace AspNetCoreCursovaya.Controllers
 
         cursovayadbContext cursovayadbContext = new cursovayadbContext();
 
+        // Обработка запроса на вывод страницы администратора
         [Authorize]
         public IActionResult admin_index()
         {
             return View();
         }
 
+        // Обработка запроса на загрузку файла
         public IActionResult Download(string filename)
         {
             var path = Path.Combine(
@@ -39,6 +41,7 @@ namespace AspNetCoreCursovaya.Controllers
             return File(memory, GetContentType(path), Path.GetFileName(path));
         }
 
+        // Метод для получения типа файла
         private string GetContentType(string path)
         {
             var types = GetMimeTypes();
@@ -46,6 +49,7 @@ namespace AspNetCoreCursovaya.Controllers
             return types[ext];
         }
 
+        // Метод возвращающий словарь соответсвия расширений файлов
         private Dictionary<string, string> GetMimeTypes()
         {
             return new Dictionary<string, string>
@@ -59,16 +63,19 @@ namespace AspNetCoreCursovaya.Controllers
             };
         }
 
+        // Обработка запроса на вывод страницы добавить объявление
         public IActionResult addAdvertisementPage()
         {
             return View();
         }
 
+        // Обработка запроса на вывод страницы добавить событие
         public IActionResult addEventPage()
         {
             return View();
         }
 
+        // Обработка запроса на удаление отчета
         public IActionResult delleteReport(int idReport)  //......... Удаление отчета
         {
             cursovayadbContext.Reports.Remove(cursovayadbContext.Reports.SingleOrDefault(p => p.IdReport == idReport));
@@ -93,6 +100,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("news", "home", 1);
         }
 
+        // Обработка запроса на Удаление события
         public IActionResult delleteEvent(int idEvent)
         {
             cursovayadbContext.Events.Remove(cursovayadbContext.Events.SingleOrDefault(p => p.IdEvents == idEvent));
@@ -101,6 +109,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("calendar_events", "home", new { categoryInEvent =  cursovayadbContext.Events } );
         }
 
+        // Обработка запроса на удаление документа
         public IActionResult delleteDocument(int idDocument)
         {
             cursovayadbContext.Documents.Remove(cursovayadbContext.Documents.SingleOrDefault(p => p.IdDocuments == idDocument));
@@ -109,6 +118,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("aboutUs", "home");
         }
 
+        // Обработка запроса на удаление коментария
         public IActionResult delleteComment(int idComment, int newsId, int pageIndex)
         {
             cursovayadbContext.Comments.Remove(cursovayadbContext.Comments.SingleOrDefault(p => p.Idcomments == idComment));
@@ -117,6 +127,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("pageNews", "home", new { id = newsId, numberOfPage = pageIndex });
         }
 
+        // Обработка запроса на добавление объявления
         [HttpPost]
         public IActionResult addAdvertisement(Poster poster, string category)
         {
@@ -159,6 +170,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("advertisement", "home");
         }
 
+        // Обработка запроса на добавление события
         public IActionResult addEvent(Event @event, string category)
         {
             if (string.IsNullOrWhiteSpace(@event.TitleEvent) | string.IsNullOrWhiteSpace(@event.TextEvent))
@@ -200,6 +212,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("calendar_events", "home", cursovayadbContext.Events);
         }
 
+        // Обработка запроса на добавление отчета
         [HttpPost]
         public IActionResult addReport(IFormFile file, string category, DateTime dateStart) // добавление нового отчета
         {
@@ -209,7 +222,7 @@ namespace AspNetCoreCursovaya.Controllers
                 if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx")
                 {
                     ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx");
-                    return RedirectToAction("addReportPage", "admin");
+                    return RedirectToAction("ErorFile", "home");
                 }
             }
 
@@ -271,6 +284,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("reports", "home");
         }
 
+        // Обработка запроса на добавление документа
         public IActionResult addDocument(IFormFile file, string category)
         {
             if (file != null)
@@ -280,7 +294,7 @@ namespace AspNetCoreCursovaya.Controllers
                 {
                     ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx");
                     ViewBag.Exeption = "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx";
-                    return RedirectToAction("aboutUs", "home");
+                    return RedirectToAction("ErorFile", "home");
                 }
             }
 
@@ -335,6 +349,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("aboutUs", "home");
         }
 
+        // Обработка запроса на вывод страницы добавить документ
         public IActionResult addDocumentPage()
         {
             return View();
@@ -344,28 +359,44 @@ namespace AspNetCoreCursovaya.Controllers
         /// </summary>
         /// <returns></returns>
 
+        // Обработка запроса на вывод страницы добавить новость
         [HttpGet]
         public IActionResult addNewsPage()
         {
             return View();
         }
 
+        // Обработка запроса на вывод страницы изменить новость
         [HttpGet]
+        [Authorize]
         public IActionResult changeNewsPage(int newsId)
         {
             var changedNews = cursovayadbContext.News.Include(p => p.PhotoInNews).SingleOrDefault(p => p.IdNews == newsId);
 
+            if (changedNews == null)
+            {
+                return RedirectToAction("Eror", "home");
+            }
+
             return View("addNewsPage", changedNews);
         }
 
+        // Обработка запроса на вывод страницы изменить объявление
         [HttpGet]
+        [Authorize]
         public IActionResult changeAdvertisement(int adsId)
         {
             var changedAds = cursovayadbContext.CategoryInPosters.Include(p => p.IdPosterNavigation).Include(p => p.IdCategoryNavigation).SingleOrDefault(p => p.IdPoster == adsId);
 
+            if (changedAds == null)
+            {
+                return RedirectToAction("Eror", "home");
+            }
+
             return View("addAdvertisementPage", changedAds);
         }
 
+        // Обработка запроса на изменение новости
         [HttpPost]
         public IActionResult changeNewsPage(News changedNews, IFormFile photoInNews, int newsId) //................. 02.05. добавил возможность изменения новостей, сделать это для всех сущностей
         {
@@ -380,7 +411,7 @@ namespace AspNetCoreCursovaya.Controllers
                     photoInNews.CopyTo(stream);
                 }
 
-                cursovayadbContext.PhotoInNews.Single(p => p.IdNews == newsId && p.IdNewsNavigation.TitleNews == changedNews.TitleNews).Link = photoInNews.FileName;
+                cursovayadbContext.PhotoInNews.Single(p => p.IdNews == newsId).Link = photoInNews.FileName;
             }
 
             var tempNews = cursovayadbContext.News.SingleOrDefault(p => p.IdNews == newsId);
@@ -398,6 +429,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("news", "home");
         }
 
+        // Обработка запроса на изменение объявления
         [HttpPost]
         public IActionResult changeAdvertisement(string title, string text, DateTime dateStart, DateTime dateEnd, string category, int adsCategoryId)
         {
@@ -429,7 +461,9 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("advertisement", "home");
         }
 
+        // Обработка запроса на вывод страницы изменить новость
         [HttpGet]
+        [Authorize]
         public IActionResult changeEvent(int idEvent)
         {
             var tempEvent = cursovayadbContext.CategoryInEvents.Include(p => p.IdEventNavigation).Include(p => p.IdCategoryInEventsNavigation).SingleOrDefault(p => p.IdEvent == idEvent);
@@ -437,6 +471,7 @@ namespace AspNetCoreCursovaya.Controllers
             return View("addEventPage", tempEvent);
         }
 
+        // Обработка запроса на изменение события
         [HttpPost]
         public IActionResult changeEvent(string title, DateTime dateStart, DateTime dateEnd, TimeSpan timeStart, TimeSpan timeEnd, string Text , string category, int idEvent)
         {
@@ -463,6 +498,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("pageCalendarEvent", "home", new { idEvent = tempEvent.IdEvent });
         }
 
+        // Обработка запроса на добавление новости
         [HttpPost]
         public IActionResult addNews(News news, IFormFile photoInNews)
         {
@@ -525,7 +561,7 @@ namespace AspNetCoreCursovaya.Controllers
 
             return RedirectToAction("news", "home");
         }
-        
+
 
         //[HttpPost]
         //public IActionResult addNewsPage([FromForm] news news)
@@ -550,11 +586,11 @@ namespace AspNetCoreCursovaya.Controllers
         /// </summary>
         /// <returns></returns>
 
+        // Обработка запроса на вывод страницы добавить отчет
         public IActionResult addReportPage()
         {
             return View();
         }
-        
 
         // POST: AdminController/Create
         [HttpPost]
