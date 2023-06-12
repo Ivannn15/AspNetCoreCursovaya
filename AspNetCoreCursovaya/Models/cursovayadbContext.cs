@@ -10,7 +10,7 @@ namespace AspNetCoreCursovaya.Models
     {
         public cursovayadbContext()
         {
-        }
+        } 
 
         public cursovayadbContext(DbContextOptions<cursovayadbContext> options)
             : base(options)
@@ -38,7 +38,7 @@ namespace AspNetCoreCursovaya.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySql("Server=MYSQL5045.site4now.net;Database=db_a992f1_ivan123;Uid=a992f1_ivan123;Pwd=Dfyz2000", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
+                optionsBuilder.UseMySql("server=localhost;user=root;password=root;database=cursovayadb;", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
             }
         }
 
