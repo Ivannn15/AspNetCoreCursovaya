@@ -63,6 +63,12 @@ namespace AspNetCoreCursovaya.Controllers
             };
         }
 
+        // Обработка запроса на вывод страницы добавить партнера
+        public IActionResult addParnterPage()
+        {
+            return View();
+        }
+
         // Обработка запроса на вывод страницы добавить объявление
         public IActionResult addAdvertisementPage()
         {

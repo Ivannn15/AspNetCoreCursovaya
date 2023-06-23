@@ -30,6 +30,8 @@ namespace AspNetCoreCursovaya
 
             services.AddAuthorization(); // Добавление сервиса для внедрения авторизации в конвейер обработки запросов
 
+            services.AddHttpContextAccessor();
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme) // Добавление сервиса для внедрения аунтефикации в конвеер обработки запросов
              .AddCookie(options =>
              {
