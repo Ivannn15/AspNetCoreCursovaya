@@ -31,7 +31,7 @@ namespace AspNetCoreCursovaya.Controllers
         {
             var path = Path.Combine(
                 Directory.GetCurrentDirectory(),
-                "wwwroot//documents", filename.Replace("\\","//"));
+                "wwwroot//documents", filename.Replace("\\", "//"));
             var memory = new MemoryStream();
             using (var stream = new FileStream(path, FileMode.Open))
             {
@@ -68,7 +68,76 @@ namespace AspNetCoreCursovaya.Controllers
         {
             return View();
         }
+        
+        public IActionResult deletePartner(int idPartner, int idCategory)
+        {
+            cursovayadbContext.partners.Remove(cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner));
+            cursovayadbContext.category_in_partners.Remove(cursovayadbContext.category_in_partners.SingleOrDefault(p => p.id_partner == idPartner && p.id_category == idCategory));
 
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("partners", "home");
+        }
+
+        [HttpGet]
+        public IActionResult changePartnerPage(int idPartner, int idCategory)
+        {
+            var changedPartner = cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner);
+
+            ViewBag.viewBagCategoryPartner = cursovayadbContext.Categories.SingleOrDefault(p => p.IdCategories == idCategory).TitleCategory;
+
+            if (changedPartner == null)
+            {
+                return RedirectToAction("Eror", "home");
+            }
+
+            return View("addParnterPage", changedPartner);
+        }
+
+        [HttpPost]
+        public IActionResult changePartnerPage(partners partner, int idPartner, string LastSelectCategory , string category, IFormFile photoInPartner)
+        {
+            if (photoInPartner != null)
+            {
+                string fileExtension = Path.GetExtension(photoInPartner.FileName);
+                if (fileExtension != ".img" && fileExtension != ".png" && fileExtension != ".jpg")
+                {
+                    ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg");
+                    ViewBag.Exeption = "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg";
+                    return RedirectToAction("ErorFile", "home");
+                }
+            }
+
+            string link = ""; // ссылка на файл
+            //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
+            if (photoInPartner != null && photoInPartner.FileName.Length > 0)
+            {
+                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
+                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInPartner.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    photoInPartner.CopyTo(stream);
+                }
+
+                link = filePath;
+                cursovayadbContext.partners.SingleOrDefault(p => p.title_partner == partner.title_partner && p.idPartners == idPartner).link_photo = photoInPartner.FileName;
+            }
+
+            if (LastSelectCategory != category && category != "Выберите категорию")
+            {
+                cursovayadbContext.category_in_partners.SingleOrDefault(p => p.id_partner == idPartner).id_category = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category).IdCategories;
+            }
+
+            cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner).title_partner = partner.title_partner;
+            cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner).text_partner = partner.text_partner;
+
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("partners", "home");
+
+        }
+
+        // Добавление нового партнера
         [HttpPost]
         public IActionResult addParnterPage(partners partner, string category, IFormFile photoInPartner) //--------------------- 23.06 Скопировать адд с другого контроллера (они схожи по логике)
         {
@@ -76,7 +145,7 @@ namespace AspNetCoreCursovaya.Controllers
             if (photoInPartner != null)
             {
                 string fileExtension = Path.GetExtension(photoInPartner.FileName);
-                if (fileExtension != ".img" && fileExtension != ".png" && fileExtension != ".jpeg")
+                if (fileExtension != ".img" && fileExtension != ".png" && fileExtension != ".jpg")
                 {
                     ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg");
                     ViewBag.Exeption = "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg";
@@ -126,8 +195,6 @@ namespace AspNetCoreCursovaya.Controllers
 
             cursovayadbContext.partners.Add(partner);
             cursovayadbContext.category_in_partners.Add(categoryInPartners);
-
-            
 
             cursovayadbContext.SaveChanges();
 

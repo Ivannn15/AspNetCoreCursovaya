@@ -18,30 +18,66 @@
     <partial name="header" />
 
     <main>
-        <p><a href="../index.html">Главная</a> > <a href="../partners.html">Партнеры ></a> Добавить партнера</p>
-        <div class="input_f_addNews">
-            <form asp-action="addParnterPage" asp-controller="admin" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <input style="border: 2px solid #522473;" asp-for="title_partner" type="text" placeholder="Имя партнера" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
+        @if (ViewContext.RouteData.Values["action"].ToString() == "changePartnerPage")
+        {
+            <div class="input_f_addNews">
+                <form asp-action="changePartnerPage" asp-controller="admin" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <input required style="border: 2px solid #522473;" maxlength="200" asp-for="title_partner" value="@Model.title_partner" type="text" placeholder="Имя партнера" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
 
-                <select style="margin-top: 2%; border: 2px solid #522473;" id="category" name="category" class="form-select" aria-label="Default select example">
-                    <option selected value="Физическое лицо">Физическое лицо</option>
-                    <option value="Юридическое лицо">Юридическое лицо</option>
-                </select>
+                    <select style="margin-top: 2%; border: 2px solid #522473;" id="category" name="category" class="form-select" aria-label="Default select example">
+                        <option selected value="Выберите категорию">Выберите категорию</option>
+                        <option value="Физическое лицо">Физическое лицо</option>
+                        <option value="Юридическое лицо">Юридическое лицо</option>
+                    </select>
+                    <p style="margin-left: 0;">Текущая категория: @ViewBag.viewBagCategoryPartner</p>
 
-                <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
-                    <textarea class="form-control rounded-2 input_string w-100" asp-for="text_partner" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px; border: 2px solid #522473; height: 300px;"></textarea>
-                    <label for="floatingTextarea2">Почему мы ему благодарны(кратко)</label>
-                </div>
-                <input type="file" asp-route="photoInPartner" name="photoInPartner" id="photoInPartner" class="form-control" />
-                <a style="color: black; text-decoration-line: underline;" href="">Прикрепить логотип компании(необязательно)</a>
-                <div class="admin_button">
-                    <button type="submit" class="btn btn-secondary btn-sm  rounded-3">Добавить партнера</button>
-                </div>
-                <br><br>
-            </form>
-        </div>
+                    <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
+                        <textarea required class="form-control rounded-2 input_string w-100" maxlength="100" value="@Model.text_partner" asp-for="text_partner" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px; border: 2px solid #522473; height: 300px;"></textarea>
+                        <label for="floatingTextarea2">Почему мы ему благодарны(кратко)</label>
+                    </div>
+                    <input type="file" asp-route="photoInPartner" name="photoInPartner" id="photoInPartner" class="form-control" />
+                    <a style="color: black; text-decoration-line: underline;" href="">Прикрепить логотип компании(необязательно)</a>
+                    <p style="margin-left: 0;">Текущий логотип: @Model.link_photo</p>
+                    <div class="admin_button">
+                        <button type="submit" class="btn btn-secondary btn-sm  rounded-3">Добавить партнера</button>
+                    </div>
+
+                    <input type="hidden" name="idPartner" value="@Model.idPartners">
+                    <input type="hidden" name="LastSelectCategory" value="@ViewBag.viewBagCategoryPartner">
+                    <br><br>
+                </form>
+            </div>
+        }
+        else
+        {
+            <p><a href="../index.html">Главная</a> > <a href="../partners.html">Партнеры ></a> Добавить партнера</p>
+            <div class="input_f_addNews">
+                <form asp-action="addParnterPage" asp-controller="admin" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <input required style="border: 2px solid #522473;" maxlength="200" asp-for="title_partner" type="text" placeholder="Имя партнера" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+
+                    <select style="margin-top: 2%; border: 2px solid #522473;" id="category" name="category" class="form-select" aria-label="Default select example">
+                        <option selected value="Физическое лицо">Физическое лицо</option>
+                        <option value="Юридическое лицо">Юридическое лицо</option>
+                    </select>
+
+                    <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
+                        <textarea required class="form-control rounded-2 input_string w-100" maxlength="100" asp-for="text_partner" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px; border: 2px solid #522473; height: 300px;"></textarea>
+                        <label for="floatingTextarea2">Почему мы ему благодарны(кратко)</label>
+                    </div>
+                    <input type="file" asp-route="photoInPartner" name="photoInPartner" id="photoInPartner" class="form-control" />
+                    <a style="color: black; text-decoration-line: underline;" href="">Прикрепить логотип компании(необязательно)</a>
+                    <div class="admin_button">
+                        <button type="submit" class="btn btn-secondary btn-sm  rounded-3">Добавить партнера</button>
+                    </div>
+                    <br><br>
+                </form>
+            </div>
+        }
+        
     </main>
 
     <partial name="footer" />

@@ -26,7 +26,23 @@
                 @if (Model.category_In_Partners.Any(p => p.id_partner == partner.idPartners && p.id_category == 19) && partner.link_photo != null)
                 {
                     <div class="card rounded-4">
-                        <h5><b>@partner.title_partner</b></h5>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div style="display:flex;">
+                                <a style="text-decoration:none; margin-left:110px; margin-right:110px" href="@Url.Action("changePartnerPage", "admin", new {idPartner = partner.idPartners, idCategory = 19})"><img style="width:30px; height:30px" src="/image/edit.png" alt="Редактировать"></a>
+                                <h5><b>@partner.title_partner</b></h5>
+
+                                <a style="text-decoration:none; margin-left:110px; margin-right:110px" href="@Url.Action("deletePartner", "admin", new {idPartner = partner.idPartners, idCategory = 19})">
+                                <img style="width:30px; height:30px; " height="30" src="/image/delete.png" alt="Редактировать">
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <h5><b>@partner.title_partner</b></h5>
+                        }
+
                         <img src="/image/@partner.link_photo" class="card-img-top" alt="...">
                         <div class="card-body">
                             <p class="card-text">@partner.text_partner</p>
@@ -60,7 +76,23 @@
             {
                 if (Model.category_In_Partners.Any(p => p.id_partner == partner.idPartners && p.id_category == 19) && partner.link_photo == null)
                 {
-                    <p><b style="color: #522473;">@partner.title_partner</b> @partner.text_partner</p>
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <div style="display:flex">
+                            <a style="text-decoration:none;" href="@Url.Action("changePartnerPage", "admin", new {idPartner = partner.idPartners, idCategory = 19})">
+                                <img style="width:25px; height:25px; margin-left: 100px; margin-right:0px" src="/image/edit.png" alt="Редактировать"></a>
+                                    <p style="margin-left:0px; margin-top:0px"><b style="color: #522473; margin:0px">@partner.title_partner</b> @partner.text_partner</p>
+                                
+
+                                <a style="text-decoration:none; margin-left:110px; margin-right:110px" href="@Url.Action("deletePartner", "admin", new {idPartner = partner.idPartners, idCategory = 19})">
+                                    <img style="width:25px; height:25px; margin:0px" height="30" src="/image/delete.png" alt="Редактировать">
+                                </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <p><b style="color: #522473;">@partner.title_partner</b> @partner.text_partner</p>
+                    }
                 }
             }
 
@@ -72,7 +104,22 @@
             {
                 if (Model.category_In_Partners.Any(p => p.id_partner == partner.idPartners && p.id_category == 18))
                 {
-                    <p><b style="color: #522473;">@partner.title_partner</b> @partner.text_partner</p>
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <div style="display:flex">
+                            <a style="text-decoration:none;" href="@Url.Action("changePartnerPage", "admin", new {idPartner = partner.idPartners, idCategory = 18})">
+                                <img style="width:25px; height:25px; margin-left: 100px; margin-right:0px" src="/image/edit.png" alt="Редактировать"></a>
+                            <p style="margin-left:0px; margin-top:0px"><b style="color: #522473;">@partner.title_partner</b> @partner.text_partner</p>
+
+                            <a style="text-decoration:none; margin-left:110px; margin-right:110px" href="@Url.Action("deletePartner", "admin", new {idPartner = partner.idPartners, idCategory = 18})">
+                                <img style="width:25px; height:25px; margin:0px" height="30" src="/image/delete.png" alt="Редактировать">
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <p><b style="color: #522473;">@partner.title_partner</b> @partner.text_partner</p>
+                    }
                 }
             }
 
@@ -81,5 +128,6 @@
     </main>
 
     <partial name="footer" />
+
 </body>
 </html>
