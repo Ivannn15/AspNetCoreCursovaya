@@ -32,6 +32,8 @@ namespace AspNetCoreCursovaya.Models
         public virtual DbSet<PhotoInNews> PhotoInNews { get; set; }
         public virtual DbSet<Poster> Posters { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<partners> partners { get; set; }
+        public virtual DbSet<category_in_partners> category_in_partners { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -117,6 +119,8 @@ namespace AspNetCoreCursovaya.Models
                     .HasMaxLength(45)
                     .HasColumnName("title_category");
             });
+
+           
 
             modelBuilder.Entity<CategoryInEvent>(entity =>
             {

@@ -27,7 +27,7 @@
                     <div class="news_card_text" style="width:100%">
                         <div>
                             <h3>
-                                <b>@ads.TitlePoster</b>
+                                <a href="@Url.Action("PageAdvertisement", "Home", new {idAdvert = ads.IdPoster})"><b>@ads.TitlePoster</b></a>
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <a href="@Url.Action("changeAdvertisement", "admin", new {adsId = ads.IdPoster})"><img height="30" src="/image/edit.png" alt="Редактировать"></a>

@@ -3,14 +3,16 @@ using System;
 using AspNetCoreCursovaya.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreCursovaya.Migrations.cursovayadb
 {
     [DbContext(typeof(cursovayadbContext))]
-    partial class cursovayadbContextModelSnapshot : ModelSnapshot
+    [Migration("20230623060247_Migration25")]
+    partial class Migration25
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -420,46 +422,6 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                         .HasName("PRIMARY");
 
                     b.ToTable("reports");
-                });
-
-            modelBuilder.Entity("AspNetCoreCursovaya.Models.category_in_partners", b =>
-                {
-                    b.Property<int>("idCategory_in_partners")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("id_category")
-                        .HasColumnType("int");
-
-                    b.Property<int>("id_partner")
-                        .HasColumnType("int");
-
-                    b.HasKey("idCategory_in_partners");
-
-                    b.ToTable("category_in_partners");
-                });
-
-            modelBuilder.Entity("AspNetCoreCursovaya.Models.partners", b =>
-                {
-                    b.Property<int>("idPartners")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("date_delete")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("link_photo")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("text_partner")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("title_partner")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("idPartners");
-
-                    b.ToTable("partners");
                 });
 
             modelBuilder.Entity("AspNetCoreCursovaya.Models.CategoriesInDocument", b =>

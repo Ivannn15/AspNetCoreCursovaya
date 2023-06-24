@@ -69,6 +69,72 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult addParnterPage(partners partner, string category, IFormFile photoInPartner) //--------------------- 23.06 Скопировать адд с другого контроллера (они схожи по логике)
+        {
+
+            if (photoInPartner != null)
+            {
+                string fileExtension = Path.GetExtension(photoInPartner.FileName);
+                if (fileExtension != ".img" && fileExtension != ".png" && fileExtension != ".jpeg")
+                {
+                    ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg");
+                    ViewBag.Exeption = "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg";
+                    return RedirectToAction("ErorFile", "home");
+                }
+            }
+
+            int MaxIdPartner;
+            int MaxIdCategoryInPartner;
+
+            if (cursovayadbContext.partners.Count() == 0)
+            {
+                MaxIdPartner = 1;
+                MaxIdCategoryInPartner = 1;
+            }
+            else
+            {
+                MaxIdPartner = cursovayadbContext.partners.Max(p => p.idPartners) + 1;
+                MaxIdCategoryInPartner = cursovayadbContext.category_in_partners.Max(p => p.idCategory_in_partners) + 1;
+            }
+
+            category_in_partners categoryInPartners = new category_in_partners();
+
+            partner.idPartners = MaxIdPartner; //====================================== добавляем новые айдишники 
+            categoryInPartners.idCategory_in_partners = MaxIdCategoryInPartner;
+
+            string link = ""; // ссылка на файл
+            //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
+            if (photoInPartner != null && photoInPartner.FileName.Length > 0)
+            {
+                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
+                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInPartner.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    photoInPartner.CopyTo(stream);
+                }
+
+                link = filePath;
+                partner.link_photo = link;
+            }
+            
+
+            categoryInPartners.id_category =
+                cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category).IdCategories;
+
+            categoryInPartners.id_partner = partner.idPartners;
+
+            cursovayadbContext.partners.Add(partner);
+            cursovayadbContext.category_in_partners.Add(categoryInPartners);
+
+            
+
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("partners", "home");
+
+        }
+
         // Обработка запроса на вывод страницы добавить объявление
         public IActionResult addAdvertisementPage()
         {

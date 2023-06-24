@@ -105,6 +105,11 @@ namespace AspNetCoreCursovaya.Controllers
             return types[ext];
         }
 
+        public IActionResult PageAdvertisement(int idAdvert)
+        {
+            return View(cursovayadb.Posters.SingleOrDefault(p => p.IdPoster == idAdvert));
+        }
+
         // метод который возвращает словарь соответствия расширений файлов и их MIME-типов. 
         private Dictionary<string, string> GetMimeTypes()
         {

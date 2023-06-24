@@ -3,14 +3,16 @@ using System;
 using AspNetCoreCursovaya.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreCursovaya.Migrations.cursovayadb
 {
     [DbContext(typeof(cursovayadbContext))]
-    partial class cursovayadbContextModelSnapshot : ModelSnapshot
+    [Migration("20230624134512_MyMigrt333")]
+    partial class MyMigrt333
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -428,6 +430,12 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int?>("IdCategoryNavigationIdCategories")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdDocumentNavigationidPartners")
+                        .HasColumnType("int");
+
                     b.Property<int>("id_category")
                         .HasColumnType("int");
 
@@ -435,6 +443,10 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                         .HasColumnType("int");
 
                     b.HasKey("idCategory_in_partners");
+
+                    b.HasIndex("IdCategoryNavigationIdCategories");
+
+                    b.HasIndex("IdDocumentNavigationidPartners");
 
                     b.ToTable("category_in_partners");
                 });
@@ -568,6 +580,21 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                         .HasConstraintName("id_news_photo");
 
                     b.Navigation("IdNewsNavigation");
+                });
+
+            modelBuilder.Entity("AspNetCoreCursovaya.Models.category_in_partners", b =>
+                {
+                    b.HasOne("AspNetCoreCursovaya.Models.Category", "IdCategoryNavigation")
+                        .WithMany()
+                        .HasForeignKey("IdCategoryNavigationIdCategories");
+
+                    b.HasOne("AspNetCoreCursovaya.Models.partners", "IdDocumentNavigation")
+                        .WithMany()
+                        .HasForeignKey("IdDocumentNavigationidPartners");
+
+                    b.Navigation("IdCategoryNavigation");
+
+                    b.Navigation("IdDocumentNavigation");
                 });
 
             modelBuilder.Entity("AspNetCoreCursovaya.Models.News", b =>

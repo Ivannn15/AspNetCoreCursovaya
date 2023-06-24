@@ -3,14 +3,16 @@ using System;
 using AspNetCoreCursovaya.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreCursovaya.Migrations.cursovayadb
 {
     [DbContext(typeof(cursovayadbContext))]
-    partial class cursovayadbContextModelSnapshot : ModelSnapshot
+    [Migration("20230623141309_MyMigrt523")]
+    partial class MyMigrt523
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -436,7 +438,7 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
 
                     b.HasKey("idCategory_in_partners");
 
-                    b.ToTable("category_in_partners");
+                    b.ToTable("CategoryInPartners");
                 });
 
             modelBuilder.Entity("AspNetCoreCursovaya.Models.partners", b =>

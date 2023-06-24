@@ -3,14 +3,16 @@ using System;
 using AspNetCoreCursovaya.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AspNetCoreCursovaya.Migrations.cursovayadb
 {
     [DbContext(typeof(cursovayadbContext))]
-    partial class cursovayadbContextModelSnapshot : ModelSnapshot
+    [Migration("20230623060846_Migration28")]
+    partial class Migration28
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,6 +132,33 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                     b.HasIndex(new[] { "IdCategory" }, "id_category_idx1");
 
                     b.ToTable("category_in_news");
+                });
+
+            modelBuilder.Entity("AspNetCoreCursovaya.Models.CategoryInPartners", b =>
+                {
+                    b.Property<int?>("idCategoryInPartners")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdCategory")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdCategoryNavigationIdCategories")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdPartner")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdPartnerNavigationIdPartner")
+                        .HasColumnType("int");
+
+                    b.HasKey("idCategoryInPartners");
+
+                    b.HasIndex("IdCategoryNavigationIdCategories");
+
+                    b.HasIndex("IdPartnerNavigationIdPartner");
+
+                    b.ToTable("CategoryInPartners");
                 });
 
             modelBuilder.Entity("AspNetCoreCursovaya.Models.CategoryInPoster", b =>
@@ -333,6 +362,29 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                     b.ToTable("news");
                 });
 
+            modelBuilder.Entity("AspNetCoreCursovaya.Models.Partner", b =>
+                {
+                    b.Property<int>("IdPartner")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("TextPartner")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TitlePartner")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("linkPhoto")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("IdPartner");
+
+                    b.ToTable("Partners");
+                });
+
             modelBuilder.Entity("AspNetCoreCursovaya.Models.PhotoInNews", b =>
                 {
                     b.Property<int>("IdPhoto")
@@ -422,46 +474,6 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                     b.ToTable("reports");
                 });
 
-            modelBuilder.Entity("AspNetCoreCursovaya.Models.category_in_partners", b =>
-                {
-                    b.Property<int>("idCategory_in_partners")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("id_category")
-                        .HasColumnType("int");
-
-                    b.Property<int>("id_partner")
-                        .HasColumnType("int");
-
-                    b.HasKey("idCategory_in_partners");
-
-                    b.ToTable("category_in_partners");
-                });
-
-            modelBuilder.Entity("AspNetCoreCursovaya.Models.partners", b =>
-                {
-                    b.Property<int>("idPartners")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("date_delete")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("link_photo")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("text_partner")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("title_partner")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("idPartners");
-
-                    b.ToTable("partners");
-                });
-
             modelBuilder.Entity("AspNetCoreCursovaya.Models.CategoriesInDocument", b =>
                 {
                     b.HasOne("AspNetCoreCursovaya.Models.Category", "IdCategoryNavigation")
@@ -513,6 +525,21 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                     b.Navigation("IdCategoryNavigation");
 
                     b.Navigation("IdNewsNavigation");
+                });
+
+            modelBuilder.Entity("AspNetCoreCursovaya.Models.CategoryInPartners", b =>
+                {
+                    b.HasOne("AspNetCoreCursovaya.Models.Category", "IdCategoryNavigation")
+                        .WithMany()
+                        .HasForeignKey("IdCategoryNavigationIdCategories");
+
+                    b.HasOne("AspNetCoreCursovaya.Models.Partner", "IdPartnerNavigation")
+                        .WithMany()
+                        .HasForeignKey("IdPartnerNavigationIdPartner");
+
+                    b.Navigation("IdCategoryNavigation");
+
+                    b.Navigation("IdPartnerNavigation");
                 });
 
             modelBuilder.Entity("AspNetCoreCursovaya.Models.CategoryInPoster", b =>
