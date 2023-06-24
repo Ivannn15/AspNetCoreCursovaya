@@ -115,7 +115,7 @@ namespace AspNetCoreCursovaya.Controllers
                 }
 
                 link = filePath;
-                partner.link_photo = link;
+                partner.link_photo = photoInPartner.FileName;
             }
             
 

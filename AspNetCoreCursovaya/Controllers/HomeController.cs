@@ -64,6 +64,17 @@ namespace AspNetCoreCursovaya.Controllers
             return View();
         }
 
+        public IActionResult partners ()
+        {
+            PartnersAndCategory partnersAndCategory = new PartnersAndCategory()
+            {
+                partners = cursovayadb.partners.ToList(),
+                category_In_Partners = cursovayadb.category_in_partners.ToList()
+            };
+
+            return View(partnersAndCategory);
+        }
+
         // Обработка get запроса для вывода ошибки
         public IActionResult Eror()
         {
@@ -203,10 +214,10 @@ namespace AspNetCoreCursovaya.Controllers
         }
 
         // Обработка запроса на вывод страницы партнеры
-        public IActionResult partners()
-        {
-            return View();
-        }
+        //public IActionResult partners()
+        //{
+        //    return View();
+        //}
 
         // Обработка запроса на вывод страницы отчеты
         public IActionResult reports()

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model AspNetCoreCursovaya.helpingClasses.PartnersAndCategory
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,17 +20,26 @@
         <p><a href="@Url.Action("index")">Главная</a> > Партнеры</p>
         <h3 style="margin-left: 7%; margin-top: 2%; color: #522473;"><b>Юридические лица</b></h3>
         <div class="list_cardFromPartners">
-            <div class="card rounded-4">
-                <h5><b>ИРООИ «Лотос»</b></h5>
-                <img src="/image/partnersImage1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Приспособление к жизни, включение в окружающую социальную среду и формирование социальной мобильности любого человека происходит посредством накопления...</p>
-                </div>
-                <div class="icon_from_Partners">
-                    <a href=""><img src="/image/edit.png" alt="Документ"></a>
-                    <a href=""><img src="/image/delete.png" alt="Документ"></a>
-                </div>
-            </div>
+
+            @foreach (var partner in Model.partners)
+            {
+                @if (Model.category_In_Partners.Any(p => p.id_partner == partner.idPartners && p.id_category == 19) && partner.link_photo != null)
+                {
+                    <div class="card rounded-4">
+                        <h5><b>@partner.title_partner</b></h5>
+                        <img src="/image/@partner.link_photo" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">@partner.text_partner</p>
+                        </div>
+                        <div class="icon_from_Partners">
+                            @*<a href=""><img src="/image/edit.png" alt="Документ"></a>
+                            <a href=""><img src="/image/delete.png" alt="Документ"></a>*@
+                        </div>
+                    </div>
+                }
+            }
+
+            
 
             <div class="card rounded-4">
                 <h5><b>Некоммерческая организация <br>«Ассоциация поставщиков социальных услуг»</b></h5>
@@ -37,24 +48,34 @@
                     <p class="card-text">Приспособление к жизни, включение в окружающую социальную среду и формирование социальной мобильности...</p>
                 </div>
                 <div class="icon_from_Partners">
-                    <a href=""><img src="/image/edit.png" alt="Документ"></a>
-                    <a href=""><img src="/image/delete.png" alt="Документ"></a>
+                    @*<a href=""><img src="/image/edit.png" alt="Документ"></a>
+                    <a href=""><img src="/image/delete.png" alt="Документ"></a>*@
                 </div>
             </div>
         </div>
 
         <div class="UR_people">
-            <p><b style="color: #522473;">ООО “Ромашка”:</b> спонсировала нашу стиральную машинку</p>
-            <p><b style="color: #522473;">ООО “Ромашка”:</b> спонсировала нашу стиральную машинку</p>
-            <p><b style="color: #522473;">ООО “Ромашка”:</b> то, почему мы ей благодарны</p>
-            <p><b style="color: #522473;">ООО “Ромашка”:</b> то, почему мы ей благодарны</p>
+
+            @foreach (var partner in Model.partners)
+            {
+                if (Model.category_In_Partners.Any(p => p.id_partner == partner.idPartners && p.id_category == 19) && partner.link_photo == null)
+                {
+                    <p><b style="color: #522473;">@partner.title_partner</b> @partner.text_partner</p>
+                }
+            }
+
         </div>
         <h3 style="margin-left: 7%; color: #522473; margin-bottom: 2%;"><b>Физические лица</b></h3>
         <div class="FIZ_people">
-            <p><b style="color: #522473;">Данилов Марк Агафонович</b> то, почему мы благодарны этому человеку</p>
-            <p><b style="color: #522473;">Артемьев Владислав Филиппович</b> то, почему мы благодарны этому человеку</p>
-            <p><b style="color: #522473;">Овчинников Константин Улебович</b> то, почему мы благодарны этому человеку</p>
-            <p><b style="color: #522473;">Фадеев Ефрем Якунович</b> то, почему мы благодарны этому человеку</p>
+
+            @foreach (var partner in Model.partners)
+            {
+                if (Model.category_In_Partners.Any(p => p.id_partner == partner.idPartners && p.id_category == 18))
+                {
+                    <p><b style="color: #522473;">@partner.title_partner</b> @partner.text_partner</p>
+                }
+            }
+
         </div>
 
     </main>
