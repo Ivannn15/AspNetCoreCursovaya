@@ -26,9 +26,9 @@
                 @{
                     // Сортируем отчеты за некоторые промежутки времени
 
-                    var reportsLastMonth = Model?.Where(p => p.IdReportNavigation.DatePublication.Month == DateTime.Now.Month - 1 | p.IdReportNavigation.DatePublication.Month == DateTime.Now.Month).ToList();
-                    var reportsSixMonthAgo = Model?.Where(p => p.IdReportNavigation.DatePublication.Month > DateTime.Now.Month - 6).ToList();
-                    var reportsOneYearAgo = Model?.Where(p => p.IdReportNavigation.DatePublication.Year == DateTime.Now.Year - 1).ToList();
+                    var reportsLastMonth = Model?.Where(p => p.IdCategory == 15).ToList();
+                    var reportsSixMonthAgo = Model?.Where(p => p.IdCategory == 16).ToList();
+                    var reportsOneYearAgo = Model?.Where(p => p.IdCategory == 17).ToList();
 
 
                 }

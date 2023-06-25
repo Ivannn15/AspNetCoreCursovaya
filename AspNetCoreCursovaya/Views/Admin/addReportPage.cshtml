@@ -17,7 +17,7 @@
     <partial name="header" />
 
     <main>
-        <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Главная</a> > <a style="color: black; text-decoration: none;" href="news.html">Отчеты</a> > Добавить отчет</p>
+        <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Главная</a> > <a style="color: black; text-decoration: none;" href="news.html">Проекты</a> > Добавить проект</p>
         <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
             <form action="addReport" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
@@ -26,9 +26,9 @@
 
                 <select required style="margin-top: 2%; border: 2px solid #522473; margin-bottom: 3%;" asp-route="category" name="category" class="form-select" aria-label="Default select example">
                     <option value="">Категория отчета</option>
-                    <option value="Месячный">Месячный</option>
-                    <option value="Годовой">Годовой</option>
-                    <option value="Другое">Другое</option>
+                    <option value="Благотворительные проекты">Благотворительные проекты</option>
+                    <option value="Гранты">Гранты</option>
+                    <option value="Отчеты о пожертвованиях">Отчеты о пожертвованиях</option>
                 </select>
 
                 <div class="mb-3" style="display: flex;">
@@ -38,7 +38,7 @@
 
                 <input required type="file" asp-route="file" name="file" id="file" class="form-control" />
                 <a style="color: black; margin-top: 3%;" href="">Прикрепить документ</a>
-                <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-25 rounded-3" style="background: #4BBFAA; color: white; border: 0px; float: right; font-size: 15px; margin-top: 5%; margin-bottom: 5%">Добавить отчет</button></a>
+                <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-25 rounded-3" style="background: #4BBFAA; color: white; border: 0px; float: right; font-size: 15px; margin-top: 5%; margin-bottom: 5%">Добавить проект</button></a>
                 <br><br><br>
             </form>
         </div>
