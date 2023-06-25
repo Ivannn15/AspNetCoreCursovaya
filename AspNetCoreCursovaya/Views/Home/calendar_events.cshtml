@@ -82,28 +82,28 @@
                             }
                         }
 
-                        if (eventInCurrentMonth.Any(p => p.DateStart.Value.Day >= i && p.DateEnd.Value.Day >= i))
+                        if (eventInCurrentMonth.Any(p => p.DateStart.Value.Day <= i && p.DateEnd.Value.Day >= i))
                         {
 
                             <div class="day">
-                                <a style="color:black; text-decoration:none" href="@Url.Action("pageCalendarEvent", "home", new { idEvent = eventInCurrentMonth.FirstOrDefault(p => p.DateStart.Value.Day >= i && p.DateEnd.Value.Day >= i).IdEvents })">
+                                <a style="color:black; text-decoration:none" href="@Url.Action("pageCalendarEvent", "home", new { idEvent = eventInCurrentMonth.FirstOrDefault(p => p.DateStart.Value.Day <= i && p.DateEnd.Value.Day >= i).IdEvents })">
                                     <h4>@i</h4>
                                 </a>
 
                                 <p>
-                                    <a style="color:black; text-decoration:none" href="@Url.Action("pageCalendarEvent", "home", new { idEvent = eventInCurrentMonth.FirstOrDefault(p => p.DateStart.Value.Day >= i && p.DateEnd.Value.Day >= i).IdEvents })">
-                                        @eventInCurrentMonth.FirstOrDefault(p => p.DateStart.Value.Day >= i && p.DateEnd.Value.Day >= i).TitleEvent
+                                    <a style="color:black; text-decoration:none" href="@Url.Action("pageCalendarEvent", "home", new { idEvent = eventInCurrentMonth.FirstOrDefault(p => p.DateStart.Value.Day <= i && p.DateEnd.Value.Day >= i).IdEvents })">
+                                        @eventInCurrentMonth.FirstOrDefault(p => p.DateStart.Value.Day <= i && p.DateEnd.Value.Day >= i).TitleEvent
                                     </a>
                                 </p>
 
                                 <p>
-                                    <a style="color:black; text-decoration:none" href="@Url.Action("pageCalendarEvent", "home", new { idEvent = eventInCurrentMonth.FirstOrDefault(p => p.DateStart.Value.Day >= i && p.DateEnd.Value.Day >= i).IdEvents })">
+                                    <a style="color:black; text-decoration:none" href="@Url.Action("pageCalendarEvent", "home", new { idEvent = eventInCurrentMonth.FirstOrDefault(p => p.DateStart.Value.Day <= i && p.DateEnd.Value.Day >= i).IdEvents })">
                                         <!--//eventInCurrentMonth.FirstOrDefault(p => p.DateStart.Value.Day == i).TextEvent-->
                                     </a>
                                 </p>
 
                                 <!-- Кнопка-триггер модального окна -->
-                                <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer; color: #4BBFAA; text-decoration-line: underline; font-weight: bolder;">Больше событий</a>
+                                <a data-bs-toggle="modal" data-number="@i" data-bs-target="#exampleModal" style="cursor: pointer; color: #4BBFAA; text-decoration-line: underline; font-weight: bolder;">Больше событий</a>
 
                                 <!-- Модальное окно -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,17 +111,20 @@
                                         <div class="modal-content" style="border: solid 3px;
                                       border-color: #522473;">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" style="text-align: center;font-size: 30px;color: #4BBFAA; margin-left: 280px;" id="exampleModalLabel">@DateTime.Now.Day @DateTime.Now.ToString("MMMM") @DateTime.Now.Year</h5>
+                                                <h5 class="modal-title" style="text-align: center;font-size: 30px;color: #4BBFAA; margin-left: 280px;" id="exampleModalLabel"> События месяца </h5> <!--  DateTime.Now.Day  DateTime.Now.ToString("MMMM")  DateTime.Now.Year ПРЕДЫДУЩИЙ ВАРИЕНТ С ТЕКУЩЕЙ ДАТОЙ--> 
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                                             </div>
                                             <div class="modal-body" style="font-size: 20px;">
                                                 <p>
                                                     @foreach (var ev in eventInCurrentMonth)
                                                     {
-                                                        @if (eventInCurrentMonth.Any(p => p.DateStart.Value.Day >= i && p.DateEnd.Value.Day >= i))
+                                                        @if (eventInCurrentMonth.Any(p => p.DateStart.Value.Day <= i && p.DateEnd.Value.Day >= i))
                                                         {
+                                                        <p>Дата начала события: @ev.DateStart.Value.Day @ev.DateStart.Value.ToString("MMMM") @ev.TimeStart.ToString().Substring(0, ev.TimeStart.ToString().Length -3)</p>
                                                             <a href="@Url.Action("pageCalendarEvent", "home", new { idEvent = ev.IdEvents })">· @ev.TitleEvent</a>
-                                                            <br>
+                                                        <p>Дата окончания события: @ev.DateEnd.Value.Day @ev.DateEnd.Value.ToString("MMMM") @ev.TimeEnd.ToString().Substring(0, ev.TimeEnd.ToString().Length -3)</p>
+
+                                                            <hr>
 
                                                         }
                                                     }
