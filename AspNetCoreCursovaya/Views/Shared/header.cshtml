@@ -1,4 +1,12 @@
-﻿@if (User.Identity.IsAuthenticated)
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var context = HttpContextAccessor.HttpContext;
+    var cookieValue = context.Request.Cookies["name"];
+}
+
+
+@if (cookieValue == "admin")   //User.Identity.IsAuthenticated
 {
     <header>
         <nav class="nav navbar-expand-xxl nav-underline">

@@ -382,6 +382,8 @@ namespace AspNetCoreCursovaya.Controllers
             Response.Cookies.Append("name", "admin");
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
+            ViewBag.AutorizeUser = true;
+
             return RedirectToAction("admin_index", "admin");
         }
 
@@ -420,6 +422,8 @@ namespace AspNetCoreCursovaya.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
+            Response.Cookies.Delete("name"); // удаляем куку "name"
+
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme); // удаляем аутентификационную куку
             await HttpContext.SignOutAsync(); // удаляем все куки
             return RedirectToAction("Index", "Home");

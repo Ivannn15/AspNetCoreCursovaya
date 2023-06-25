@@ -39,9 +39,9 @@ namespace AspNetCoreCursovaya
                  options.Cookie.HttpOnly = true;
                  options.Cookie.SameSite = SameSiteMode.Strict;
                  options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                 options.LoginPath = "/home/Index";
-                 options.LogoutPath = "/home/Index";
-                 options.AccessDeniedPath = "/home/Index";
+                 //options.LoginPath = "/admin/admin_index";
+                 //options.LogoutPath = "/home/Index";
+                 //options.AccessDeniedPath = "/home/Index";
                  options.ExpireTimeSpan = TimeSpan.FromDays(30);
                  
              });

@@ -20,9 +20,10 @@ namespace AspNetCoreCursovaya.Controllers
         cursovayadbContext cursovayadbContext = new cursovayadbContext();
 
         // Обработка запроса на вывод страницы администратора
-        [Authorize]
+        //[Authorize]
         public IActionResult admin_index()
         {
+            ViewBag.AutorizeUser = true;
             return View();
         }
 
@@ -507,7 +508,7 @@ namespace AspNetCoreCursovaya.Controllers
 
         // Обработка запроса на вывод страницы изменить новость
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public IActionResult changeNewsPage(int newsId)
         {
             var changedNews = cursovayadbContext.News.Include(p => p.PhotoInNews).SingleOrDefault(p => p.IdNews == newsId);
@@ -522,7 +523,7 @@ namespace AspNetCoreCursovaya.Controllers
 
         // Обработка запроса на вывод страницы изменить объявление
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public IActionResult changeAdvertisement(int adsId)
         {
             var changedAds = cursovayadbContext.CategoryInPosters.Include(p => p.IdPosterNavigation).Include(p => p.IdCategoryNavigation).SingleOrDefault(p => p.IdPoster == adsId);
@@ -602,7 +603,7 @@ namespace AspNetCoreCursovaya.Controllers
 
         // Обработка запроса на вывод страницы изменить новость
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public IActionResult changeEvent(int idEvent)
         {
             var tempEvent = cursovayadbContext.CategoryInEvents.Include(p => p.IdEventNavigation).Include(p => p.IdCategoryInEventsNavigation).SingleOrDefault(p => p.IdEvent == idEvent);

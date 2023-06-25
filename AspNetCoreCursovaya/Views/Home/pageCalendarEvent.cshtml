@@ -1,5 +1,14 @@
 ﻿@model AspNetCoreCursovaya.Models.CategoryInEvent
 
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var context = HttpContextAccessor.HttpContext;
+    var cookieValue = context.Request.Cookies["name"];
+}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +30,7 @@
         <div class="Calendar_view">
             <h3>
                 <b>@Model.IdEventNavigation.TitleEvent</b>
-                @if (User.Identity.IsAuthenticated)
+                @if (cookieValue == "admin")
                 {
                     <a href="@Url.Action("changeEvent", "admin", new { idEvent = Model.IdEvent })"><img style="height:45px; margin-left:1%" src="/image/изменить 3.png"></img></a>
                 }
@@ -35,7 +44,7 @@
             <br><br>
             <p><b>Категория события:</b> @Model.IdCategoryInEventsNavigation.TitleCategory</p>
         </div>
-        @if (User.Identity.IsAuthenticated)
+        @if (cookieValue == "admin")
         {
             <a href="@Url.Action("delleteEvent", "admin", new { idEvent = Model.IdEventNavigation.IdEvents})"><img style="margin-left: 8%; height:45px" src="/image/корзина 6.png"></img></a>
         }

@@ -1,5 +1,15 @@
 ﻿@using AspNetCoreCursovaya.helpingClasses;
 @model PaginatedList<News>
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var context = HttpContextAccessor.HttpContext;
+    var cookieValue = context.Request.Cookies["name"];
+}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +50,7 @@
 
                 <div class="icon_from_Pnews" >
 
-                    @if (User.Identity.IsAuthenticated)
+                    @if (cookieValue == "admin")
                     {
                         <a href="@Url.Action("changeNewsPage", "admin", new {newsId = ViewBag.Id})">
                             <img src="/image/изменить 3.png"></img>
@@ -86,7 +96,7 @@
                                 <div class="nameDate_from_comment" style="display: flex;">
                                     <p><b>@com.NameCommentator</b></p>
                                     <p style="margin-left: 3%;">@com.DatePublication.Value.ToShortDateString()</p>
-                                    @if (User.Identity.IsAuthenticated)
+                                    @if (cookieValue == "admin")
                                     {
                                         
                                             <a href="@Url.Action("delleteComment", "admin", new { idComment = com.Idcomments, newsId = @ViewBag.Id, pageIndex = @Model.PageIndex })"><img src="~/image/корзина 3.png"></img></a>

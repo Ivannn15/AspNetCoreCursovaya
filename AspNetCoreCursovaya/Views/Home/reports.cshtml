@@ -1,6 +1,15 @@
 ﻿@model IEnumerable<AspNetCoreCursovaya.Models.CategoryInReport>
 @using System.IO; 
 
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var context = HttpContextAccessor.HttpContext;
+    var cookieValue = context.Request.Cookies["name"];
+}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +53,7 @@
 
                            <a  href="@Url.Action("Download", "home", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
 
-                            if (User.Identity.IsAuthenticated)
+                            @if (cookieValue == "admin")
                             {
                                 <a href="@Url.Action("delleteReport", "admin", new { idReport = report.IdReport })"><img src="~/image/корзина 7.png"></img></a>
                             }
@@ -74,7 +83,7 @@
 
                             <a href="@Url.Action("Download", "home", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
 
-                            if (User.Identity.IsAuthenticated)
+                            @if (cookieValue == "admin")
                             {
                                 <a href="@Url.Action("delleteReport", "admin", new { idReport = report.IdReport })"><img src="~/image/корзина 7.png"></img></a>
                             }
@@ -103,7 +112,7 @@
 
                             <a href="@Url.Action("Download", "home", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
 
-                            if (User.Identity.IsAuthenticated)
+                            @if (cookieValue == "admin")
                             {
                                 <a href="@Url.Action("delleteReport", "admin", new { idReport = report.IdReport })"><img src="~/image/корзина 7.png"></img></a>
                             }

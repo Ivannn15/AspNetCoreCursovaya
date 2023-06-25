@@ -1,5 +1,13 @@
 ﻿@model AspNetCoreCursovaya.helpingClasses.PartnersAndCategory
 
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var context = HttpContextAccessor.HttpContext;
+    var cookieValue = context.Request.Cookies["name"];
+}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +35,7 @@
                 {
                     <div class="card rounded-4">
 
-                        @if (User.Identity.IsAuthenticated)
+                        @if (cookieValue == "admin")
                         {
                             <div style="display:flex;">
                                 <a style="text-decoration:none; margin-left:110px; margin-right:110px" href="@Url.Action("changePartnerPage", "admin", new {idPartner = partner.idPartners, idCategory = 19})"><img style="width:30px; height:30px" src="/image/edit.png" alt="Редактировать"></a>
@@ -76,7 +84,7 @@
             {
                 if (Model.category_In_Partners.Any(p => p.id_partner == partner.idPartners && p.id_category == 19) && partner.link_photo == null)
                 {
-                    if (User.Identity.IsAuthenticated)
+                    @if (cookieValue == "admin")
                     {
                         <div style="display:flex">
                             <a style="text-decoration:none;" href="@Url.Action("changePartnerPage", "admin", new {idPartner = partner.idPartners, idCategory = 19})">
@@ -104,7 +112,7 @@
             {
                 if (Model.category_In_Partners.Any(p => p.id_partner == partner.idPartners && p.id_category == 18))
                 {
-                    if (User.Identity.IsAuthenticated)
+                    @if (cookieValue == "admin")
                     {
                         <div style="display:flex">
                             <a style="text-decoration:none;" href="@Url.Action("changePartnerPage", "admin", new {idPartner = partner.idPartners, idCategory = 18})">
