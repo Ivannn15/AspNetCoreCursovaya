@@ -197,6 +197,8 @@ namespace AspNetCoreCursovaya.Controllers
             int pageNumber = (page ?? 1);
             var newsItems = await PaginatedList<News>.CreateAsync(cursovayadb.News.Include(p => p.PhotoInNews).AsNoTracking(), pageNumber, pageSize);
 
+            //var newsItems = await PaginatedList<News>.CreateAsync(cursovayadb.News.Include(p => p.PhotoInNews).OrderByDescending(p => p.Id).AsNoTracking(), pageNumber, pageSize); // выводит в обратном порядке
+
 
             return View(newsItems);
         }
@@ -317,6 +319,24 @@ namespace AspNetCoreCursovaya.Controllers
             }
         }
 
+        public IActionResult lastMonth()
+        {
+            var lastMonthWithEvents = cursovayadb.Events
+                                        .Where(p => p.DateStart.HasValue)
+                                        .OrderByDescending(p => p.DateStart)
+                                        .FirstOrDefault()?.DateStart.Value.Month;
+
+
+            return RedirectToAction("calendar_events", new { monthNow = lastMonthWithEvents});
+        }
+
+        public IActionResult OpenPdf(string filename) // Открытие отчетов о пожертвованиях в pdf
+        {
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "PathToPdfFiles", filename);
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "application/pdf");
+        }
+
         //[HttpGet]
         //public IActionResult lastMonth(int monthNow) 
         //{
@@ -352,26 +372,26 @@ namespace AspNetCoreCursovaya.Controllers
 
             ////////////////////////////////////////////////////////////////////////////////////////////// 20.05 Проверить авторизацию с таким кодом перезалить сайт
 
-            //string passwrd = password;
+            string passwrd = password;
 
-            //char[] charArray = username.ToCharArray();
-            //Array.Reverse(charArray);
-            //string salt = new string(charArray);
+            char[] charArray = username.ToCharArray();
+            Array.Reverse(charArray);
+            string salt = new string(charArray);
 
-            //var sha256 = new SHA256CryptoServiceProvider();
-            //byte[] bytes = Encoding.UTF8.GetBytes(passwrd + salt);
-            //byte[] hashBytes = sha256.ComputeHash(bytes);
-            //string hash = Convert.ToBase64String(hashBytes);
+            var sha256 = new SHA256CryptoServiceProvider();
+            byte[] bytes = Encoding.UTF8.GetBytes(passwrd + salt);
+            byte[] hashBytes = sha256.ComputeHash(bytes);
+            string hash = Convert.ToBase64String(hashBytes);
 
-            //Admin admin = new Admin();
+            Admin admin = new Admin();
 
-            //var temp_user = cursovayadb.Admins.SingleOrDefault(p => p.Username == username && p.HashPassword == hash);
+            var temp_user = cursovayadb.Admins.SingleOrDefault(p => p.Username == username && p.HashPassword == hash);
 
-            //if (temp_user == null)
-            //{
-            //    ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
-            //    return View("Eror");
-            //}
+            if (temp_user == null)
+            {
+                ModelState.AddModelError("Email", "Пользователь с таким Email уже существует");
+                return View("Eror");
+            }
 
             var claims = new List<Claim>
             {

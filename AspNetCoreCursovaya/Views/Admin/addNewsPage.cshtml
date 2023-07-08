@@ -33,7 +33,14 @@
                     </div>
                     <input type="file" asp-route="photoInNews" name="photoInNews" id="photoInNews" class="form-control" />
                     <a style="color: black;" href="">Прикрепить фотографии</a>
-                    <p>Файл: @Model.PhotoInNews.FirstOrDefault().Link</p>
+                    @if (Model.PhotoInNews.FirstOrDefault() == null || Model.PhotoInNews.FirstOrDefault().Link == null)
+                    {
+                        <p style="margin-left:0px">Файл: фото отсутствует</p>
+                    }
+                    else
+                    {
+                        <p style="margin-left:0px">Файл: @Model.PhotoInNews.FirstOrDefault().Link</p>
+                    }
                     <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: white; border: 0px; float: right; font-size: 15px; margin-top: 5%;">Изменить</button></a>
                     <br><br><br>
 

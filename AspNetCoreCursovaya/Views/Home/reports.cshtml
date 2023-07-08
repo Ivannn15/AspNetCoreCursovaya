@@ -42,7 +42,7 @@
 
                 }
 
-                <h4>Благотворительные проекты</h4>
+                <h4>Проекты</h4>
                 <div class="text_from_report">
 
                     @if (reportsLastMonth != null)
@@ -110,7 +110,9 @@
                         {
                             <img height="23" src="/image/document 1.png"></img>
 
-                            <a href="@Url.Action("Download", "home", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
+                            <a href="@Url.Action("OpenPdf", "home", new { filename = report.IdReportNavigation.Link})">@report.IdReportNavigation.Link.Substring(report.IdReportNavigation.Link.LastIndexOf('\\') + 1, report.IdReportNavigation.Link.LastIndexOf('.') - report.IdReportNavigation.Link.LastIndexOf('\\') - 1)</a>
+
+                            @*<a href="@Url.Action("OpenPdf", "Home", new { filename = report.IdReportNavigation.Link })">Открыть PDF</a>*@
 
                             @if (cookieValue == "admin")
                             {

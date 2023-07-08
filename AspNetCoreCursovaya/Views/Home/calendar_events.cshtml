@@ -20,9 +20,23 @@
     <header>
         <partial name="header" />
 
+           
+
         <main>
+
+
+            @if (Model.FirstOrDefault() == null)
+            {
+                <h1>В текущем месяца отсутствуют события</h1>
+                <a href="@Url.Action("lastMonth", "home")">Последний месяц с активностью</a>
+            }
+            else
+            {
+
             <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="@Url.Action("Index")">Главная</a> > Календарь событий</p>
-            <h4 style="margin-left: 7%; margin-top: 2%; color: #522473; font-size: 30px;"><a href="@Url.Action("calendar_events", "home", new {monthNow = Model.FirstOrDefault().DateStart.Value.Month - 1})"><</a> @Model.FirstOrDefault().DateStart.Value.ToString("MMMM") @Model.FirstOrDefault().DateStart.Value.Year <a href="@Url.Action("calendar_events", "home", new {monthNow = Model.FirstOrDefault().DateStart.Value.Month + 1})">></a> </h4>
+
+                @*<h4 style="margin-left: 7%; margin-top: 2%; color: #522473; font-size: 30px;"><a href="@Url.Action("calendarevents", "home", new {monthNow = Model.FirstOrDefault().DateStart.Value.Month - 1})">asdf</a> @Model.FirstOrDefault().DateStart.Value.ToString("MMMM") @Model.FirstOrDefault().DateStart.Value.Year <a href="@Url.Action("calendarevents", "home", new {monthNow = Model.FirstOrDefault().DateStart.Value.Month + 1})">&gt;</a> </h4>*@
+                <h4 style="margin-left: 7%; margin-top: 2%; color: #522473; font-size: 30px;"><a href="@Url.Action("calendar_events", "home", new {monthNow = Model.FirstOrDefault().DateStart.Value.Month - 1})">⯇</a> @Model.FirstOrDefault().DateStart.Value.ToString("MMMM") @Model.FirstOrDefault().DateStart.Value.Year <a href="@Url.Action("calendar_events", "home", new {monthNow = Model.FirstOrDefault().DateStart.Value.Month + 1})">⯈</a> </h4>
 
             <div class="days_of_week_container">
                 <div class="days_of_week" style="display: flex; justify-content: center; margin-top: 2%;">
@@ -154,6 +168,8 @@
                     }
                 }
             </div>
+            }
+
         </main>
 
         <partial name="footer" />

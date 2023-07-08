@@ -69,19 +69,26 @@ namespace AspNetCoreCursovaya.Controllers
         {
             return View();
         }
-        
+
+        //public IActionResult addParnterPage(partners partner)
+        //{
+
+        //    return View(partner);
+        //}
+
+
+
         public IActionResult deletePartner(int idPartner, int idCategory)
         {
             cursovayadbContext.partners.Remove(cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner));
-            cursovayadbContext.category_in_partners.Remove(cursovayadbContext.category_in_partners.SingleOrDefault(p => p.id_partner == idPartner && p.id_category == idCategory));
+            cursovayadbContext.category_in_partners.Remove(cursovayadbContext.category_in_partners.SingleOrDefault(p => p.id_partner == idPartner)); //.SingleOrDefault(p => p.id_partner == idPartner && p.id_category == idCategory));
 
             cursovayadbContext.SaveChanges();
 
             return RedirectToAction("partners", "home");
         }
 
-        [HttpGet]
-        public IActionResult changePartnerPage(int idPartner, int idCategory)
+        public IActionResult changePartnerPagee(int idPartner, int idCategory)
         {
             var changedPartner = cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner);
 
@@ -96,7 +103,7 @@ namespace AspNetCoreCursovaya.Controllers
         }
 
         [HttpPost]
-        public IActionResult changePartnerPage(partners partner, int idPartner, string LastSelectCategory , string category, IFormFile photoInPartner)
+        public IActionResult changeePartnerPage(partners partner, int idPartner, string LastSelectCategory , string category, IFormFile photoInPartner)
         {
             if (photoInPartner != null)
             {
@@ -113,15 +120,14 @@ namespace AspNetCoreCursovaya.Controllers
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
             if (photoInPartner != null && photoInPartner.FileName.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInPartner.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\", photoInPartner.FileName); //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     photoInPartner.CopyTo(stream);
                 }
 
                 link = filePath;
-                cursovayadbContext.partners.SingleOrDefault(p => p.title_partner == partner.title_partner && p.idPartners == idPartner).link_photo = photoInPartner.FileName;
+                cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner).link_photo = photoInPartner.FileName;
             }
 
             if (LastSelectCategory != category && category != "Выберите категорию")
@@ -140,7 +146,7 @@ namespace AspNetCoreCursovaya.Controllers
 
         // Добавление нового партнера
         [HttpPost]
-        public IActionResult addParnterPage(partners partner, string category, IFormFile photoInPartner) //--------------------- 23.06 Скопировать адд с другого контроллера (они схожи по логике)
+        public IActionResult addParnterPagee(partners partner, string category, IFormFile photoInPartner) //--------------------- 23.06 Скопировать адд с другого контроллера (они схожи по логике)
         {
 
             if (photoInPartner != null)
@@ -173,12 +179,13 @@ namespace AspNetCoreCursovaya.Controllers
             partner.idPartners = MaxIdPartner; //====================================== добавляем новые айдишники 
             categoryInPartners.idCategory_in_partners = MaxIdCategoryInPartner;
 
+            partner.date_delete = DateTime.Now;
+
             string link = ""; // ссылка на файл
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
             if (photoInPartner != null && photoInPartner.FileName.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInPartner.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\", photoInPartner.FileName);  //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     photoInPartner.CopyTo(stream);
@@ -186,6 +193,10 @@ namespace AspNetCoreCursovaya.Controllers
 
                 link = filePath;
                 partner.link_photo = photoInPartner.FileName;
+            }
+            else
+            {
+                partner.link_photo = null;
             }
             
 
@@ -219,6 +230,7 @@ namespace AspNetCoreCursovaya.Controllers
         public IActionResult delleteReport(int idReport)  //......... Удаление отчета
         {
             cursovayadbContext.Reports.Remove(cursovayadbContext.Reports.SingleOrDefault(p => p.IdReport == idReport));
+            cursovayadbContext.CategoryInReports.Remove(cursovayadbContext.CategoryInReports.SingleOrDefault(p => p.IdReport == idReport));
             cursovayadbContext.SaveChanges();
 
             return RedirectToAction("reports", "home");     ///..................................... 06.05 доделать удаление отчетов, добавить ко всем сущностям имеющим категорию в базе данных тригер на удаление записи в связующей таблице
@@ -227,6 +239,7 @@ namespace AspNetCoreCursovaya.Controllers
         public IActionResult delletePoster(int idPoster)  //......... Удаление объявления
         {
             cursovayadbContext.Posters.Remove(cursovayadbContext.Posters.SingleOrDefault(p => p.IdPoster == idPoster));
+            cursovayadbContext.CategoryInPosters.Remove(cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.IdPoster == idPoster));
             cursovayadbContext.SaveChanges();
 
             return RedirectToAction("advertisement", "home");
@@ -235,6 +248,10 @@ namespace AspNetCoreCursovaya.Controllers
         public IActionResult delleteNews(int idNews)  //......... Удаление новости
         {
             cursovayadbContext.News.Remove(cursovayadbContext.News.SingleOrDefault(p => p.IdNews == idNews));
+            if (cursovayadbContext.PhotoInNews.Any(p => p.IdNews == idNews))
+            {
+                cursovayadbContext.PhotoInNews.Remove(cursovayadbContext.PhotoInNews.SingleOrDefault(p => p.IdNews == idNews));
+            }
             cursovayadbContext.SaveChanges();            
 
             return RedirectToAction("news", "home", 1);
@@ -244,6 +261,7 @@ namespace AspNetCoreCursovaya.Controllers
         public IActionResult delleteEvent(int idEvent)
         {
             cursovayadbContext.Events.Remove(cursovayadbContext.Events.SingleOrDefault(p => p.IdEvents == idEvent));
+            cursovayadbContext.CategoryInEvents.Remove(cursovayadbContext.CategoryInEvents.SingleOrDefault(p => p.IdEvent == idEvent));
             cursovayadbContext.SaveChanges();
 
             return RedirectToAction("calendar_events", "home", new { categoryInEvent =  cursovayadbContext.Events } );
@@ -253,6 +271,7 @@ namespace AspNetCoreCursovaya.Controllers
         public IActionResult delleteDocument(int idDocument)
         {
             cursovayadbContext.Documents.Remove(cursovayadbContext.Documents.SingleOrDefault(p => p.IdDocuments == idDocument));
+            cursovayadbContext.CategoriesInDocuments.Remove(cursovayadbContext.CategoriesInDocuments.SingleOrDefault(p => p.IdDocument == idDocument));
             cursovayadbContext.SaveChanges();
 
             return RedirectToAction("aboutUs", "home");
@@ -359,7 +378,7 @@ namespace AspNetCoreCursovaya.Controllers
             if (file != null)
             {
                 string fileExtension = Path.GetExtension(file.FileName);
-                if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx")
+                if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx" && fileExtension != ".pdf")
                 {
                     ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx");
                     return RedirectToAction("ErorFile", "home");
@@ -384,8 +403,7 @@ namespace AspNetCoreCursovaya.Controllers
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
             if (file != null && file.FileName.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\files\\", file.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\files\\", file.FileName);  //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\files\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     file.CopyTo(stream);
@@ -430,7 +448,7 @@ namespace AspNetCoreCursovaya.Controllers
             if (file != null)
             {
                 string fileExtension = Path.GetExtension(file.FileName);
-                if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx")
+                if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx" && fileExtension != ".pdf" && fileExtension != ".jpg" && fileExtension != ".png")
                 {
                     ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx");
                     ViewBag.Exeption = "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx";
@@ -456,8 +474,7 @@ namespace AspNetCoreCursovaya.Controllers
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
             if (file != null && file.FileName.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\documents\\", file.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\documents\\", file.FileName);  //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\documents\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     file.CopyTo(stream);
@@ -544,14 +561,26 @@ namespace AspNetCoreCursovaya.Controllers
 
             if (photoInNews != null && photoInNews.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInNews.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\documents\\", photoInNews.FileName); //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\documents\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     photoInNews.CopyTo(stream);
                 }
 
-                cursovayadbContext.PhotoInNews.Single(p => p.IdNews == newsId).Link = photoInNews.FileName;
+                //cursovayadbContext.PhotoInNews.Single(p => p.IdNews == newsId).Link = photoInNews.FileName;
+
+                if (cursovayadbContext.PhotoInNews.Any(p => p.IdNews == newsId))
+                {
+                    cursovayadbContext.PhotoInNews.Single(p => p.IdNews == newsId).Link = photoInNews.FileName;
+                }
+                else
+                {
+                    PhotoInNews photo = new PhotoInNews();
+                    photo.IdNews = newsId;
+                    photo.IdNewsNavigation = cursovayadbContext.News.SingleOrDefault(p => p.IdNews == newsId);
+                    photo.Link= photoInNews.FileName;
+                    cursovayadbContext.PhotoInNews.Add(photo);
+                }
             }
 
             var tempNews = cursovayadbContext.News.SingleOrDefault(p => p.IdNews == newsId);
@@ -670,8 +699,7 @@ namespace AspNetCoreCursovaya.Controllers
 
             if (photoInNews != null && photoInNews.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInNews.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\", photoInNews.FileName); //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     photoInNews.CopyTo(stream);

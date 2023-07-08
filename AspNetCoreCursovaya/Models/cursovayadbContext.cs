@@ -43,6 +43,7 @@ namespace AspNetCoreCursovaya.Models
                 optionsBuilder.UseMySql("Server=MYSQL5045.site4now.net;Database=db_a992f1_ivan123;Uid=a992f1_ivan123;Pwd=Dfyz2000;", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
             }
         } // server=localhost;user=root;password=root;database=cursovayadb;
+        //Server=MYSQL5045.site4now.net;Database=db_a992f1_ivan123;Uid=a992f1_ivan123;Pwd=Dfyz2000;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

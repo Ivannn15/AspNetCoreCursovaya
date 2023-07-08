@@ -18,10 +18,10 @@
     <partial name="header" />
 
     <main>
-        @if (ViewContext.RouteData.Values["action"].ToString() == "changePartnerPage")
+        @if (Model != null)
         {
             <div class="input_f_addNews">
-                <form asp-action="changePartnerPage" asp-controller="admin" method="post" enctype="multipart/form-data">
+                <form asp-action="changeePartnerPage" asp-controller="admin" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <input required style="border: 2px solid #522473;" maxlength="200" asp-for="title_partner" value="@Model.title_partner" type="text" placeholder="Имя партнера" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
@@ -54,7 +54,7 @@
         {
             <p><a href="../index.html">Главная</a> > <a href="../partners.html">Партнеры ></a> Добавить партнера</p>
             <div class="input_f_addNews">
-                <form asp-action="addParnterPage" asp-controller="admin" method="post" enctype="multipart/form-data">
+                <form asp-action="addParnterPagee" asp-controller="admin" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <input required style="border: 2px solid #522473;" maxlength="200" asp-for="title_partner" type="text" placeholder="Имя партнера" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
