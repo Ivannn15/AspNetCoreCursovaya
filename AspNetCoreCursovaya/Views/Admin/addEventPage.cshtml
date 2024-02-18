@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
@@ -16,123 +18,134 @@
 
 
     <main>
-        <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Главная</a> > <a style="color: black; text-decoration: none;" href="news.html">Календарь событий</a> > Добавить событие</p>
-        <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
-            @if (ViewContext.RouteData.Values["action"].ToString() == "changeEvent")
-            {
-                <form action="changeEvent" method="post">
-                    <div class="mb-3">
-                        <input style="border: 2px solid #522473;" required value="@Model.IdEventNavigation.TitleEvent" type="text" name="title" placeholder="Название события" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-
-                    <p style="margin-left: 0;">Дата проведения</p>
-
-                    <div class="date_f_input" style="display: flex;">
-                        <div class="mb-3" style="display: flex;">
-                            <input style="border: 2px solid #522473; margin: 0px;" required value="@Model.IdEventNavigation.DateStart.Value.ToString("yyyy-MM-dd")" type="date" name="dateStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+        
+       
+            <p style="margin-top: 1%; margin-left: 7%;"><a style="color: black; text-decoration: none;" href="news.html">Главная</a> > <a style="color: black; text-decoration: none;" href="news.html">Календарь событий</a> > Добавить событие</p>
+            <div class="input_f_addNews" style="width: 60%; margin-left: 10%; margin-top: 3%;">
+                @if (ViewContext.RouteData.Values["action"].ToString() == "changeEvent")
+                {
+                    @if (@Model == null)
+                    {
+                    <p style="font-size:50px; margin-left: 10%">EROR 404 "Такой страницы нет"</p>
+                    }
+                    else
+                    {
+                    <form action="changeEvent" method="post">
+                        <div class="mb-3">
+                            <input style="border: 2px solid #522473;" required value="@Model.IdEventNavigation.TitleEvent" type="text" name="title" placeholder="Название события" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
 
-                        <p style="margin-left: 5%;"><b>—</b></p>
+                        <p style="margin-left: 0;">Дата проведения</p>
 
-                        <div class="mb-3" style="margin-left:5%">
-                            <input style="border: 2px solid #522473;" required value="@Model.IdEventNavigation.DateEnd.Value.ToString("yyyy-MM-dd")" type="date" name="dateEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                    </div>
+                        <div class="date_f_input" style="display: flex;">
+                            <div class="mb-3" style="display: flex;">
+                                <input style="border: 2px solid #522473; margin: 0px;" required value="@Model.IdEventNavigation.DateStart.Value.ToString("yyyy-MM-dd")" type="date" name="dateStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
 
-                    <p style="margin-left: 0;">Часы проведения</p>
+                            <p style="margin-left: 5%;"><b>—</b></p>
 
-                    <div class="date_f_input" style="display: flex;">
-                        <div class="mb-3" style="display: flex;">
-                            <input style="border: 2px solid #522473; margin: 0px;" required value="@Model.IdEventNavigation.TimeStart.Value" type="time" name="timeStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-
-                        <p style="margin-left: 5%;"><b>—</b></p>
-
-                        <div class="mb-3" style="margin-left:5%">
-                            <input style="border: 2px solid #522473;" required value="@Model.IdEventNavigation.TimeEnd.Value" type="time" name="timeEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </div>
-                    </div>
-
-                    <select required style="margin-top: 2%; border: 2px solid #522473;" name="category" class="form-select" aria-label="Default select example">
-                        <option selected>Категория события</option>
-                        <option value="Обучение">Обучение</option>
-                        <option value="Сбор помощи">Сбор помощи</option>
-                        <option value="Концерт">Концерт</option>
-                        <option value="Конкурс">Конкурс</option>
-                        <option value="Соревнование">Соревнование</option>
-                        <option value="Ярмарка">Ярмарка</option>
-                        <option value="Акция">Акция</option>
-                        <option value="Встреча">Встреча</option>
-                        <option value="Другое">Другое</option>
-                    </select>
-                    <p style="margin-left: 0;">Текущая категория: @Model.IdCategoryInEventsNavigation.TitleCategory</p>
-
-                    <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
-                        <textarea required class="form-control rounded-2 input_string w-100" value="@Model.IdEventNavigation.TextEvent" asp-for="IdEventNavigation.TextEvent" placeholder="Leave a comment here" name="Text" id="floatingTextarea2" style="height: 170px; border: 2px solid #522473;"></textarea>
-                        <label for="floatingTextarea2">Описание события</label>
-                    </div>
-                    <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px;">Опубликовать объявление</button></a>
-                    <input type="hidden" name="idEvent" value="@Model.IdEventNavigation.IdEvents">
-                    <br><br><br>
-                </form>
-            }
-            else
-            {
-                <form action="addEvent" method="post">
-                    <div class="mb-3">
-                        <input required style="border: 2px solid #522473;" type="text" name="TitleEvent" placeholder="Название события" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-
-                    <p style="margin-left:0">Дата проведения</p>
-
-                    <div class="date_f_input" style="display: flex;">
-                        <div class="mb-3" style="display: flex;">
-                            <input required style="border: 2px solid #522473; margin: 0px;" type="date" name="DateStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <div class="mb-3" style="margin-left:5%">
+                                <input style="border: 2px solid #522473;" required value="@Model.IdEventNavigation.DateEnd.Value.ToString("yyyy-MM-dd")" type="date" name="dateEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
                         </div>
 
-                        <p style="margin-left: 5%;"><b>—</b></p>
+                        <p style="margin-left: 0;">Часы проведения</p>
 
-                        <div class="mb-3" style="margin-left:5%">
-                            <input required style="border: 2px solid #522473;" type="date" name="DateEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="date_f_input" style="display: flex;">
+                            <div class="mb-3" style="display: flex;">
+                                <input style="border: 2px solid #522473; margin: 0px;" required value="@Model.IdEventNavigation.TimeStart.Value" type="time" name="timeStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+
+                            <p style="margin-left: 5%;"><b>—</b></p>
+
+                            <div class="mb-3" style="margin-left:5%">
+                                <input style="border: 2px solid #522473;" required value="@Model.IdEventNavigation.TimeEnd.Value" type="time" name="timeEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
                         </div>
-                    </div>
 
-                    <p style="margin-left:0">Часы проведения</p>
+                        <select required style="margin-top: 2%; border: 2px solid #522473;" name="category" class="form-select" aria-label="Default select example">
+                            <option selected>Категория события</option>
+                            <option value="Обучение">Обучение</option>
+                            <option value="Сбор помощи">Сбор помощи</option>
+                            <option value="Концерт">Концерт</option>
+                            <option value="Конкурс">Конкурс</option>
+                            <option value="Соревнование">Соревнование</option>
+                            <option value="Ярмарка">Ярмарка</option>
+                            <option value="Акция">Акция</option>
+                            <option value="Встреча">Встреча</option>
+                            <option value="Другое">Другое</option>
+                        </select>
+                        <p style="margin-left: 0;">Текущая категория: @Model.IdCategoryInEventsNavigation.TitleCategory</p>
 
-                    <div class="date_f_input" style="display: flex;">
-                        <div class="mb-3" style="display: flex;">
-                            <input required style="border: 2px solid #522473; margin: 0px;" type="time" name="TimeStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
+                            <textarea required class="form-control rounded-2 input_string w-100" value="@Model.IdEventNavigation.TextEvent" asp-for="IdEventNavigation.TextEvent" placeholder="Leave a comment here" name="Text" id="floatingTextarea2" style="height: 170px; border: 2px solid #522473;"></textarea>
+                            <label for="floatingTextarea2">Описание события</label>
+                        </div>
+                        <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: white; border: 0px; float: right; font-size: 15px;">Изменить</button></a>
+                        <input type="hidden" name="idEvent" value="@Model.IdEventNavigation.IdEvents">
+                        <br><br><br>
+                    </form>
+                    }
+                }
+                else
+                {
+                    <form action="addEvent" method="post">
+                        <div class="mb-3">
+                            <input required style="border: 2px solid #522473;" type="text" name="TitleEvent" placeholder="Название события" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
 
-                        <p style="margin-left: 5%;"><b>—</b></p>
+                        <p style="margin-left:0">Дата проведения</p>
 
-                        <div class="mb-3" style="margin-left:5%">
-                            <input required style="border: 2px solid #522473;" type="time" name="TimeEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="date_f_input" style="display: flex;">
+                            <div class="mb-3" style="display: flex;">
+                                <input required style="border: 2px solid #522473; margin: 0px;" type="date" name="DateStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+
+                            <p style="margin-left: 5%;"><b>—</b></p>
+
+                            <div class="mb-3" style="margin-left:5%">
+                                <input required style="border: 2px solid #522473;" type="date" name="DateEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
                         </div>
-                    </div>
 
-                    <select style="margin-top: 2%; border: 2px solid #522473;" name="category" class="form-select" aria-label="Default select example" required>
-                        <option value="">Выберите категорию события</option>
-                        <option value="Обучение">Обучение</option>
-                        <option value="Сбор помощи">Сбор помощи</option>
-                        <option value="Концерт">Концерт</option>
-                        <option value="Конкурс">Конкурс</option>
-                        <option value="Соревнование">Соревнование</option>
-                        <option value="Ярмарка">Ярмарка</option>
-                        <option value="Акция">Акция</option>
-                        <option value="Встреча">Встреча</option>
-                    </select>
+                        <p style="margin-left:0">Часы проведения</p>
 
-                    <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
-                        <textarea required class="form-control rounded-2 input_string w-100" placeholder="Leave a comment here" name="TextEvent" id="floatingTextarea2" style="height: 170px; border: 2px solid #522473;"></textarea>
-                        <label for="floatingTextarea2">Описание события</label>
-                    </div>
-                    <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: #522473; border: 0px; float: right; font-size: 15px;">Опубликовать объявление</button></a>
-                    <br><br><br>
-                </form>
-            }
-            
-        </div>
+                        <div class="date_f_input" style="display: flex;">
+                            <div class="mb-3" style="display: flex;">
+                                <input required style="border: 2px solid #522473; margin: 0px;" type="time" name="TimeStart" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+
+                            <p style="margin-left: 5%;"><b>—</b></p>
+
+                            <div class="mb-3" style="margin-left:5%">
+                                <input required style="border: 2px solid #522473;" type="time" name="TimeEnd" class="form-control rounded-2 input_string w-100" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+
+                        <select style="margin-top: 2%; border: 2px solid #522473;" name="category" class="form-select" aria-label="Default select example" required>
+                            <option value="">Выберите категорию события</option>
+                            <option value="Обучение">Обучение</option>
+                            <option value="Сбор помощи">Сбор помощи</option>
+                            <option value="Концерт">Концерт</option>
+                            <option value="Конкурс">Конкурс</option>
+                            <option value="Соревнование">Соревнование</option>
+                            <option value="Ярмарка">Ярмарка</option>
+                            <option value="Акция">Акция</option>
+                            <option value="Встреча">Встреча</option>
+                        </select>
+
+                        <div class="form-floating" style="margin-bottom: 1%; margin-top: 5%;">
+                            <textarea required class="form-control rounded-2 input_string w-100" placeholder="Leave a comment here" name="TextEvent" id="floatingTextarea2" style="height: 170px; border: 2px solid #522473;"></textarea>
+                            <label for="floatingTextarea2">Описание события</label>
+                        </div>
+                        <a><button type="submit" formmethod="post" class="btn btn-secondary btn-sm w-50 rounded-3" style="background: #4BBFAA; color: white; border: 0px; float: right; font-size: 15px;">Опубликовать событие</button></a>
+                        <br><br><br>
+                    </form>
+                }
+
+            </div>
+
+       
     </main>
 
     <partial name="footer" />

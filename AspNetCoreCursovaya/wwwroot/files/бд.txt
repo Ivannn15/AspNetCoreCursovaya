@@ -1,0 +1,2 @@
+server=localhost;user=root;password=root;database=cursovayadb;
+Server=MYSQL5045.site4now.net;Database=db_a992f1_ivan123;Uid=a992f1_ivan123;Pwd=Dfyz2000;

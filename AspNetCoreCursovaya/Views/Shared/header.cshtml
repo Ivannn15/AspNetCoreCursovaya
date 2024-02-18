@@ -1,71 +1,96 @@
-﻿@if (User.Identity.IsAuthenticated)
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var context = HttpContextAccessor.HttpContext;
+    var cookieValue = context.Request.Cookies["name"];
+}
+
+
+@if (cookieValue == "admin")   //User.Identity.IsAuthenticated
 {
     <header>
-        <ul class="nav nav-underline">
-            <li>
-                <a href="@Url.Action("admin_index", "admin")"><img style="margin-top: 10px" src="/image/logo.jpg" alt=""></a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link " aria-current="page" href="@Url.Action("admin_index", "admin")">Главная</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("news", "home")">Новости</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("advertisement", "home")">Объявления</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("ourActivities", "home")">Наша деятельность</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link " aria-current="page" href="@Url.Action("calendar_events", "home")">Календарь событий</a>
-            </li>
-            <li  class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("aboutUs", "home")">О нас</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("partners", "home")">Партнеры</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("reports", "home")">Отчеты</a>
-            </li>
-            <li class="nav-item" style="margin-top: 7px;">
-                <a href="@Url.Action("Logout","home")"><button type="button" class="btn btn-info btn-lg ms-auto">Выход</button></a>
-            </li>
-        </ul>
+        <nav class="nav navbar-expand-xxl nav-underline">
+                <a class="navbar-brand" href="index.html">
+                    <a href="@Url.Action("admin_index", "admin")"><img style="margin-top: 10px" src="/image/logo.jpg" alt=""></a>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" style="width: 120px;margin-top: 10px; text-align: center;">Меню</span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+                    <ul class="navbar-nav">
+                        
+                        <li class="nav-item">
+                            <a class="text-black nav-link " aria-current="page" href="@Url.Action("admin_index", "admin")">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("news", "home")">Новости</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("advertisement", "home")">Объявления</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("ourActivities", "home")">Наша деятельность</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link " aria-current="page" href="@Url.Action("calendar_events", "home")">Календарь событий</a>
+                        </li>
+                        <li  class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("aboutUs", "home")">О нас</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("partners", "home")">Партнеры</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("reports", "home")">Проекты</a>
+                        </li>
+                        <li class="nav-item" style="margin-top: 7px;">
+                            <a href="@Url.Action("Logout","home")"><button type="button" class="btn btn-info btn-lg ms-auto">Выход</button></a>
+                        </li>
+                    </ul>
+                 </div>
+        </nav>
     </header>
 }
 else
 {
     <header>
-        <ul  class="nav nav-underline">
-            <li>
-                <a href="@Url.Action("index")"><img style="margin-top: 10px" src="/image/logo.jpg" alt=""></a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link " aria-current="page" href="@Url.Action("index")">Главная</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("news")">Новости</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("advertisement")">Объявления</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("ourActivities")">Наша деятельность</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link " aria-current="page" href="@Url.Action("calendar_events")">Календарь событий</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("aboutUs")">О нас</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("partners")">Партнеры</a>
-            </li>
-            <li class="nav-item">
-                <a class="text-black nav-link" href="@Url.Action("reports")">Отчеты</a>
-            </li>
-        </ul>
+            <nav class="nav navbar-expand-xxl nav-underline">
+                <a class="navbar-brand" href="index.html">
+                    <a href="@Url.Action("index")"><img src="/image/logo.jpg" alt=""></a>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" style="width: 120px;margin-top: 10px; text-align: center;">Меню</span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul  class="navbar-nav">
+                        
+                        <li class="nav-item">
+                            <a class="text-black nav-link " aria-current="page" href="@Url.Action("index")">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("news")">Новости</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("advertisement")">Объявления</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("ourActivities")">Наша деятельность</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link " aria-current="page" href="@Url.Action("calendar_events")">Календарь событий</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("aboutUs")">О нас</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("partners")">Партнеры</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-black nav-link" href="@Url.Action("reports")">Проекты</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
     </header>
 }

@@ -422,6 +422,46 @@ namespace AspNetCoreCursovaya.Migrations.cursovayadb
                     b.ToTable("reports");
                 });
 
+            modelBuilder.Entity("AspNetCoreCursovaya.Models.category_in_partners", b =>
+                {
+                    b.Property<int>("idCategory_in_partners")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_category")
+                        .HasColumnType("int");
+
+                    b.Property<int>("id_partner")
+                        .HasColumnType("int");
+
+                    b.HasKey("idCategory_in_partners");
+
+                    b.ToTable("category_in_partners");
+                });
+
+            modelBuilder.Entity("AspNetCoreCursovaya.Models.partners", b =>
+                {
+                    b.Property<int>("idPartners")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("date_delete")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("link_photo")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("text_partner")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("title_partner")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("idPartners");
+
+                    b.ToTable("partners");
+                });
+
             modelBuilder.Entity("AspNetCoreCursovaya.Models.CategoriesInDocument", b =>
                 {
                     b.HasOne("AspNetCoreCursovaya.Models.Category", "IdCategoryNavigation")

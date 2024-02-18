@@ -10,7 +10,7 @@ namespace AspNetCoreCursovaya.Models
     {
         public cursovayadbContext()
         {
-        }
+        } 
 
         public cursovayadbContext(DbContextOptions<cursovayadbContext> options)
             : base(options)
@@ -32,15 +32,18 @@ namespace AspNetCoreCursovaya.Models
         public virtual DbSet<PhotoInNews> PhotoInNews { get; set; }
         public virtual DbSet<Poster> Posters { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<partners> partners { get; set; }
+        public virtual DbSet<category_in_partners> category_in_partners { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySql("Server=MYSQL5045.site4now.net;Database=db_a992f1_ivan123;Uid=a992f1_ivan123;Pwd=Dfyz2000", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
+                optionsBuilder.UseMySql("Server=MYSQL5045.site4now.net;Database=db_a992f1_ivan123;Uid=a992f1_ivan123;Pwd=Dfyz2000;", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
             }
-        }
+        } // server=localhost;user=root;password=root;database=cursovayadb;
+        //Server=MYSQL5045.site4now.net;Database=db_a992f1_ivan123;Uid=a992f1_ivan123;Pwd=Dfyz2000;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -117,6 +120,8 @@ namespace AspNetCoreCursovaya.Models
                     .HasMaxLength(45)
                     .HasColumnName("title_category");
             });
+
+           
 
             modelBuilder.Entity<CategoryInEvent>(entity =>
             {
