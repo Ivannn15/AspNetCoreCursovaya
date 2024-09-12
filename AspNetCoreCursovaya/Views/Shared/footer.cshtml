@@ -1,25 +1,25 @@
-﻿<footer class="mt-auto position-sticky top-100">
+﻿<footer style="width:100%; margin-top:20px" class="mt-auto position-sticky top-100">
     <div class="list_items">
         <p>
-            <a href="news.html">Новости</a>
+            <a href="@Url.Action("news")">Новости</a>
         </p>
         <p>
-            <a href="advertisement.html">Объявления</a>
+            <a href="@Url.Action("advertisement")">Объявления</a>
         </p>
         <p>
-            <a href="ourActivities.html">Наша деятельность</a>
+            <a href="@Url.Action("ourActivities")">Наша деятельность</a>
         </p>
         <p>
-            <a href="calendar_events.html">Календарь событий</a>
+            <a href="@Url.Action("calendar_events")">Календарь событий</a>
         </p>
         <p>
-            <a href="aboutUs.html">О нас</a>
+            <a href="@Url.Action("aboutUs")">О нас</a>
         </p>
         <p>
-            <a href="partners.html">Партнеры</a>
+            <a href="@Url.Action("partners")">Партнеры</a>
         </p>
         <p>
-            <a href="reports.html">Отчеты</a>
+            <a href="@Url.Action("reports")">Проекты</a>
         </p>
     </div>
 
@@ -49,8 +49,8 @@
             <a href="https://web.telegram.org"><img src="/image/telegram.png" alt="ТГ"></a>
             <a href="https://www.youtube.com"><img src="/image/youtube 1.png" alt="Ютуб"></a>
 
-            <a href="@Url.Action("writeUs")">
-                <button type="button" class="btn btn-secondary btn-sm w-25">Написать нам</button>
+            <a href="@Url.Action("writeUs","home")">
+                <button type="button" class="btn btn-secondary btn-sm w-25" style="min-width: 120px;">Написать нам</button>
             </a>
         </div>
     </div>

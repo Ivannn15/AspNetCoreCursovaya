@@ -19,17 +19,20 @@ namespace AspNetCoreCursovaya.Controllers
 
         cursovayadbContext cursovayadbContext = new cursovayadbContext();
 
-        [Authorize]
+        // Обработка запроса на вывод страницы администратора
+        //[Authorize]
         public IActionResult admin_index()
         {
+            ViewBag.AutorizeUser = true;
             return View();
         }
 
+        // Обработка запроса на загрузку файла
         public IActionResult Download(string filename)
         {
             var path = Path.Combine(
                 Directory.GetCurrentDirectory(),
-                "wwwroot//documents", filename.Replace("\\","//"));
+                "wwwroot//documents", filename.Replace("\\", "//"));
             var memory = new MemoryStream();
             using (var stream = new FileStream(path, FileMode.Open))
             {
@@ -39,6 +42,7 @@ namespace AspNetCoreCursovaya.Controllers
             return File(memory, GetContentType(path), Path.GetFileName(path));
         }
 
+        // Метод для получения типа файла
         private string GetContentType(string path)
         {
             var types = GetMimeTypes();
@@ -46,6 +50,7 @@ namespace AspNetCoreCursovaya.Controllers
             return types[ext];
         }
 
+        // Метод возвращающий словарь соответсвия расширений файлов
         private Dictionary<string, string> GetMimeTypes()
         {
             return new Dictionary<string, string>
@@ -59,19 +64,173 @@ namespace AspNetCoreCursovaya.Controllers
             };
         }
 
+        // Обработка запроса на вывод страницы добавить партнера
+        public IActionResult addParnterPage()
+        {
+            return View();
+        }
+
+        //public IActionResult addParnterPage(partners partner)
+        //{
+
+        //    return View(partner);
+        //}
+
+
+
+        public IActionResult deletePartner(int idPartner, int idCategory)
+        {
+            cursovayadbContext.partners.Remove(cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner));
+            cursovayadbContext.category_in_partners.Remove(cursovayadbContext.category_in_partners.SingleOrDefault(p => p.id_partner == idPartner)); //.SingleOrDefault(p => p.id_partner == idPartner && p.id_category == idCategory));
+
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("partners", "home");
+        }
+
+        public IActionResult changePartnerPagee(int idPartner, int idCategory)
+        {
+            var changedPartner = cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner);
+
+            ViewBag.viewBagCategoryPartner = cursovayadbContext.Categories.SingleOrDefault(p => p.IdCategories == idCategory).TitleCategory;
+
+            if (changedPartner == null)
+            {
+                return RedirectToAction("Eror", "home");
+            }
+
+            return View("addParnterPage", changedPartner);
+        }
+
+        [HttpPost]
+        public IActionResult changeePartnerPage(partners partner, int idPartner, string LastSelectCategory , string category, IFormFile photoInPartner)
+        {
+            if (photoInPartner != null)
+            {
+                string fileExtension = Path.GetExtension(photoInPartner.FileName);
+                if (fileExtension != ".img" && fileExtension != ".png" && fileExtension != ".jpg")
+                {
+                    ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg");
+                    ViewBag.Exeption = "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg";
+                    return RedirectToAction("ErorFile", "home");
+                }
+            }
+
+            string link = ""; // ссылка на файл
+            //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
+            if (photoInPartner != null && photoInPartner.FileName.Length > 0)
+            {
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\", photoInPartner.FileName); //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    photoInPartner.CopyTo(stream);
+                }
+
+                link = filePath;
+                cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner).link_photo = photoInPartner.FileName;
+            }
+
+            if (LastSelectCategory != category && category != "Выберите категорию")
+            {
+                cursovayadbContext.category_in_partners.SingleOrDefault(p => p.id_partner == idPartner).id_category = cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category).IdCategories;
+            }
+
+            cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner).title_partner = partner.title_partner;
+            cursovayadbContext.partners.SingleOrDefault(p => p.idPartners == idPartner).text_partner = partner.text_partner;
+
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("partners", "home");
+
+        }
+
+        // Добавление нового партнера
+        [HttpPost]
+        public IActionResult addParnterPagee(partners partner, string category, IFormFile photoInPartner) //--------------------- 23.06 Скопировать адд с другого контроллера (они схожи по логике)
+        {
+
+            if (photoInPartner != null)
+            {
+                string fileExtension = Path.GetExtension(photoInPartner.FileName);
+                if (fileExtension != ".img" && fileExtension != ".png" && fileExtension != ".jpg")
+                {
+                    ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg");
+                    ViewBag.Exeption = "Неверный формат файла. Допустимые форматы: .img, .png, .jpeg";
+                    return RedirectToAction("ErorFile", "home");
+                }
+            }
+
+            int MaxIdPartner;
+            int MaxIdCategoryInPartner;
+
+            if (cursovayadbContext.partners.Count() == 0)
+            {
+                MaxIdPartner = 1;
+                MaxIdCategoryInPartner = 1;
+            }
+            else
+            {
+                MaxIdPartner = cursovayadbContext.partners.Max(p => p.idPartners) + 1;
+                MaxIdCategoryInPartner = cursovayadbContext.category_in_partners.Max(p => p.idCategory_in_partners) + 1;
+            }
+
+            category_in_partners categoryInPartners = new category_in_partners();
+
+            partner.idPartners = MaxIdPartner; //====================================== добавляем новые айдишники 
+            categoryInPartners.idCategory_in_partners = MaxIdCategoryInPartner;
+
+            partner.date_delete = DateTime.Now;
+
+            string link = ""; // ссылка на файл
+            //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
+            if (photoInPartner != null && photoInPartner.FileName.Length > 0)
+            {
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\", photoInPartner.FileName);  //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    photoInPartner.CopyTo(stream);
+                }
+
+                link = filePath;
+                partner.link_photo = photoInPartner.FileName;
+            }
+            else
+            {
+                partner.link_photo = null;
+            }
+            
+
+            categoryInPartners.id_category =
+                cursovayadbContext.Categories.SingleOrDefault(p => p.TitleCategory == category).IdCategories;
+
+            categoryInPartners.id_partner = partner.idPartners;
+
+            cursovayadbContext.partners.Add(partner);
+            cursovayadbContext.category_in_partners.Add(categoryInPartners);
+
+            cursovayadbContext.SaveChanges();
+
+            return RedirectToAction("partners", "home");
+
+        }
+
+        // Обработка запроса на вывод страницы добавить объявление
         public IActionResult addAdvertisementPage()
         {
             return View();
         }
 
+        // Обработка запроса на вывод страницы добавить событие
         public IActionResult addEventPage()
         {
             return View();
         }
 
+        // Обработка запроса на удаление отчета
         public IActionResult delleteReport(int idReport)  //......... Удаление отчета
         {
             cursovayadbContext.Reports.Remove(cursovayadbContext.Reports.SingleOrDefault(p => p.IdReport == idReport));
+            cursovayadbContext.CategoryInReports.Remove(cursovayadbContext.CategoryInReports.SingleOrDefault(p => p.IdReport == idReport));
             cursovayadbContext.SaveChanges();
 
             return RedirectToAction("reports", "home");     ///..................................... 06.05 доделать удаление отчетов, добавить ко всем сущностям имеющим категорию в базе данных тригер на удаление записи в связующей таблице
@@ -80,6 +239,7 @@ namespace AspNetCoreCursovaya.Controllers
         public IActionResult delletePoster(int idPoster)  //......... Удаление объявления
         {
             cursovayadbContext.Posters.Remove(cursovayadbContext.Posters.SingleOrDefault(p => p.IdPoster == idPoster));
+            cursovayadbContext.CategoryInPosters.Remove(cursovayadbContext.CategoryInPosters.SingleOrDefault(p => p.IdPoster == idPoster));
             cursovayadbContext.SaveChanges();
 
             return RedirectToAction("advertisement", "home");
@@ -88,27 +248,36 @@ namespace AspNetCoreCursovaya.Controllers
         public IActionResult delleteNews(int idNews)  //......... Удаление новости
         {
             cursovayadbContext.News.Remove(cursovayadbContext.News.SingleOrDefault(p => p.IdNews == idNews));
+            if (cursovayadbContext.PhotoInNews.Any(p => p.IdNews == idNews))
+            {
+                cursovayadbContext.PhotoInNews.Remove(cursovayadbContext.PhotoInNews.SingleOrDefault(p => p.IdNews == idNews));
+            }
             cursovayadbContext.SaveChanges();            
 
             return RedirectToAction("news", "home", 1);
         }
 
+        // Обработка запроса на Удаление события
         public IActionResult delleteEvent(int idEvent)
         {
             cursovayadbContext.Events.Remove(cursovayadbContext.Events.SingleOrDefault(p => p.IdEvents == idEvent));
+            cursovayadbContext.CategoryInEvents.Remove(cursovayadbContext.CategoryInEvents.SingleOrDefault(p => p.IdEvent == idEvent));
             cursovayadbContext.SaveChanges();
 
             return RedirectToAction("calendar_events", "home", new { categoryInEvent =  cursovayadbContext.Events } );
         }
 
+        // Обработка запроса на удаление документа
         public IActionResult delleteDocument(int idDocument)
         {
             cursovayadbContext.Documents.Remove(cursovayadbContext.Documents.SingleOrDefault(p => p.IdDocuments == idDocument));
+            cursovayadbContext.CategoriesInDocuments.Remove(cursovayadbContext.CategoriesInDocuments.SingleOrDefault(p => p.IdDocument == idDocument));
             cursovayadbContext.SaveChanges();
 
             return RedirectToAction("aboutUs", "home");
         }
 
+        // Обработка запроса на удаление коментария
         public IActionResult delleteComment(int idComment, int newsId, int pageIndex)
         {
             cursovayadbContext.Comments.Remove(cursovayadbContext.Comments.SingleOrDefault(p => p.Idcomments == idComment));
@@ -117,6 +286,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("pageNews", "home", new { id = newsId, numberOfPage = pageIndex });
         }
 
+        // Обработка запроса на добавление объявления
         [HttpPost]
         public IActionResult addAdvertisement(Poster poster, string category)
         {
@@ -159,6 +329,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("advertisement", "home");
         }
 
+        // Обработка запроса на добавление события
         public IActionResult addEvent(Event @event, string category)
         {
             if (string.IsNullOrWhiteSpace(@event.TitleEvent) | string.IsNullOrWhiteSpace(@event.TextEvent))
@@ -200,16 +371,17 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("calendar_events", "home", cursovayadbContext.Events);
         }
 
+        // Обработка запроса на добавление отчета
         [HttpPost]
         public IActionResult addReport(IFormFile file, string category, DateTime dateStart) // добавление нового отчета
         {
             if (file != null)
             {
                 string fileExtension = Path.GetExtension(file.FileName);
-                if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx")
+                if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx" && fileExtension != ".pdf")
                 {
                     ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx");
-                    return RedirectToAction("addReportPage", "admin");
+                    return RedirectToAction("ErorFile", "home");
                 }
             }
 
@@ -231,8 +403,7 @@ namespace AspNetCoreCursovaya.Controllers
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
             if (file != null && file.FileName.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\files\\", file.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\files\\", file.FileName);  //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\files\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     file.CopyTo(stream);
@@ -271,16 +442,17 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("reports", "home");
         }
 
+        // Обработка запроса на добавление документа
         public IActionResult addDocument(IFormFile file, string category)
         {
             if (file != null)
             {
                 string fileExtension = Path.GetExtension(file.FileName);
-                if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx")
+                if (fileExtension != ".txt" && fileExtension != ".doc" && fileExtension != ".docx" && fileExtension != ".pdf" && fileExtension != ".jpg" && fileExtension != ".png")
                 {
                     ModelState.AddModelError("file", "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx");
                     ViewBag.Exeption = "Неверный формат файла. Допустимые форматы: .txt, .doc, .docx";
-                    return RedirectToAction("aboutUs", "home");
+                    return RedirectToAction("ErorFile", "home");
                 }
             }
 
@@ -302,8 +474,7 @@ namespace AspNetCoreCursovaya.Controllers
             //.................................................................. ДОБАВЛЕНИЕ ФАЙЛА, найти ссылку расположения добавляемого файла
             if (file != null && file.FileName.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\documents\\", file.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\documents\\", file.FileName);  //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\documents\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     file.CopyTo(stream);
@@ -335,6 +506,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("aboutUs", "home");
         }
 
+        // Обработка запроса на вывод страницы добавить документ
         public IActionResult addDocumentPage()
         {
             return View();
@@ -344,28 +516,44 @@ namespace AspNetCoreCursovaya.Controllers
         /// </summary>
         /// <returns></returns>
 
+        // Обработка запроса на вывод страницы добавить новость
         [HttpGet]
         public IActionResult addNewsPage()
         {
             return View();
         }
 
+        // Обработка запроса на вывод страницы изменить новость
         [HttpGet]
+        //[Authorize]
         public IActionResult changeNewsPage(int newsId)
         {
             var changedNews = cursovayadbContext.News.Include(p => p.PhotoInNews).SingleOrDefault(p => p.IdNews == newsId);
 
+            if (changedNews == null)
+            {
+                return RedirectToAction("Eror", "home");
+            }
+
             return View("addNewsPage", changedNews);
         }
 
+        // Обработка запроса на вывод страницы изменить объявление
         [HttpGet]
+        //[Authorize]
         public IActionResult changeAdvertisement(int adsId)
         {
             var changedAds = cursovayadbContext.CategoryInPosters.Include(p => p.IdPosterNavigation).Include(p => p.IdCategoryNavigation).SingleOrDefault(p => p.IdPoster == adsId);
 
+            if (changedAds == null)
+            {
+                return RedirectToAction("Eror", "home");
+            }
+
             return View("addAdvertisementPage", changedAds);
         }
 
+        // Обработка запроса на изменение новости
         [HttpPost]
         public IActionResult changeNewsPage(News changedNews, IFormFile photoInNews, int newsId) //................. 02.05. добавил возможность изменения новостей, сделать это для всех сущностей
         {
@@ -373,14 +561,26 @@ namespace AspNetCoreCursovaya.Controllers
 
             if (photoInNews != null && photoInNews.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInNews.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\documents\\", photoInNews.FileName); //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\documents\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     photoInNews.CopyTo(stream);
                 }
 
-                cursovayadbContext.PhotoInNews.Single(p => p.IdNews == newsId && p.IdNewsNavigation.TitleNews == changedNews.TitleNews).Link = photoInNews.FileName;
+                //cursovayadbContext.PhotoInNews.Single(p => p.IdNews == newsId).Link = photoInNews.FileName;
+
+                if (cursovayadbContext.PhotoInNews.Any(p => p.IdNews == newsId))
+                {
+                    cursovayadbContext.PhotoInNews.Single(p => p.IdNews == newsId).Link = photoInNews.FileName;
+                }
+                else
+                {
+                    PhotoInNews photo = new PhotoInNews();
+                    photo.IdNews = newsId;
+                    photo.IdNewsNavigation = cursovayadbContext.News.SingleOrDefault(p => p.IdNews == newsId);
+                    photo.Link= photoInNews.FileName;
+                    cursovayadbContext.PhotoInNews.Add(photo);
+                }
             }
 
             var tempNews = cursovayadbContext.News.SingleOrDefault(p => p.IdNews == newsId);
@@ -398,6 +598,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("news", "home");
         }
 
+        // Обработка запроса на изменение объявления
         [HttpPost]
         public IActionResult changeAdvertisement(string title, string text, DateTime dateStart, DateTime dateEnd, string category, int adsCategoryId)
         {
@@ -429,7 +630,9 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("advertisement", "home");
         }
 
+        // Обработка запроса на вывод страницы изменить новость
         [HttpGet]
+        //[Authorize]
         public IActionResult changeEvent(int idEvent)
         {
             var tempEvent = cursovayadbContext.CategoryInEvents.Include(p => p.IdEventNavigation).Include(p => p.IdCategoryInEventsNavigation).SingleOrDefault(p => p.IdEvent == idEvent);
@@ -437,6 +640,7 @@ namespace AspNetCoreCursovaya.Controllers
             return View("addEventPage", tempEvent);
         }
 
+        // Обработка запроса на изменение события
         [HttpPost]
         public IActionResult changeEvent(string title, DateTime dateStart, DateTime dateEnd, TimeSpan timeStart, TimeSpan timeEnd, string Text , string category, int idEvent)
         {
@@ -463,6 +667,7 @@ namespace AspNetCoreCursovaya.Controllers
             return RedirectToAction("pageCalendarEvent", "home", new { idEvent = tempEvent.IdEvent });
         }
 
+        // Обработка запроса на добавление новости
         [HttpPost]
         public IActionResult addNews(News news, IFormFile photoInNews)
         {
@@ -494,8 +699,7 @@ namespace AspNetCoreCursovaya.Controllers
 
             if (photoInNews != null && photoInNews.Length > 0)
             {
-                var filePath = Path.Combine("C:\\Users\\ivano\\source\\repos\\AspNetCoreCursovaya" +
-                    "\\AspNetCoreCursovaya\\wwwroot\\image\\", photoInNews.FileName);
+                var filePath = Path.Combine("h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\", photoInNews.FileName); //h:\\root\\home\\ivan12309471123-001\\www\\aspnetcorecursovaya\\wwwroot\\image\\
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     photoInNews.CopyTo(stream);
@@ -525,7 +729,7 @@ namespace AspNetCoreCursovaya.Controllers
 
             return RedirectToAction("news", "home");
         }
-        
+
 
         //[HttpPost]
         //public IActionResult addNewsPage([FromForm] news news)
@@ -550,11 +754,11 @@ namespace AspNetCoreCursovaya.Controllers
         /// </summary>
         /// <returns></returns>
 
+        // Обработка запроса на вывод страницы добавить отчет
         public IActionResult addReportPage()
         {
             return View();
         }
-        
 
         // POST: AdminController/Create
         [HttpPost]

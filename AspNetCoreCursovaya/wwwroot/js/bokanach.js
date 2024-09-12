@@ -8,7 +8,17 @@
 // 		let modal = document.querySelector("[data-modal-window='"+name+"']");
 // 		modal.style.display = "block";
 // 	})
-// }
+//}
+
+$('#exampleModal').on('show.bs.modal', function (event) {
+	var button = $(event.relatedTarget);
+	var day = button.data('day');
+	var modal = $(this);
+	var date = new Date();
+	date.setDate(day); // Здесь мы обновляем дату, устанавливая значение дня
+	var formattedDate = date.getDate() + ' ' + date.toLocaleString('en-US', { month: 'long' }) + ' ' + date.getFullYear();
+	modal.find('.modal-title').text(formattedDate);
+});
 
 
 

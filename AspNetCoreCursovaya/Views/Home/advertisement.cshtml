@@ -1,5 +1,15 @@
 ﻿ @model IEnumerable<AspNetCoreCursovaya.Models.Poster>
 
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var context = HttpContextAccessor.HttpContext;
+    var cookieValue = context.Request.Cookies["name"];
+}
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +34,11 @@
             @foreach (var ads in Model.AsEnumerable().Reverse())
             {
                 <div class="d-flex flex-column flex-md-row news_card rounded-4">
-                    <div class="news_card_text">
+                    <div class="news_card_text" style="width:100%">
                         <div>
                             <h3>
-                                <b>@ads.TitlePoster</b>
-                                @if (User.Identity.IsAuthenticated)
+                                <a href="@Url.Action("PageAdvertisement", "Home", new {idAdvert = ads.IdPoster})"><b>@ads.TitlePoster</b></a>
+                                @if (cookieValue == "admin")
                                 {
                                     <a href="@Url.Action("changeAdvertisement", "admin", new {adsId = ads.IdPoster})"><img height="30" src="/image/edit.png" alt="Редактировать"></a>
                                 }
@@ -39,7 +49,7 @@
                         </p>
 
                         <div class="news_card_date">
-                            @if (User.Identity.IsAuthenticated)
+                            @if (cookieValue == "admin")
                             {
                                 <p>@ads.DatePublication.Value.ToShortDateString()<a href="@Url.Action("delletePoster", "admin", new { idPoster = ads.IdPoster })"><img height="20" src="/image/delete.png" alt="Удалить"></a></p>
                             }

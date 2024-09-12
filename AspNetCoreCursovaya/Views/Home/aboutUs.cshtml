@@ -29,7 +29,7 @@
             <div class="director_word">
                 <div class="director_FIO">
                     <div>
-                        <img src="/image/aboutUsImage.jpg" alt="director">
+                        <img src="/image/Руководитель.jpg" alt="director">
                         <p>
                             Директор АНО «Открытый мир» <br>
                             <b>Щеглачёва Лилия Викторовна </b>
@@ -234,6 +234,13 @@
                 </p>
             </div>
 
+            @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+            @{
+                var context = HttpContextAccessor.HttpContext;
+                var cookieValue = context.Request.Cookies["name"];
+            }
+
             <div class="documents">
                 <h4><b>Документы</b></h4>
 
@@ -242,7 +249,7 @@
                     <div class="document">
                         <img src="/image/document 1.png" alt="Документ">
                         <a href="@Url.Action("Download", "home", new { filename = doc.IdDocumentNavigation.Link})"><u>@doc.IdDocumentNavigation.Link.Substring(doc.IdDocumentNavigation.Link.LastIndexOf('\\') + 1, doc.IdDocumentNavigation.Link.LastIndexOf('.') - doc.IdDocumentNavigation.Link.LastIndexOf('\\') - 1)</u></a>
-                        @if (User.Identity.IsAuthenticated)
+                        @if (cookieValue == "admin")
                         {
                             <a href="@Url.Action("delleteDocument", "admin", new { idDocument = doc.IdDocument })"><img src="/image/корзина 7.png"></img></a>
                         }
@@ -260,6 +267,7 @@
                 </p>
             </div>
 
+            <img src="~/documents/photo_5224289913120345450_y.jpg"></img>
 
     </main>
 
